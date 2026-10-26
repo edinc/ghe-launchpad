@@ -12,11 +12,16 @@ Requires Node.js 22.22 or later (see `.nvmrc`).
 ```sh
 npm install
 npm run dev       # http://localhost:4321/ghe-launchpad/
+npm run check     # type check (astro check)
 npm run build     # static site in dist/, also validates internal links
 npm run preview   # serve the build locally
 ```
 
 Built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
+
+## Checks
+
+Every pull request and every push to `main` runs `.github/workflows/ci.yml`: the type check and a production build, which fails on any broken internal link.
 
 ## License
 
