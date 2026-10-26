@@ -1,0 +1,103 @@
+---
+title: Single Sign-On mit Entra ID einrichten
+description: Verbinden Sie Ihr Enterprise-Konto per OIDC mit Microsoft Entra ID, damit die Anmeldung über Entra-Konten läuft und Ihre Richtlinien für bedingten Zugriff greifen.
+sidebar:
+  label: Single Sign-On
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import Sticky from '../../../../components/Sticky.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+import Video from '../../../../components/Video.astro';
+import IdentityFlow from '../../../../components/diagrams/IdentityFlow.astro';
+
+<StepIntro step="configure-sso">
+- Passwort und zweiten Faktor des Setup-Benutzers aus Schritt 2
+- Einen Entra-Admin mit der Rolle **Globaler Administrator**, der sich während des Schritts anmelden kann
+- Einen Platz in Ihrem Passwortmanager für die SSO-Wiederherstellungscodes
+</StepIntro>
+
+Mit OIDC melden sich Ihre Benutzer mit ihrem Entra-Konto bei `SUBDOMAIN.ghe.com` an, und Ihre Richtlinien für bedingten Zugriff greifen automatisch. Dieser Schritt schaltet die Anmeldung ein; die Benutzer kommen in Schritt 7 dazu.
+
+<IdentityFlow />
+
+## OIDC aktivieren
+
+<ClickPath path="Your enterprise > Identity provider > Single sign-on configuration" />
+
+<Steps>
+
+1. Melden Sie sich als Setup-Benutzer `SHORTCODE_admin` bei `https://SUBDOMAIN.ghe.com` an und öffnen Sie Ihr Enterprise-Konto.
+
+2. Klicken Sie auf **Identity provider** und dann auf **Single sign-on configuration**.
+
+3. Wählen Sie unter **OIDC single sign-on** die Option **Enable OIDC configuration** aus und klicken Sie auf **Save**.
+
+4. GitHub leitet Sie zu Microsoft weiter. Melden Sie sich mit dem Konto des Globalen Administrators an.
+
+5. Setzen Sie das Häkchen bei **Consent on behalf of your organization** und klicken Sie auf **Accept**. Damit fügen Sie Ihrem Entra-Mandanten die App **GitHub Enterprise Managed User (OIDC)** hinzu.
+
+6. Zurück in GitHub: Sichern Sie die SSO-Wiederherstellungscodes mit **Download**, **Print** oder **Copy** und legen Sie sie im Passwortmanager ab.
+
+7. Klicken Sie auf **Enable OIDC Authentication**.
+
+</Steps>
+
+<Callout type="note" title="Noch kann sich niemand anmelden">
+Single Sign-On ist aktiv, aber Ihre Benutzer haben noch keine Konten. Diese legt erst die Bereitstellung in Schritt 7 an. Der Setup-Benutzer meldet sich weiterhin mit seinem Passwort an.
+</Callout>
+
+## Gut zu wissen
+
+<div class="sticky-row">
+  <Sticky color="teal" title="Conditional Access greift automatisch">
+    Mit OIDC gelten Ihre Richtlinien für bedingten Zugriff aus Entra ID ohne zusätzlichen Schalter. Optional: erweiterter Schutz für Websitzungen (Vorschau) unter **Authentication security**.
+  </Sticky>
+  <Sticky color="yellow" title="Die Anmeldung beginnt bei GitHub">
+    OIDC unterstützt keine Anmeldung von der Entra-Seite aus. Ihre Benutzer öffnen deshalb `https://SUBDOMAIN.ghe.com`, statt auf eine App-Kachel zu klicken.
+  </Sticky>
+</div>
+
+## Fehlerbehebung
+
+<details>
+<summary>Microsoft verlangt eine Administratorgenehmigung</summary>
+
+Das Konto, mit dem Sie sich angemeldet haben, ist kein Globaler Administrator. Wiederholen Sie den Schritt mit einem solchen Konto oder bitten Sie Ihren Entra-Admin, sich an Ihrer Stelle anzumelden.
+
+</details>
+
+<details>
+<summary>Ihr Mandant nutzt OIDC bereits für ein anderes GitHub-Enterprise-Konto</summary>
+
+Jeder Entra-Mandant unterstützt nur eine OIDC-Verbindung. Nutzen Sie für dieses Enterprise-Konto stattdessen [SAML](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users).
+
+</details>
+
+<details>
+<summary>Nach einer Änderung am Single Sign-On kann sich niemand mehr anmelden</summary>
+
+Melden Sie sich als Setup-Benutzer mit Passwort und zweitem Faktor an und korrigieren Sie die Konfiguration. Falls das nicht möglich ist, nutzen Sie einen der [SSO-Wiederherstellungscodes](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/managing-recovery-codes-for-your-enterprise/downloading-your-enterprise-accounts-single-sign-on-recovery-codes).
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="configure-sso" />
+
+## Video
+
+<Video id="sso" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [OIDC für Enterprise Managed Users konfigurieren](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-oidc-for-enterprise-managed-users)
+- [SSO-Wiederherstellungscodes Ihres Enterprise-Kontos herunterladen](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/managing-recovery-codes-for-your-enterprise/downloading-your-enterprise-accounts-single-sign-on-recovery-codes)
+- [SAML für Enterprise Managed Users konfigurieren](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users)
+</DocLinks>

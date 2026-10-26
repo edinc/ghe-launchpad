@@ -1,0 +1,98 @@
+---
+title: 'Vorbereiten: Entscheidungen und Beteiligte'
+description: Wählen Sie Variante, Region und Subdomain, planen Sie die benötigten Personen ein und geben Sie Ihrem Netzwerkteam die freizugebenden Hostnamen.
+sidebar:
+  label: Vorbereiten
+lastVerified: 2026-10-23
+---
+
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="prepare">
+- 30–60 Minuten mit allen, die über Tools, Identitäten und Budget entscheiden
+- Ihr Netzwerk- oder Proxy-Team für den letzten Punkt
+</StepIntro>
+
+Wenn Sie jetzt ein paar Entscheidungen treffen, müssen Sie später nicht von vorn anfangen. Zwei davon lassen sich nicht mehr ändern, sobald das Enterprise-Konto existiert.
+
+## 1. Variante wählen
+
+Wählen Sie **Variante A · Komplette Plattform**, wenn Ihr Code auf GitHub liegt oder dorthin umzieht. Wählen Sie **Variante B · Nur Copilot**, wenn er in Azure DevOps, GitLab, Bitbucket oder anderswo bleibt. Unsicher? [Vergleichen Sie die Varianten](/ghe-launchpad/de/start/choose-your-path/).
+
+## 2. Beteiligte benennen
+
+| Rolle | Schritte | Was sie brauchen |
+| --- | --- | --- |
+| Enterprise-Owner | 1–9 | Eine geschäftliche E-Mail-Adresse für die Einladung zur Testversion |
+| Entra-Admin | 3, 6, 7, 8 | **Global Administrator** (Globaler Administrator) für die Zustimmungen in den Schritten 3 und 6; **Application Administrator** (Anwendungsadministrator), **Cloud Application Administrator** (Cloudanwendungsadministrator) oder Besitzer der App für die Bereitstellung in Schritt 7 |
+| Besitzer des Azure-Abonnements | 3 | Die Rolle **Owner** („Besitzer“) für das Abonnement, über das GitHub bezahlt wird |
+| Ihr Microsoft- oder GitHub-Ansprechpartner | 5 | Die Subdomain Ihres Enterprise-Kontos, sobald es aktiviert ist |
+
+Eine Person kann mehrere Rollen übernehmen. Der [Ablaufplan](/ghe-launchpad/de/start/journey-map/) zeigt, wann welche Rolle gebraucht wird.
+
+## 3. Region und Subdomain festlegen
+
+- **Region:** Hier werden Ihr Code und Ihre Daten gespeichert. Sie können die EU (einschließlich der EFTA-Staaten Norwegen und Schweiz), Australien, die USA oder Japan wählen.
+- **Subdomain:** Daraus wird `SUBDOMAIN.ghe.com`, die Adresse, über die sich alle anmelden, und der Name in Ihren API- und Bereitstellungs-URLs. Wählen Sie etwas Kurzes, gut Erkennbares, z. B. Ihren Firmennamen.
+
+<Callout type="danger" title="Subdomain und Region sind endgültig">
+Beides lässt sich nach dem Anlegen des Enterprise-Kontos nicht mehr ändern. Stimmen Sie Subdomain und Region vor Schritt 1 mit Ihren Stakeholdern ab.
+</Callout>
+
+## 4. Identitätsanbieter bestätigen
+
+Dieser Leitfaden nutzt **Microsoft Entra ID mit OIDC**. Damit gelten Ihre Richtlinien für bedingten Zugriff auch für GitHub. Prüfen Sie zwei Dinge:
+
+- Jeder Entra-Mandant unterstützt **eine** OIDC-Verbindung zu einem GitHub-Enterprise-Konto. Hat Ihr Mandant bereits eine, braucht dieses Enterprise-Konto stattdessen [SAML](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users).
+- Sie nutzen Okta oder PingFederate? Der Ablauf ist ähnlich, verwendet aber SAML; folgen Sie derselben SAML-Dokumentation.
+
+## 5. Azure-Abonnement auswählen
+
+Wählen Sie das Abonnement, über das GitHub bezahlt werden soll, und notieren Sie seine **Abonnement-ID** ([so finden Sie sie](https://learn.microsoft.com/de-de/azure/azure-portal/get-subscription-tenant-id)). Manche Abonnementtypen wie kostenlose Testversionen, Studenten- und Azure-Pass-Abonnements lassen sich nicht verwenden; prüfen Sie vorher die [unterstützten Zahlungsmethoden](https://docs.github.com/de/enterprise-cloud@latest/billing/reference/supported-payment-methods).
+
+## 6. Netzwerkteam informieren
+
+Entwickler und Admins erreichen Ihr Enterprise-Konto über diese Hostnamen. Schicken Sie die Liste an die Verantwortlichen für Ihren Proxy oder Ihre Firewall:
+
+```text "SUBDOMAIN"
+SUBDOMAIN.ghe.com
+*.SUBDOMAIN.ghe.com
+*.pages.SUBDOMAIN.ghe.com
+*.actions.SUBDOMAIN.ghe.com
+auth.ghe.com
+*.githubassets.com
+*.githubusercontent.com
+*.blob.core.windows.net
+```
+
+Sind Wildcards für `blob.core.windows.net` nicht erlaubt, erklären die [Netzwerkdetails](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/network-details-for-ghecom), wie Sie die genauen Speicher-Hostnamen ermitteln. Dort finden Sie auch die IP-Bereiche pro Region.
+
+<details>
+<summary>Was auf GHE.com anders funktioniert</summary>
+
+Einige Funktionen von GitHub.com sind in einem Enterprise-Konto mit Datenresidenz nicht verfügbar oder funktionieren anders, zum Beispiel:
+
+- **GitHub Marketplace** ist nicht verfügbar; Apps und Actions lassen sich aber weiterhin aus ihrer Quelle installieren.
+- **macOS-Runner** für GitHub Actions sind noch nicht verfügbar.
+- **Öffentliche Repositories und Gists** gibt es nicht, weil alle Konten verwaltete Benutzer sind.
+- Tools und Skripte müssen **Ihre** Adressen verwenden, z. B. `api.SUBDOMAIN.ghe.com` statt `api.github.com`.
+
+Die vollständige, aktuelle Liste finden Sie in der [Funktionsübersicht](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/feature-overview-for-github-enterprise-cloud-with-data-residency).
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="prepare" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Informationen zu GitHub Enterprise Cloud mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/about-github-enterprise-cloud-with-data-residency)
+- [Erste Schritte mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Funktionsübersicht für GHE.com](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/feature-overview-for-github-enterprise-cloud-with-data-residency)
+- [Netzwerkdetails für GHE.com](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/network-details-for-ghecom)
+</DocLinks>

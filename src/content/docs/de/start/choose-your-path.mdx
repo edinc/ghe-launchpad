@@ -1,0 +1,57 @@
+---
+title: Variante wählen
+description: Entscheiden Sie vor dem Start zwischen der kompletten GitHub-Plattform (Variante A) und nur Copilot (Variante B). Beide nutzen dieselben 11 Schritte.
+sidebar:
+  label: Variante wählen
+lastVerified: 2026-10-23
+---
+
+import PathsCompare from '../../../../components/diagrams/PathsCompare.astro';
+import PathCards from '../../../../components/PathCards.astro';
+import Callout from '../../../../components/Callout.astro';
+import Video from '../../../../components/Video.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+Beide Varianten nutzen dasselbe Enterprise-Konto auf GHE.com, dieselbe Anmeldung über Entra ID und dieselbe Abrechnung über Azure. Sie unterscheiden sich in zwei Punkten: **wo Ihr Code liegt** und **welche Lizenzen Sie bezahlen**.
+
+<PathsCompare />
+
+## Eine Frage entscheidet
+
+Behalten Ihre Entwickler ihren Code vorerst außerhalb von GitHub?
+
+- **Nein**, der Code liegt auf GitHub oder zieht dorthin um: Wählen Sie **Variante A · Komplette Plattform**.
+- **Ja**, er bleibt in Azure DevOps, GitLab, Bitbucket oder einem ähnlichen Tool: Wählen Sie **Variante B · Nur Copilot**.
+
+<PathCards />
+
+## Im direkten Vergleich
+
+| | Variante A · Komplette Plattform | Variante B · Nur Copilot |
+| --- | --- | --- |
+| Organisationen | Eine oder mehrere | Keine |
+| Wie Benutzer Zugriff erhalten | Teams in Organisationen, synchronisiert aus Entra ID | Enterprise-Teams, synchronisiert aus Entra ID |
+| Lizenzen, die Sie bezahlen | GitHub Enterprise pro Mitglied, plus Copilot | Nur Copilot Business |
+| Copilot-Pläne | Copilot Business oder Copilot Enterprise | Copilot Business |
+| Repositories, Actions, Security | Ja | Nicht genutzt |
+
+<Callout type="caution" title="Variante B: Benutzer aus Organisationen heraushalten">
+Sobald jemand einer Organisation in Ihrem Enterprise-Konto beitritt, belegt diese Person eine GitHub-Enterprise-Lizenz. Legen Sie in Variante B keine Organisationen an und fügen Sie niemanden versehentlich einer Organisation hinzu.
+</Callout>
+
+<Callout type="note" title="Variante B ist ein normales Enterprise-Konto">
+GitHub legt keinen speziellen Kontotyp nur für Copilot mehr an. Variante B ist ein Standard-Enterprise-Konto ohne Organisationen, sodass Sie später Organisationen hinzufügen können, wenn Ihr Code zu GitHub umzieht. GitHub beschreibt dieses Setup für jedes Enterprise-Konto, auch mit Enterprise Managed Users, dem einzigen Identitätsmodell auf GHE.com. Einige serverseitig verwaltete Copilot-Einstellungen setzen eine Organisation mit einem `.github-private`-Repository voraus; per MDM verteilte Einstellungsdateien funktionieren auch ohne. [Details in den GitHub Docs](https://docs.github.com/de/enterprise-cloud@latest/copilot/concepts/enterprise/about-enterprise-accounts-for-copilot-business).
+</Callout>
+
+## Video: GitHub-Lizenzen erklärt
+
+<Video id="licenses" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Informationen zu Enterprise-Konten für Copilot Business](https://docs.github.com/de/enterprise-cloud@latest/copilot/concepts/enterprise/about-enterprise-accounts-for-copilot-business)
+- [Informationen zu nutzungsbasierten Lizenzen](https://docs.github.com/de/enterprise-cloud@latest/billing/concepts/enterprise-billing/usage-based-licenses)
+- [Wer eine GitHub-Enterprise-Lizenz belegt](https://docs.github.com/de/enterprise-cloud@latest/billing/reference/github-license-users)
+- [Informationen zu GitHub Enterprise Cloud mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/about-github-enterprise-cloud-with-data-residency)
+</DocLinks>

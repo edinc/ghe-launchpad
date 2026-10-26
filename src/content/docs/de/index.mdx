@@ -1,0 +1,64 @@
+---
+title: GHE Launchpad
+description: Eine visuelle Self-Service-Anleitung für die Einrichtung von GitHub Enterprise Cloud mit Datenresidenz (GHE.com), Single Sign-On mit Microsoft Entra ID, Abrechnung über Azure und GitHub Copilot.
+template: splash
+lastVerified: 2026-10-23
+hero:
+  title: GitHub Enterprise auf GHE.com, ==Schritt für Schritt==.
+  tagline: "Von der leeren Testversion bis zu Entwicklern, die mit Copilot programmieren: 11 Schritte – wer was tut und worauf Sie warten."
+  actions:
+    - text: Mit Schritt 0 starten
+      link: /ghe-launchpad/de/steps/prepare/
+      variant: primary
+    - text: Welche Variante passt zu mir?
+      link: /ghe-launchpad/de/start/choose-your-path/
+      variant: secondary
+---
+
+import RouteMap from '../../../components/RouteMap.astro';
+import SystemMap from '../../../components/diagrams/SystemMap.astro';
+import PathCards from '../../../components/PathCards.astro';
+import RoleRoster from '../../../components/RoleRoster.astro';
+import Sticky from '../../../components/Sticky.astro';
+import Callout from '../../../components/Callout.astro';
+
+<RouteMap />
+
+## Das haben Sie am Ende
+
+<div class="what-you-build">
+  <SystemMap variant="full" />
+  <SystemMap variant="mini" />
+</div>
+
+Ihr eigenes Enterprise-Konto unter `SUBDOMAIN.ghe.com`, gehostet in der Region Ihrer Wahl. Alle Benutzer melden sich mit ihrem Microsoft-Entra-Konto an, Entra hält Benutzer und Gruppen synchron, Azure übernimmt die Rechnung und Entwickler nutzen Copilot in ihrer IDE oder im Terminal.
+
+## Zwei Varianten, dieselben 11 Schritte
+
+Beide Varianten durchlaufen alle Schritte. Wo sie sich unterscheiden, sagt es Ihnen der jeweilige Schritt.
+
+<PathCards />
+
+## Wen Sie brauchen
+
+Die meisten Schritte erledigt eine Person allein. Einige brauchen kurz eine zweite Person – planen Sie diese früh ein. Der [Ablaufplan](/ghe-launchpad/de/start/journey-map/) zeigt genau, wann.
+
+<RoleRoster />
+
+## Drei Dinge, die Sie vorab wissen sollten
+
+<div class="sticky-row">
+  <Sticky color="yellow" title="Ihre Subdomain gilt für immer">
+    Sie wird für alle zu `SUBDOMAIN.ghe.com` und lässt sich später nicht ändern. Legen Sie sie in [Schritt 0](/ghe-launchpad/de/steps/prepare/) gemeinsam fest.
+  </Sticky>
+  <Sticky color="pink" title="Kein Copilot in der Testversion">
+    Testversionen enthalten Copilot nicht. Sie aktivieren das Enterprise-Konto in [Schritt 4](/ghe-launchpad/de/steps/activate-enterprise/), danach schaltet Ihr Ansprechpartner Copilot frei.
+  </Sticky>
+  <Sticky color="teal" title="Netzwerkteam früh einbinden">
+    Proxys und Firewalls müssen `*.SUBDOMAIN.ghe.com` durchlassen. Die Liste finden Sie in [Schritt 0](/ghe-launchpad/de/steps/prepare/#6-netzwerkteam-informieren).
+  </Sticky>
+</div>
+
+<Callout type="note" title="Ein unabhängiger Community-Leitfaden">
+Dieser Leitfaden fügt die offizielle Dokumentation von GitHub und Microsoft zu einem durchgehenden Weg zusammen. Er ist selbst keine offizielle Dokumentation: Weicht etwas hier von den [GitHub Docs](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud) oder von [Microsoft Learn](https://learn.microsoft.com/de-de/entra/identity/saas-apps/github-enterprise-managed-user-oidc-provisioning-tutorial) ab, gelten die offiziellen Seiten. Die Oberfläche von GitHub gibt es nur auf Englisch, deshalb nennt dieser Leitfaden Schaltflächen und Menüs mit ihren englischen Namen (in Fettschrift). Mehr dazu unter [Über diesen Leitfaden](/ghe-launchpad/de/resources/about/).
+</Callout>

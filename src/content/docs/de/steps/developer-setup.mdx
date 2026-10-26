@@ -1,0 +1,158 @@
+---
+title: Entwickler mit Copilot starten lassen
+description: Richten Sie IDEs und Kommandozeilen-Tools auf SUBDOMAIN.ghe.com statt auf github.com aus, melden Sie sich mit Entra ID an und prüfen Sie, ob Copilot antwortet.
+sidebar:
+  label: Entwickler
+lastVerified: 2026-10-23
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+import DeveloperFlow from '../../../../components/diagrams/DeveloperFlow.astro';
+
+<StepIntro step="developer-setup">
+- Eine Copilot-Lizenz aus Schritt 9
+- Das Entra-Konto jedes Entwicklers
+- Die Adresse Ihres Enterprise-Kontos, `https://SUBDOMAIN.ghe.com`
+</StepIntro>
+
+<DeveloperFlow />
+
+<Callout type="caution" title="Bei SUBDOMAIN.ghe.com anmelden, nicht bei github.com">
+Die meisten Tools melden sich standardmäßig bei github.com an. Richten Sie sie zuerst auf Ihr Enterprise-Konto aus, sonst findet Copilot die Lizenz nicht.
+</Callout>
+
+## IDE einrichten
+
+<Tabs syncKey="ide">
+<TabItem label="VS Code">
+
+<Steps>
+
+1. Öffnen Sie die Einstellungen (<kbd>Ctrl</kbd>+<kbd>,</kbd> oder <kbd>Cmd</kbd>+<kbd>,</kbd>), suchen Sie nach `enterprise` und setzen Sie **Github-enterprise: Uri** auf `https://SUBDOMAIN.ghe.com`.
+
+2. Suchen Sie nach `copilot`. Klicken Sie unter **GitHub › Copilot: Advanced** auf **Edit in settings.json** und stellen Sie sicher, dass diese Zeilen vorhanden sind:
+
+   ```json "SUBDOMAIN"
+   "github-enterprise.uri": "https://SUBDOMAIN.ghe.com",
+   "github.copilot.advanced": {
+     "authProvider": "github-enterprise"
+   }
+   ```
+
+3. Speichern Sie die Datei. Wenn VS Code Sie zur Anmeldung auffordert, klicken Sie auf **Sign in to GitHub** und melden Sie sich mit Ihrem Entra-Konto an. Keine Aufforderung? Starten Sie VS Code neu.
+
+</Steps>
+
+</TabItem>
+<TabItem label="JetBrains">
+
+Sie benötigen das Plug-in GitHub Copilot in Version 1.4.11 oder neuer.
+
+<Steps>
+
+1. Öffnen Sie die Einstellungen (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd> oder <kbd>Cmd</kbd>+<kbd>,</kbd>) und gehen Sie zu **Tools** › **GitHub Copilot**.
+
+2. Geben Sie unter **Authentication Provider** `SUBDOMAIN.ghe.com` ein und klicken Sie auf **OK**.
+
+3. Klicken Sie auf das Copilot-Chat-Symbol, dann auf **Login to GitHub**, und melden Sie sich mit Ihrem Entra-Konto an.
+
+</Steps>
+
+</TabItem>
+<TabItem label="Visual Studio">
+
+<Steps>
+
+1. Öffnen Sie **Tools** › **Options** › **More Accounts** (Visual Studio 2022) oder **Tools** › **Options** › **All Settings** › **Environment** › **Accounts** (neuere Versionen) und setzen Sie das Häkchen bei **Include GitHub Enterprise Cloud and GitHub Enterprise Server accounts**.
+
+2. Öffnen Sie **File** › **Account Settings…**, klicken Sie auf **+ Add** › **GitHub** und wählen Sie **GitHub Enterprise**.
+
+3. Geben Sie `https://SUBDOMAIN.ghe.com` ein, wählen Sie **Sign in with your browser** und melden Sie sich mit Ihrem Entra-Konto an.
+
+</Steps>
+
+</TabItem>
+<TabItem label="Xcode">
+
+<Steps>
+
+1. Öffnen Sie die App **GitHub Copilot for Xcode** und wechseln Sie zum Tab **Advanced**.
+
+2. Setzen Sie **Auth provider URL** auf `https://SUBDOMAIN.ghe.com` und melden Sie sich dann an.
+
+</Steps>
+
+</TabItem>
+<TabItem label="Eclipse">
+
+<Steps>
+
+1. Öffnen Sie im Copilot-Menü **Edit Preferences…**.
+
+2. Setzen Sie **GitHub Enterprise Authentication Endpoint** auf `https://SUBDOMAIN.ghe.com` und klicken Sie auf **Apply**.
+
+3. Klicken Sie im Copilot-Menü auf **Sign In to GitHub**.
+
+</Steps>
+
+</TabItem>
+</Tabs>
+
+## Kommandozeile einrichten
+
+**Copilot CLI:**
+
+```bash "SUBDOMAIN"
+copilot login --host SUBDOMAIN.ghe.com
+```
+
+**GitHub CLI**, für Repositorys in Variante A:
+
+```bash "SUBDOMAIN"
+gh auth login --hostname SUBDOMAIN.ghe.com
+```
+
+Sie sind auch bei github.com angemeldet? `gh auth switch` wechselt zwischen Ihren Konten, und wenn Sie `GH_HOST` auf `SUBDOMAIN.ghe.com` setzen, wird Ihr Enterprise-Konto zum Standard.
+
+## Prüfen, ob es funktioniert
+
+Öffnen Sie Copilot Chat in der IDE und stellen Sie eine Frage, oder beginnen Sie in einer Codedatei zu tippen und warten Sie auf einen Vorschlag. Wenn Copilot antwortet, sind Sie fertig.
+
+## Fehlerbehebung
+
+<details>
+<summary>Der Browser öffnet zur Anmeldung github.com</summary>
+
+Die Adresse des Enterprise-Kontos ist nicht gesetzt, oder die IDE hat sie nicht übernommen. Prüfen Sie oben die Einstellung für Ihre IDE, melden Sie sich in der IDE von GitHub ab und wieder an.
+
+</details>
+
+<details>
+<summary>Copilot meldet, dass Sie keinen Zugriff haben</summary>
+
+Prüfen Sie, ob Sie Mitglied eines Teams mit Copilot-Lizenz sind (Schritt 9) und ob Sie bei `SUBDOMAIN.ghe.com` angemeldet sind. Wenn Sie sich ab- und wieder anmelden, wird die Lizenz aktualisiert.
+
+</details>
+
+<details>
+<summary>Die Anmeldung klappt, aber Copilot antwortet nie</summary>
+
+Vermutlich blockiert Ihr Proxy oder Ihre Firewall die Adressen Ihres Enterprise-Kontos. Prüfen Sie die Liste aus [Schritt 0](/ghe-launchpad/de/steps/prepare/#6-netzwerkteam-informieren) und [Schritt 5](/ghe-launchpad/de/steps/enable-copilot/#4-copilot-im-netzwerk-freigeben).
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="developer-setup" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Bei Copilot auf GHE.com authentifizieren](https://docs.github.com/de/enterprise-cloud@latest/copilot/how-tos/copilot-in-your-ide/set-up-copilot/authenticate-to-ghecom)
+- [GitHub CLI mit mehreren Konten verwenden](https://docs.github.com/de/enterprise-cloud@latest/github-cli/github-cli/using-multiple-accounts)
+- [Referenz zur Copilot-Zulassungsliste](https://docs.github.com/de/enterprise-cloud@latest/copilot/reference/copilot-allowlist-reference)
+</DocLinks>
