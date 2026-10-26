@@ -28,15 +28,24 @@ Questions about your own setup belong with your Microsoft or GitHub contact or [
 
 For larger changes (new pages, design changes), please open an issue first so we can agree on the approach.
 
+## Where things live
+
+- `src/content/docs/`: the English pages; `src/content/docs/de/`: the German ones, with the same file names.
+- `src/data/steps.ts`: each step's roles, time, waits and "done when" checkpoints in both languages. They feed the step header, the journey map and the printable checklist, so change them once, there.
+- `src/components/`: the page components and hand-drawn diagrams; `src/styles/custom.css`: the visual system ([DESIGN.md](DESIGN.md)).
+- `tests/unit/` (Vitest) and `tests/e2e/` (Playwright).
+- `.github/workflows/`: the checks on every pull request, the deployment after a merge, and a weekly check that opens an issue for broken links.
+
 ## Content rules
 
 - **Both languages:** every page exists in English (`src/content/docs/`) and German (`src/content/docs/de/`, same file name). Change both. If you can't write the German part, say so in the pull request and we'll help.
-- **"Last checked" date:** when you re-check a page against the official documentation, update `lastVerified` in both languages.
+- **"Last checked" date:** when you re-check a page against the official documentation, update `lastVerified` in both languages. The README badge shows the oldest of these dates.
 - **Links:** internal links include the base path and stay in the page's language (`/ghe-launchpad/…` and `/ghe-launchpad/de/…`). Link to the official docs in the page's language.
+- **Placeholders:** `SUBDOMAIN` and `SHORTCODE`, like the official docs. In code blocks, highlight them: ` ```text "SUBDOMAIN" `.
 - **German:** formal "Sie". GitHub's interface is English-only, so GitHub button and menu names stay in English (bold).
 - **Keep it light:** short steps, click paths and checkpoints rather than long paragraphs. No screenshots.
 
-More detail: [README](README.md#updating-content), [DESIGN.md](DESIGN.md) for the visual system, and [AGENTS.md](AGENTS.md) for the full workflow we use, including AI-assisted reviews.
+More detail: [DESIGN.md](DESIGN.md) for the visual system and [AGENTS.md](AGENTS.md) for the full workflow we use, including AI-assisted reviews.
 
 ## Code of conduct
 

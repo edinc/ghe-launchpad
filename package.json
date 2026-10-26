@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lockfile:sha512": "node scripts/lockfile-sha512.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
