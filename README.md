@@ -23,6 +23,17 @@ npm run dev   # http://localhost:4321/ghe-launchpad/
 
 Needs Node.js 22.23.4 or later. Built with [Astro Starlight](https://starlight.astro.build).
 
+## How it stays current
+
+<!-- Source: .github/assets/how-it-stays-current.excalidraw. Edit it in Excalidraw, then export it as PNG at 2x scale. -->
+![On every change, a pull request runs CI (type check, build, unit and UI tests), gets merged to main, and is deployed to GitHub Pages once CI is green on main. Every Monday, the link check and the AI docs check open a broken-links or docs-check issue that gets fixed in a pull request, and Dependabot opens update pull requests.](.github/assets/how-it-stays-current.png)
+
+- **CI** ([`ci.yml`](.github/workflows/ci.yml)): type check, build (which also validates every internal link), unit tests with at least 70% coverage, and Playwright UI tests, on every pull request and on `main`.
+- **Deploy** ([`deploy.yml`](.github/workflows/deploy.yml)): publishes `main` to GitHub Pages once CI has passed.
+- **Link check** ([`link-check.yml`](.github/workflows/link-check.yml)): checks every external link and video, and opens a `broken-links` issue.
+- **AI docs check** ([`docs-check.md`](.github/workflows/docs-check.md)): a [GitHub Agentic Workflow](https://github.github.com/gh-aw/) in which GitHub Copilot compares the English pages with the official docs they link to, and opens a `docs-check` issue for anything outdated. It pauses while a report is open and stops at about $3 per run. Needs the `COPILOT_GITHUB_TOKEN` secret.
+- **Dependabot** ([`dependabot.yml`](.github/dependabot.yml)): grouped dependency updates.
+
 ## Contributing
 
 Found something outdated? [Open an issue](https://github.com/edinc/ghe-launchpad/issues/new/choose).
