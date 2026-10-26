@@ -8,6 +8,10 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    ignore:
+      # @astrojs/check doesn't support TypeScript 7 yet. Remove this once it does.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
     groups:
       astro:
         patterns: ['astro', '@astrojs/*', 'starlight-*']

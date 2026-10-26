@@ -18,7 +18,7 @@ How we work on GHE Launchpad. Written for AI coding agents, and just as useful a
 
 ## Project facts
 
-- **Stack:** Astro 7 and Starlight, built as a static site and deployed to GitHub Pages at `https://edinc.github.io/ghe-launchpad/` (base path `/ghe-launchpad`). Node.js 22.22 or later (`.nvmrc`).
+- **Stack:** Astro 7 and Starlight, built as a static site and deployed to GitHub Pages at `https://edinc.github.io/ghe-launchpad/` (base path `/ghe-launchpad`). Node.js 22.23.4 or later (`.nvmrc`; CI always uses the newest 22.x).
 - **Layout:** English pages in `src/content/docs/`, German pages in `src/content/docs/de/` with the same file names. Step metadata (roles, time, waits, checkpoints) lives once in `src/data/steps.ts`; UI strings for both languages in `src/lib/i18n.ts`.
 - **Dependencies:** `package-lock.json` has no registry URLs (`.npmrc`) and pins every package with SHA-512; `tests/unit/lockfile.test.ts` checks both. After installing through a mirror that only publishes SHA-1, run `npm run lockfile:sha512`.
 - **Design:** `DESIGN.md` is the visual system ("sketch explainer"), `PRODUCT.md` the audience and constraints. Read both before touching the UI.
