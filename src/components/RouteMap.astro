@@ -1,0 +1,101 @@
+---
+import Rocket from './Rocket.astro';
+import { createSketch } from '../lib/rough';
+import { getLang, href, t } from '../lib/i18n';
+import { roleOrder, steps } from '../data/steps';
+
+const lang = getLang(Astro);
+const de = lang === 'de';
+
+// Board coordinates (viewBox 1200 × 480): row 1 runs left→right, row 2 comes back right→left.
+const cols = [90, 290, 490, 690, 890, 1090];
+const rowY = [58, 306];
+const pos = steps.map((s) =>
+	s.num <= 5 ? { x: cols[s.num], y: rowY[0] } : { x: cols[5 - (s.num - 6)], y: rowY[1] }
+);
+const finish = { x: cols[0], y: rowY[1] };
+
+const sk = createSketch(101);
+const trail = { stroke: 'ink' as const, strokeWidth: 2.2, dashed: true, roughness: 1.1 };
+for (let i = 0; i < 5; i++) sk.line(pos[i].x + 34, rowY[0], pos[i + 1].x - 34, rowY[0], trail);
+sk.arrow(
+	[
+		[pos[5].x + 34, rowY[0]],
+		[1176, 100],
+		[1185, 182],
+		[1172, 264],
+		[pos[6].x + 36, rowY[1] - 6],
+	],
+	trail
+);
+for (let i = 6; i < 10; i++) sk.line(pos[i].x - 34, rowY[1], pos[i + 1].x + 34, rowY[1], trail);
+sk.arrow([[pos[10].x - 34, rowY[1]], [finish.x + 40, rowY[1]]], trail);
+
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
+const parallelNote = de ? 'Die Schritte 6–8 können laufen, während Sie auf 3–5 warten' : 'Steps 6–8 can run while you wait on 3–5';
+---
+
+<div class="route not-content">
+	<div class="route__board">
+	<svg class="route__trail" viewBox="0 0 1200 480" aria-hidden="true" focusable="false" set:html={sk.toString()} />
+	<p class="route__start" style={`--x:${pct(pos[0].x, 1200)};--y:${pct(rowY[0], 480)}`}>{t(lang, 'route.start')}</p>
+	<p class="route__parallel" style={`--x:${pct(690, 1200)};--y:${pct(242, 480)}`}>
+		<svg viewBox="0 0 60 40" width="44" height="30" aria-hidden="true" focusable="false"><path d="M6 6 C 20 6 32 14 40 30 M32 26 L41 32 L45 22" /></svg>
+		{parallelNote}
+	</p>
+	<ol class="route__stops">
+		{
+			steps.map((s, i) => (
+				<>
+				{s.num === 6 && <li class="route__parallel route__parallel--inline">{parallelNote}</li>}
+				<li
+					class:list={['route-stop', { 'route-stop--parallel': s.parallel, 'route-stop--wait': s.wait }]}
+					style={`--x:${pct(pos[i].x, 1200)};--y:${pct(pos[i].y, 480)}`}
+				>
+					<a href={href(lang, `steps/${s.id}`)} class="route-stop__link">
+						<span class="route-stop__num" aria-hidden="true">{s.num}</span>
+						<span class="route-stop__title">
+							<span class="sr-only">{t(lang, 'step')} {s.num}: </span>
+							{s.short[lang]}
+						</span>
+						<span class="route-stop__meta">
+							<span class="route-stop__dots" aria-hidden="true">
+								{s.roles.map((role, r) => <span class:list={['dot', `dot--${role}`, { 'dot--helper': r > 0 }]} />)}
+							</span>
+							{s.time[lang]}
+						</span>
+						{s.wait && (
+							<span class="route-stop__wait">
+								<Rocket mood="wait" size="1.9rem" />
+								<span>{s.wait[lang]}</span>
+							</span>
+						)}
+					</a>
+				</li>
+				</>
+			))
+		}
+		<li class="route-stop route-stop--finish" style={`--x:${pct(finish.x, 1200)};--y:${pct(finish.y, 480)}`}>
+			<span class="route-stop__finish">
+				<Rocket mood="done" size="4rem" />
+				<span class="route-stop__title">{t(lang, 'route.finish')}</span>
+			</span>
+		</li>
+	</ol>
+	</div>
+	<p class="route__legend">
+		{
+			roleOrder.map((role) => (
+				<span>
+					<span class:list={['dot', `dot--${role}`]} aria-hidden="true" />
+					{t(lang, `role.${role}.short`)}
+				</span>
+			))
+		}
+		<span>
+			<span class="dot dot--owner dot--helper" aria-hidden="true" />
+			{de ? 'gestrichelt = hilft mit' : 'dashed = helps'}
+		</span>
+		<span class="route__legend-note">{de ? 'Zeiten sind grobe Schätzungen' : 'Times are rough estimates'}</span>
+	</p>
+</div>

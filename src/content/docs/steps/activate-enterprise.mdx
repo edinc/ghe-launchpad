@@ -1,0 +1,56 @@
+---
+title: Activate the enterprise
+description: Turn the trial into a paid enterprise so Copilot can be enabled, and understand what you pay for.
+sidebar:
+  label: Activate
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="activate-enterprise">
+- The Azure subscription from step 3, or a credit card or PayPal account
+- The go-ahead from whoever owns the budget
+</StepIntro>
+
+Copilot isn’t available in a trial. Activating turns your trial into a paid enterprise, so your contact can enable Copilot in step 5. You can do this at any time during the trial.
+
+## Activate
+
+<Steps>
+
+1. Sign in to `https://SUBDOMAIN.ghe.com` as an enterprise owner and open your enterprise account.
+
+2. Click **Activate enterprise**.
+
+3. Choose how to pay: your connected Azure subscription, a credit card or PayPal.
+
+4. Follow the prompts to confirm.
+
+</Steps>
+
+## What you pay for
+
+- **GitHub Enterprise licenses are usage-based.** Each month you pay for the licenses that were actually used, not for a fixed number of seats. A license counts once per person who used it during the month.
+- **Who doesn’t use a license:** people in the enterprise who aren’t members of any organization, enterprise owners who aren’t in an organization, and the setup user.
+- **Copilot** is billed separately for each person with a license, from step 9 on.
+
+<Callout type="tip" title="Path B: no GitHub Enterprise licenses">
+Without organizations, your people stay so-called unaffiliated users. You pay for Copilot Business licenses, not for GitHub Enterprise licenses.
+</Callout>
+
+## Done when…
+
+<DoneWhen step="activate-enterprise" />
+
+## Official docs
+
+<DocLinks>
+- [Getting started with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [About usage-based licenses](https://docs.github.com/en/enterprise-cloud@latest/billing/concepts/enterprise-billing/usage-based-licenses)
+- [Who consumes a GitHub Enterprise license](https://docs.github.com/en/enterprise-cloud@latest/billing/reference/github-license-users)
+</DocLinks>

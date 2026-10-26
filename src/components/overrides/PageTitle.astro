@@ -1,0 +1,17 @@
+---
+import { getLang, t } from '../../lib/i18n';
+import { steps } from '../../data/steps';
+
+const { entry, id } = Astro.locals.starlightRoute;
+const lang = getLang(Astro);
+const slug = id.replace(/^de\//, '');
+const step = steps.find((s) => `steps/${s.id}` === slug);
+---
+
+<div class:list={['page-title', { 'page-title--step': step }]}>
+	{step && <span class="page-title__num" aria-hidden="true">{step.num}</span>}
+	<h1 id="_top">
+		{step && <span class="sr-only">{t(lang, 'step')} {step.num}: </span>}
+		{entry.data.title}
+	</h1>
+</div>

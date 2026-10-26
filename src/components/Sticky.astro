@@ -1,0 +1,13 @@
+---
+interface Props {
+	color?: 'yellow' | 'pink' | 'teal';
+	title: string;
+}
+
+const { color = 'yellow', title } = Astro.props;
+---
+
+<div class:list={['sticky', `sticky--${color}`]}>
+	<p class="sticky__title">{title}</p>
+	<div class="sticky__body"><slot /></div>
+</div>

@@ -1,0 +1,61 @@
+---
+title: Assign Copilot licenses
+description: Give Copilot Business licenses to your enterprise teams, start with a pilot group, and know how changes are billed.
+sidebar:
+  label: Assign licenses
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+import Video from '../../../components/Video.astro';
+
+<StepIntro step="assign-licenses">
+- Copilot enabled and policies set in step 5
+- Enterprise teams synced with Entra groups from step 8
+</StepIntro>
+
+## Assign Copilot Business to your teams
+
+<ClickPath path="Your enterprise > Billing and licensing > Licensing" />
+
+<Steps>
+
+1. Next to **Copilot**, click **Manage**.
+
+2. Open the **Enterprise Teams** tab. To license single people instead, use **All members**.
+
+3. Click **Assign licenses**, search for the team and click **Add licenses**.
+
+</Steps>
+
+People get access to Copilot immediately. Each license is billed per person; licenses added during the month are prorated.
+
+<Callout type="tip" title="Start with a pilot team">
+License one small group first, let them try step 10, then add the remaining teams. A removed license is still billed until the end of the billing cycle, with no refund. If the seat is unassigned, Copilot keeps working until then; if it’s revoked, access ends immediately. [How license changes work](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/copilot-billing/license-changes)
+</Callout>
+
+## Path A: Copilot Enterprise
+
+Assigning licenses directly to teams and people gives them **Copilot Business**. For **Copilot Enterprise**, enable Copilot for specific organizations instead: on the same Copilot page, under organization access, allow specific organizations and choose the plan for each.
+
+## Watch
+
+<Video id="licensesEnterprise" />
+
+<Video id="licensesCopilotOnly" />
+
+## Done when…
+
+<DoneWhen step="assign-licenses" />
+
+## Official docs
+
+<DocLinks>
+- [Granting access to Copilot in your enterprise](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-access/grant-access)
+- [Setting up an enterprise for Copilot Business only](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-a-dedicated-enterprise-for-copilot-business)
+</DocLinks>

@@ -1,0 +1,82 @@
+---
+import { createSketch, label } from '../../lib/rough';
+import { getLang } from '../../lib/i18n';
+
+const de = getLang(Astro) === 'de';
+const sk = createSketch(41);
+
+const badge = (cx: number, cy: number, n: number) => {
+	sk.ellipse(cx, cy, 28, 27, { fill: 'yellow', fillStyle: 'solid', strokeWidth: 1.8, roughness: 0.9 });
+	return label(cx, cy + 6, String(n), { size: 17, cls: 'sk-text--num' });
+};
+
+// Containers
+sk.rect(16, 20, 230, 340, { strokeWidth: 2.4, fill: 'teal', hachureGap: 11 });
+sk.rect(474, 20, 230, 340, { strokeWidth: 2.4, fill: 'yellow', hachureGap: 11 });
+// Entra items
+sk.rect(40, 92, 182, 54, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(40, 204, 182, 54, { fill: 'paper', fillStyle: 'solid' });
+// GHE.com items
+sk.rect(498, 92, 182, 44, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(498, 150, 182, 44, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(498, 210, 182, 44, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(498, 298, 182, 44, { fill: 'paper', fillStyle: 'solid', strokeWidth: 2.6 });
+// Flows
+sk.arrow([[222, 112], [360, 108], [496, 113]], { stroke: 'pink', strokeWidth: 2.6, draw: true });
+sk.arrow([[222, 132], [360, 158], [496, 172]], { strokeWidth: 2.2, draw: true });
+sk.arrow([[222, 231], [360, 228], [496, 232]], { strokeWidth: 2.2, draw: true });
+sk.arrow([[589, 254], [591, 276], [589, 296]], { stroke: 'pink', strokeWidth: 2.6, draw: true });
+
+const t = {
+	entra: 'Microsoft Entra ID',
+	users: de ? 'Benutzer' : 'Users',
+	groups: de ? 'Gruppen' : 'Groups',
+	app: de ? ['über die Enterprise-App', '„GitHub Enterprise', 'Managed User (OIDC)“'] : ['through the enterprise app', '“GitHub Enterprise', 'Managed User (OIDC)”'],
+	ghe: 'GHE.com',
+	sub: 'SUBDOMAIN.ghe.com',
+	signin: de ? 'Anmeldung (SSO)' : 'Sign-in (SSO)',
+	managed: de ? 'Verwaltete Benutzer' : 'Managed users',
+	teams: de ? 'Enterprise-Teams' : 'Enterprise teams',
+	licenses: de ? 'Copilot-Lizenzen' : 'Copilot licenses',
+	oidc: de ? 'OIDC-Anmeldung' : 'OIDC sign-in',
+	scimUsers: de ? 'SCIM: Benutzer' : 'SCIM: users',
+	scimGroups: de ? 'SCIM: Gruppen' : 'SCIM: groups',
+	assign: de ? 'zuweisen' : 'assign',
+};
+
+const labels =
+	label(131, 60, t.entra, { size: 21, cls: 'sk-text--title' }) +
+	label(131, 126, t.users, { size: 20 }) +
+	label(131, 238, t.groups, { size: 20 }) +
+	label(131, 294, t.app, { size: 14, cls: 'sk-text--soft' }) +
+	label(589, 52, t.ghe, { size: 23, cls: 'sk-text--title' }) +
+	label(589, 76, t.sub, { size: 15, cls: 'sk-text--soft' }) +
+	label(589, 120, t.signin, { size: 18 }) +
+	label(589, 178, t.managed, { size: 18 }) +
+	label(589, 238, t.teams, { size: 18 }) +
+	label(589, 326, t.licenses, { size: 18 }) +
+	label(338, 96, t.oidc, { size: 15 }) +
+	label(338, 178, t.scimUsers, { size: 15 }) +
+	label(338, 218, t.scimGroups, { size: 15 }) +
+	label(612, 282, t.assign, { size: 15, anchor: 'start' }) +
+	badge(400, 90, 6) +
+	badge(402, 182, 7) +
+	badge(404, 212, 8) +
+	badge(568, 276, 9);
+
+const description = de
+	? 'Skizze: Benutzer melden sich per OIDC über Microsoft Entra ID bei SUBDOMAIN.ghe.com an (Schritt 6). SCIM legt Benutzer an (Schritt 7) und synchronisiert Gruppen in Enterprise-Teams (Schritt 8). Den Enterprise-Teams weisen Sie Copilot-Lizenzen zu (Schritt 9).'
+	: 'Sketch: people sign in to SUBDOMAIN.ghe.com through Microsoft Entra ID with OIDC (step 6). SCIM creates their accounts (step 7) and syncs groups into enterprise teams (step 8). You assign Copilot licenses to those teams (step 9).';
+---
+
+<figure class="sk-figure sk-figure--wide">
+	<div class="sk-scroll-wrap">
+	<div class="sk-scroll" tabindex="0" role="group" aria-label={de ? 'Skizze: Identitätsfluss' : 'Sketch: identity flow'}>
+		<svg viewBox="0 0 720 380" role="img" aria-labelledby="identity-flow-title identity-flow-desc">
+			<title id="identity-flow-title">{de ? 'Von Entra ID bis zur Copilot-Lizenz' : 'From Entra ID to a Copilot license'}</title>
+			<desc id="identity-flow-desc">{description}</desc>
+			<g set:html={sk.toString() + labels} />
+		</svg>
+	</div>
+	</div>
+</figure>

@@ -1,0 +1,58 @@
+---
+import { createSketch, label } from '../../lib/rough';
+import { getLang } from '../../lib/i18n';
+
+const de = getLang(Astro) === 'de';
+const sk = createSketch(57);
+
+sk.rect(60, 14, 350, 84, { stroke: 'ink', strokeWidth: 1.8, dashed: true, fill: 'teal', hachureGap: 10 });
+sk.rect(16, 158, 190, 112, { strokeWidth: 2.4, fill: 'yellow', hachureGap: 9 });
+sk.rect(265, 158, 190, 112, { strokeWidth: 2.4, fill: 'pink', hachureGap: 9 });
+sk.rect(514, 158, 190, 112, { strokeWidth: 2.4, fill: 'paper', fillStyle: 'solid' });
+sk.arrow([[208, 212], [236, 210], [263, 212]], { strokeWidth: 2.4, draw: true });
+sk.arrow([[457, 212], [486, 210], [512, 212]], { strokeWidth: 2.4, draw: true });
+sk.arrow([[235, 100], [230, 146], [236, 198]], { stroke: 'pink', strokeWidth: 2.2, dashed: true });
+
+const t = {
+	once: de ? 'Einmalig in Schritt 3:' : 'Once, in step 3:',
+	consent: de ? 'Entra-Admin stimmt der GitHub-App zu,' : 'an Entra admin consents to GitHub’s app,',
+	owner: de ? 'Abo-Besitzer wählt das Abonnement' : 'the subscription Owner picks the subscription',
+	ghe: 'GHE.com',
+	gheSub: de ? ['Lizenzen · Copilot', 'Actions · Speicher'] : ['licenses · Copilot', 'Actions · storage'],
+	azure: de ? 'Azure-Abonnement' : 'Azure subscription',
+	azureSub: de ? ['nutzungsbasierte', 'Abrechnung'] : ['metered', 'billing'],
+	invoice: de ? 'Azure-Rechnung' : 'Azure invoice',
+	invoiceSub: de ? ['monatlich,', 'zum 1. des Monats'] : ['monthly,', 'on the 1st'],
+	usage: de ? 'Nutzung' : 'usage',
+	billed: de ? 'abgerechnet' : 'billed',
+};
+
+const labels =
+	label(235, 42, t.once, { size: 17, cls: 'sk-text--title' }) +
+	label(235, 66, t.consent, { size: 15 }) +
+	label(235, 86, t.owner, { size: 15 }) +
+	label(111, 196, t.ghe, { size: 22, cls: 'sk-text--title' }) +
+	label(111, 224, t.gheSub, { size: 15, cls: 'sk-text--soft' }) +
+	label(360, 196, t.azure, { size: 19, cls: 'sk-text--title' }) +
+	label(360, 224, t.azureSub, { size: 15, cls: 'sk-text--soft' }) +
+	label(609, 196, t.invoice, { size: 20, cls: 'sk-text--title' }) +
+	label(609, 224, t.invoiceSub, { size: 15, cls: 'sk-text--soft' }) +
+	label(236, 296, t.usage, { size: 16 }) +
+	label(485, 296, t.billed, { size: 16 });
+
+const description = de
+	? 'Skizze: Einmalig in Schritt 3 stimmt ein Entra-Admin der GitHub-App zu und der Besitzer wählt das Azure-Abonnement aus. Danach läuft die Nutzung Ihrer GHE.com-Enterprise (Lizenzen, Copilot, Actions, Speicher) über das Azure-Abonnement und erscheint monatlich zum 1. auf der Azure-Rechnung.'
+	: 'Sketch: once, in step 3, an Entra admin consents to GitHub’s app and the subscription Owner picks the Azure subscription. From then on, usage of your GHE.com enterprise (licenses, Copilot, Actions, storage) is billed through that subscription and appears on your Azure invoice on the 1st of each month.';
+---
+
+<figure class="sk-figure sk-figure--wide">
+	<div class="sk-scroll-wrap">
+	<div class="sk-scroll" tabindex="0" role="group" aria-label={de ? 'Skizze: Abrechnung über Azure' : 'Sketch: billing through Azure'}>
+		<svg viewBox="0 0 720 312" role="img" aria-labelledby="billing-flow-title billing-flow-desc">
+			<title id="billing-flow-title">{de ? 'So landet GitHub auf Ihrer Azure-Rechnung' : 'How GitHub ends up on your Azure invoice'}</title>
+			<desc id="billing-flow-desc">{description}</desc>
+			<g set:html={sk.toString() + labels} />
+		</svg>
+	</div>
+	</div>
+</figure>

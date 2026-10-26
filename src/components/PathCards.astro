@@ -1,0 +1,48 @@
+---
+import { getLang, href, t } from '../lib/i18n';
+
+const lang = getLang(Astro);
+const de = lang === 'de';
+
+const paths = [
+	{
+		id: 'a',
+		name: t(lang, 'path.a'),
+		color: 'teal',
+		fit: de ? 'Ihr Code liegt auf GitHub oder soll dorthin umziehen.' : 'Your code is on GitHub, or is moving there.',
+		points: de
+			? ['Organisationen, Repositories, Actions und Security', 'Lizenzen: GitHub Enterprise plus Copilot', 'Copilot Business oder Copilot Enterprise']
+			: ['Organizations, repositories, Actions and security', 'Licenses: GitHub Enterprise plus Copilot', 'Copilot Business or Copilot Enterprise'],
+	},
+	{
+		id: 'b',
+		name: t(lang, 'path.b'),
+		color: 'pink',
+		fit: de
+			? 'Ihr Code bleibt in Azure DevOps, GitLab, Bitbucket oder anderswo.'
+			: 'Your code stays in Azure DevOps, GitLab, Bitbucket or elsewhere.',
+		points: de
+			? ['Enterprise-Konto ohne Organisationen', 'Lizenzen: nur Copilot Business', 'Benutzer bleiben „unaffiliated“ und belegen keine GitHub-Enterprise-Lizenz']
+			: ['An enterprise without organizations', 'Licenses: Copilot Business only', 'People stay “unaffiliated” and use no GitHub Enterprise license'],
+	},
+];
+---
+
+<div class="path-cards not-content">
+	{
+		paths.map((p) => (
+			<section class:list={['path-card', `path-card--${p.id}`]} aria-labelledby={`path-${p.id}`}>
+				<h3 id={`path-${p.id}`} class="path-card__name">{p.name}</h3>
+				<p class="path-card__fit">{p.fit}</p>
+				<ul class="path-card__points">
+					{p.points.map((point) => <li>{point}</li>)}
+				</ul>
+			</section>
+		))
+	}
+	<p class="path-cards__go">
+		<a class="sketch-button sketch-button--primary" href={href(lang, 'steps/prepare')}>
+			{de ? 'Mit Schritt 0 starten' : 'Start with step 0'} →
+		</a>
+	</p>
+</div>

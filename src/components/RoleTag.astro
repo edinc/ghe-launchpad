@@ -1,0 +1,18 @@
+---
+import { getLang, t } from '../lib/i18n';
+import type { Role } from '../data/steps';
+
+interface Props {
+	role: Role;
+	/** The role leading the step gets a filled sticker; helpers get an outline. */
+	lead?: boolean;
+	short?: boolean;
+}
+
+const { role, lead = true, short = false } = Astro.props;
+const lang = getLang(Astro);
+---
+
+<span class:list={['role-tag', `role-tag--${role}`, { 'role-tag--helper': !lead }]}>
+	<span class="role-tag__dot" aria-hidden="true"></span>{t(lang, short ? `role.${role}.short` : `role.${role}`)}
+</span>

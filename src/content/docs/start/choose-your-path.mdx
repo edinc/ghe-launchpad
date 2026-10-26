@@ -1,0 +1,57 @@
+---
+title: Choose your path
+description: Decide between the full GitHub platform (Path A) and Copilot only (Path B) before you start. Both use the same 11 steps.
+sidebar:
+  label: Choose your path
+lastVerified: 2026-10-23
+---
+
+import PathsCompare from '../../../components/diagrams/PathsCompare.astro';
+import PathCards from '../../../components/PathCards.astro';
+import Callout from '../../../components/Callout.astro';
+import Video from '../../../components/Video.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+Both paths use the same enterprise on GHE.com, the same sign-in with Entra ID and the same Azure billing. They differ in two things: **where your code lives** and **which licenses you pay for**.
+
+<PathsCompare />
+
+## One question decides
+
+Will your developers keep their code outside GitHub for now?
+
+- **No**, the code is on GitHub or moving there: take **Path A · Full platform**.
+- **Yes**, it stays in Azure DevOps, GitLab, Bitbucket or a similar tool: take **Path B · Copilot only**.
+
+<PathCards />
+
+## Side by side
+
+| | Path A · Full platform | Path B · Copilot only |
+| --- | --- | --- |
+| Organizations | One or more | None |
+| How people get access | Teams in organizations, synced from Entra ID | Enterprise teams synced from Entra ID |
+| Licenses you pay for | GitHub Enterprise per member, plus Copilot | Copilot Business only |
+| Copilot plans | Copilot Business or Copilot Enterprise | Copilot Business |
+| Repositories, Actions, security | Yes | Not used |
+
+<Callout type="caution" title="Path B: keep people out of organizations">
+The moment someone joins an organization in your enterprise, they use a GitHub Enterprise license. In Path B, don’t create organizations and don’t add anyone to one by accident.
+</Callout>
+
+<Callout type="note" title="Path B is a normal enterprise">
+GitHub no longer creates a special account type for Copilot only. Path B is a standard enterprise without organizations, so you can add organizations later if your code moves to GitHub. GitHub documents this setup for any enterprise account, including Enterprise Managed Users, the only identity model on GHE.com. Some Copilot settings that are managed on the server need an organization with a `.github-private` repository; settings files deployed through MDM work without one. [Details in the GitHub Docs](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/enterprise/about-enterprise-accounts-for-copilot-business).
+</Callout>
+
+## Watch: GitHub licenses explained
+
+<Video id="licenses" />
+
+## Official docs
+
+<DocLinks>
+- [About enterprise accounts for Copilot Business](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/enterprise/about-enterprise-accounts-for-copilot-business)
+- [About usage-based licenses](https://docs.github.com/en/enterprise-cloud@latest/billing/concepts/enterprise-billing/usage-based-licenses)
+- [Who consumes a GitHub Enterprise license](https://docs.github.com/en/enterprise-cloud@latest/billing/reference/github-license-users)
+- [About GitHub Enterprise Cloud with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/about-github-enterprise-cloud-with-data-residency)
+</DocLinks>

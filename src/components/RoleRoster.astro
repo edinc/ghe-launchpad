@@ -1,0 +1,56 @@
+---
+import RoleTag from './RoleTag.astro';
+import { getLang } from '../lib/i18n';
+import { roleOrder, steps, type Role } from '../data/steps';
+
+const lang = getLang(Astro);
+
+const jobs: Record<Role, { en: string; de: string }> = {
+	lead: {
+		en: 'Makes the decisions in step 0 and keeps things moving.',
+		de: 'Trifft die Entscheidungen in Schritt 0 und hält das Projekt in Bewegung.',
+	},
+	owner: {
+		en: 'Creates the trial, owns the setup user and does most of the clicking in GitHub.',
+		de: 'Legt die Testversion an, verwaltet den Setup-Benutzer und erledigt die meisten Klicks in GitHub.',
+	},
+	entra: {
+		en: 'Grants consent, connects single sign-on and provisions people. The consents need a Global Administrator.',
+		de: 'Erteilt Zustimmungen, richtet Single Sign-On ein und stellt Personen bereit. Für die Zustimmungen braucht es einen globalen Administrator.',
+	},
+	azure: {
+		en: 'Holds the Owner role on the Azure subscription that pays for GitHub.',
+		de: 'Hat die Besitzer-Rolle für das Azure-Abonnement, über das GitHub bezahlt wird.',
+	},
+	contact: {
+		en: 'Enables Copilot for your enterprise once it’s activated.',
+		de: 'Schaltet Copilot für Ihr Enterprise-Konto frei, sobald es aktiviert ist.',
+	},
+	dev: {
+		en: 'Sign in from their IDE or terminal and start coding with Copilot.',
+		de: 'Melden sich aus IDE oder Terminal an und legen mit Copilot los.',
+	},
+};
+
+const stepsFor = (role: Role) => steps.filter((s) => s.roles.includes(role)).map((s) => s.num);
+---
+
+<dl class="roster not-content">
+	{
+		roleOrder.map((role) => (
+			<div class="roster__row">
+				<dt>
+					<RoleTag role={role} />
+				</dt>
+				<dd>
+					<span>{jobs[role][lang]}</span>
+					<span class="roster__steps" aria-label={lang === 'de' ? 'Schritte' : 'Steps'}>
+						{stepsFor(role).map((n) => (
+							<span class="roster__num">{n}</span>
+						))}
+					</span>
+				</dd>
+			</div>
+		))
+	}
+</dl>
