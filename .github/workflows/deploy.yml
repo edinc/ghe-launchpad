@@ -74,6 +74,9 @@ jobs:
 
       - run: npm ci
 
+      # Feeds the README's coverage badge (src/pages/badges/coverage.json.ts reads the report at build time).
+      - run: npm run test:coverage
+
       - run: npm run build
 
       # One artifact name per attempt, so "Re-run failed jobs" doesn't trip over the first attempt's upload.

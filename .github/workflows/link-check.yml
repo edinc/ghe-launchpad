@@ -2,7 +2,8 @@ name: Check external links
 
 # Weekly check of every external link on the built site (GitHub Docs, Microsoft Learn, ...) and of
 # the embedded YouTube videos. Internal links are already validated on every build.
-# Problems open (or update) one issue; that issue is closed once everything passes again.
+# Problems open (or update) one issue and fail the run, so the README's "links" badge turns red;
+# the issue is closed once everything passes again.
 # If a check can't reach a verdict (lychee error, YouTube unreachable), the run fails and no issue changes.
 on:
   schedule:
@@ -118,3 +119,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           NUMBER: ${{ steps.existing.outputs.number }}
+
+      # Runs after the report is filed: a red run (and README badge) means something is broken.
+      - name: Fail when links or videos are broken
+        if: steps.lychee.outputs.exit_code == '2' || steps.videos.outputs.broken == '1'
+        run: |
+          echo "::error::Broken links or videos found: see the job summary and the issue labeled broken-links."
+          exit 1

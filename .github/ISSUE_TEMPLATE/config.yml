@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help with your own GHE.com setup
+    url: https://support.github.com
+    about: Ask your Microsoft or GitHub contact, or GitHub Support. This repository is about the guide itself.
+  - name: Security vulnerability
+    url: https://github.com/edinc/ghe-launchpad/security/advisories/new
+    about: Report security problems privately, not in a public issue.

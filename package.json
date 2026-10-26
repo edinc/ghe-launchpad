@@ -38,5 +38,14 @@
     "happy-dom": "^21.0.3",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"
+  },
+  "author": "Edin Cenanovic (https://edincenanovic.com)",
+  "homepage": "https://edinc.github.io/ghe-launchpad/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edinc/ghe-launchpad.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edinc/ghe-launchpad/issues"
   }
 }

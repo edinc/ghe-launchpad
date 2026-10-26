@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('home page', () => {
 	test('introduces the guide and starts at step 0', async ({ page }) => {
 		await page.goto('/ghe-launchpad/');
+		await expect(page).toHaveTitle('GitHub Enterprise on GHE.com, step by step | GHE Launchpad');
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText(/GitHub Enterprise on GHE\.com, step\s+by\s+step\./);
 		await page.getByRole('link', { name: /Start with step 0/ }).first().click();
 		await expect(page).toHaveURL(/\/ghe-launchpad\/steps\/prepare\/$/);
@@ -27,6 +28,7 @@ test.describe('home page', () => {
 	test('is also available in German', async ({ page }) => {
 		await page.goto('/ghe-launchpad/de/');
 		await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+		await expect(page).toHaveTitle('GitHub Enterprise auf GHE.com, Schritt für Schritt | GHE Launchpad');
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText(/GitHub Enterprise auf GHE\.com, Schritt für Schritt\./);
 		await expect(page.getByRole('link', { name: /Mit Schritt 0 starten/ }).first()).toHaveAttribute('href', '/ghe-launchpad/de/steps/prepare/');
 	});
