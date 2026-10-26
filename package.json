@@ -1,0 +1,24 @@
+{
+  "name": "ghe-launchpad",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-service walkthrough to launch GitHub Enterprise Cloud with data residency (GHE.com): Enterprise Managed Users with Entra ID, Azure billing, and GitHub Copilot. English & German.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.6",
+    "astro": "^7.4.0",
+    "sharp": "^0.35.5",
+    "starlight-links-validator": "^0.27.0"
+  }
+}
