@@ -21,7 +21,7 @@ npm ci
 npm run dev   # http://localhost:4321/ghe-launchpad/
 ```
 
-Needs Node.js 22.22 or later. Built with [Astro Starlight](https://starlight.astro.build).
+Needs Node.js 22.23.4 or later. Built with [Astro Starlight](https://starlight.astro.build).
 
 ## Contributing
 

@@ -11,7 +11,7 @@ Questions about your own setup belong with your Microsoft or GitHub contact or [
 ## Make a change
 
 1. Fork the repository and create a branch.
-2. Set up and run the site locally (Node.js 22.22 or later):
+2. Set up and run the site locally (Node.js 22.23.4 or later):
    ```sh
    npm ci
    npm run dev       # http://localhost:4321/ghe-launchpad/

@@ -6,7 +6,7 @@
   "description": "Self-service walkthrough to launch GitHub Enterprise Cloud with data residency (GHE.com): Enterprise Managed Users with Entra ID, Azure billing, and GitHub Copilot. English & German.",
   "license": "MIT",
   "engines": {
-    "node": ">=22.22.0"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "dev": "astro dev",
