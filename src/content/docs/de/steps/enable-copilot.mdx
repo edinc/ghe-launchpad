@@ -1,0 +1,80 @@
+---
+title: Copilot freischalten lassen
+description: Bitten Sie Ihren Microsoft- oder GitHub-Ansprechpartner, Copilot freizuschalten, prüfen Sie die Freischaltung und legen Sie die Copilot-Richtlinien fest, bevor jemand eine Lizenz erhält.
+sidebar:
+  label: Copilot freischalten
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="enable-copilot">
+- Das aktivierte Enterprise-Konto aus Schritt 4
+- Ihr Firmenname, Ihre Adresse `SUBDOMAIN.ghe.com` und eine ungefähre Zahl der Copilot-Benutzer
+</StepIntro>
+
+Bei Enterprise-Konten auf GHE.com wird Copilot auf GitHub-Seite eingeschaltet. Sie beantragen die Freischaltung und legen Ihre Regeln fest, während Sie warten.
+
+## 1. Ansprechpartner kontaktieren
+
+Schicken Sie Ihrem Microsoft- oder GitHub-Ansprechpartner eine kurze Nachricht mit Ihrem Firmennamen, Ihrer Adresse `SUBDOMAIN.ghe.com`, dem Hinweis, dass das Enterprise-Konto aktiviert ist, und der ungefähren Zahl der Personen, die Copilot nutzen werden. Ihr Ansprechpartner schaltet Copilot für Ihr Enterprise-Konto frei und gibt Ihnen Bescheid, sobald das erledigt ist.
+
+<Callout type="wait" title="Warten Sie nicht untätig">
+Machen Sie in der Zwischenzeit mit Single Sign-On (Schritt 6), Bereitstellung (Schritt 7) und Teams (Schritt 8) weiter.
+</Callout>
+
+## 2. Prüfen, ob Copilot da ist
+
+<ClickPath path="Your enterprise > Billing and licensing > Licensing" />
+
+Sie sollten **Copilot** mit einer Schaltfläche **Manage** sehen. Steht auf der Seite **Contact support to enable** oder fehlen die Copilot-Karte oder die Schaltfläche **Manage**, ist Copilot noch nicht freigeschaltet; geben Sie Ihrem Ansprechpartner Bescheid.
+
+## 3. Copilot-Richtlinien festlegen
+
+Legen Sie fest, was Copilot darf, bevor jemand eine Lizenz erhält.
+
+<ClickPath path="Your enterprise > AI controls > Copilot" />
+
+<Steps>
+
+1. Legen Sie die **Policies for enterprise-assigned users** fest. Sie gelten für alle, die Copilot direkt über das Enterprise-Konto erhalten – so weisen Sie die Lizenzen in Schritt 9 zu.
+
+2. Entscheiden Sie im Abschnitt **Privacy**, ob Sie **Suggestions matching public code** zulassen. Standardmäßig ist das erlaubt.
+
+3. Öffnen Sie **Configure features & clients** und wählen Sie die Funktionen, IDEs und Modelle aus, die Sie anbieten möchten.
+
+4. Prüfen Sie in der Seitenleiste unter **Agents** und **MCP** die Richtlinien für Copilot-Agents und MCP-Server.
+
+</Steps>
+
+<Callout type="note" title="Variante A: Organisationen können eigene Regeln haben">
+Bei Richtlinien, deren Entscheidung Sie den Organisationen überlassen, wählt jede Organisation ihre eigene Einstellung. Gehört jemand zu mehreren Organisationen, gilt die am wenigsten restriktive Einstellung.
+</Callout>
+
+## 4. Copilot im Netzwerk freigeben
+
+Auf GHE.com braucht Copilot nur Ihre eigenen Adressen. Stellen Sie sicher, dass Ihr Proxy oder Ihre Firewall sie zulässt:
+
+```text "SUBDOMAIN"
+https://SUBDOMAIN.ghe.com
+https://*.SUBDOMAIN.ghe.com
+```
+
+Geben Sie zusätzlich `https://origin-tracker.githubusercontent.com` frei, wenn Sie Codeverweise für Vorschläge nutzen möchten, die öffentlichem Code entsprechen.
+
+## Erledigt, wenn …
+
+<DoneWhen step="enable-copilot" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Copilot für Ihr Enterprise-Konto einrichten](https://docs.github.com/de/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-enterprise)
+- [Copilot-Richtlinien für Ihr Enterprise-Konto verwalten](https://docs.github.com/de/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies)
+- [Referenz zur Copilot-Zulassungsliste](https://docs.github.com/de/enterprise-cloud@latest/copilot/reference/copilot-allowlist-reference)
+</DocLinks>

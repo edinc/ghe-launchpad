@@ -1,0 +1,75 @@
+---
+title: GHE.com-Testversion starten
+description: Legen Sie Ihr Enterprise-Konto auf GHE.com in der Region Ihrer Wahl an und warten Sie, bis die Bereitstellung abgeschlossen ist.
+sidebar:
+  label: Testversion starten
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="start-trial">
+- Region und Subdomain aus Schritt 0
+- Die geschäftliche E-Mail-Adresse des künftigen Enterprise-Owners; dorthin geht die Einladung
+</StepIntro>
+
+## Enterprise-Konto anlegen
+
+<Steps>
+
+1. Öffnen Sie die [Registrierung für die GHE.com-Testversion](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
+
+2. Wählen Sie **Get started with managed users**.
+
+3. Wählen Sie unter **Data hosting** Ihre Region in der Dropdown-Liste aus.
+
+4. Füllen Sie das Formular aus. Drei Felder sind besonders wichtig:
+
+   - **Subdomain**: die endgültige Subdomain aus Schritt 0.
+   - **Identity Provider**: Microsoft Entra ID.
+   - **Admin work email**: die Adresse des künftigen Enterprise-Owners.
+
+5. Klicken Sie auf **Create enterprise**.
+
+</Steps>
+
+<Callout type="wait" title="Die Bereitstellung kann einige Stunden dauern">
+GitHub baut Ihr Enterprise-Konto jetzt in der gewählten Region auf. Sobald es bereit ist, erhält die angegebene Admin-E-Mail-Adresse eine Willkommens-E-Mail mit einem Link, über den Sie das Passwort Ihres Setup-Benutzers festlegen. Lesen Sie in der Zwischenzeit Schritt 2 und planen Sie den Entra-Admin für die Schritte 3, 6 und 7 ein.
+</Callout>
+
+## Was die Testversion umfasst
+
+- **30 Tage**, bis zu **3 neue Organisationen**, bis zu **50 Lizenzen** und bis zu **3.000 Minuten** auf standardmäßigen, von GitHub gehosteten Runnern. Keine Zahlungsmethode nötig.
+- **Nicht enthalten:** GitHub Copilot (Business und Enterprise), Codespaces, GitHub Sponsors, kostenpflichtige Marketplace-Apps, GitHub Connect, Git LFS, Zugriff auf GitHub Enterprise Server sowie bei Actions zusätzliche Minuten, mehr gleichzeitige Jobs und größere Runner. Deshalb aktivieren Sie das Enterprise-Konto in Schritt 4, bevor es an Copilot geht.
+- Eine nie umgewandelte Testversion wird 90 Tage nach ihrem Ende gelöscht.
+
+## Fehlerbehebung
+
+<details>
+<summary>Der Link zum Zurücksetzen des Passworts zeigt `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
+
+Die Bereitstellung ist noch nicht abgeschlossen. Warten Sie eine Weile und öffnen Sie den Link erneut.
+
+</details>
+
+<details>
+<summary>Nach mehreren Stunden keine Willkommens-E-Mail</summary>
+
+Prüfen Sie für die Admin-E-Mail-Adresse den Spam-Ordner und Ihre Mail-Quarantäne. Fehlt die E-Mail weiterhin, bitten Sie Ihren Microsoft- oder GitHub-Ansprechpartner, den Status des Enterprise-Kontos zu prüfen.
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="start-trial" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Erste Schritte mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Testversion von GitHub Enterprise Cloud einrichten](https://docs.github.com/de/enterprise-cloud@latest/admin/overview/setting-up-a-trial-of-github-enterprise-cloud)
+</DocLinks>

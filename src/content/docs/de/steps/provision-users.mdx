@@ -1,0 +1,114 @@
+---
+title: Benutzer und Gruppen per SCIM bereitstellen
+description: Lassen Sie Microsoft Entra ID Konten auf GHE.com anlegen, aktualisieren und entfernen – und testen Sie das zuerst mit einer Person.
+sidebar:
+  label: Benutzer bereitstellen
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="provision-users">
+- Single Sign-On aus Schritt 6
+- Das Personal Access Token (classic) aus Schritt 2
+- Ein Entra-Konto mit der Rolle **Application Administrator** oder **Cloud Application Administrator** (Anwendungsadministrator bzw. Cloudanwendungsadministrator) oder einen Besitzer der App
+- Einen Testbenutzer und die Entra-Gruppen, die Sie in GitHub haben möchten
+</StepIntro>
+
+SCIM legt auf `SUBDOMAIN.ghe.com` ein Konto für jede Person an, die Sie in Entra ID zuweisen, hält Namen und Gruppen synchron und entzieht den Zugriff, wenn jemand ausscheidet. Die Benutzernamen enden auf Ihren Shortcode.
+
+<Callout type="note" title="Englische Bezeichnungen">
+Das Microsoft Entra Admin Center richtet sich nach Ihrer Spracheinstellung. Diese Anleitung nennt die englischen Bezeichnungen und ergänzt, wo hilfreich, die deutschen in Klammern.
+</Callout>
+
+## Entra mit Ihrem Enterprise-Konto verbinden
+
+<ClickPath app="entra" path="Entra ID > Enterprise apps > GitHub Enterprise Managed User (OIDC) > Provisioning" />
+
+<Steps>
+
+1. Öffnen Sie im [Microsoft Entra Admin Center](https://entra.microsoft.com) **Entra ID** › **Enterprise apps** und wählen Sie **GitHub Enterprise Managed User (OIDC)** aus – die App aus Schritt 6.
+
+2. Öffnen Sie **Provisioning** (Bereitstellung) und klicken Sie auf **+ New configuration** (Neue Konfiguration).
+
+3. Geben Sie unter **Admin Credentials** (Administratoranmeldeinformationen) die **Tenant URL** (Mandanten-URL) ein und fügen Sie das Token aus Schritt 2 als **Secret token** (Geheimes Token) ein:
+
+   ```text "SUBDOMAIN"
+   https://api.SUBDOMAIN.ghe.com/scim/v2/enterprises/SUBDOMAIN
+   ```
+
+4. Klicken Sie auf **Test Connection** (Verbindung testen) und dann auf **Create** (Erstellen).
+
+5. Tragen Sie unter **Properties** (Eigenschaften) eine E-Mail-Adresse für Benachrichtigungen ein, aktivieren Sie den Schutz vor versehentlichem Löschen und klicken Sie dann auf **Apply** (Übernehmen).
+
+6. Behalten Sie unter **Attribute Mapping** (Attributzuordnung) die Standardwerte bei, sofern Sie keinen Grund für eine Änderung haben.
+
+</Steps>
+
+## Benutzer und Gruppen zuweisen
+
+<ClickPath app="entra" path="Enterprise apps > GitHub Enterprise Managed User (OIDC) > Users and groups" />
+
+<Steps>
+
+1. Klicken Sie auf **Add user/group** (Benutzer/Gruppe hinzufügen) und fügen Sie zuerst Ihren Testbenutzer hinzu.
+
+2. Wählen Sie für jede Zuweisung eine Rolle aus, z. B. **Enterprise Owner** für mindestens einen Admin und **User** für alle anderen. Die Rolle wird zur [Rolle der Person in Ihrem Enterprise-Konto](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-roles-in-your-enterprise/abilities-of-roles).
+
+3. Fügen Sie die Gruppen hinzu, deren Mitglieder Zugriff erhalten sollen.
+
+4. Wechseln Sie zurück zu **Provisioning** und klicken Sie auf **Start provisioning** (Bereitstellung starten).
+
+</Steps>
+
+<Callout type="caution" title="Verschachtelte Gruppen zählen nicht">
+Entra ID stellt Mitglieder verschachtelter Gruppen nicht bereit. Weisen Sie direkt die Gruppen zu, die Ihre Benutzer enthalten.
+</Callout>
+
+## Mit einer Person testen
+
+Nutzen Sie für Ihren Testbenutzer [Provision on demand](https://learn.microsoft.com/de-de/entra/identity/app-provisioning/provision-on-demand) (Bei Bedarf bereitstellen), damit Sie nicht auf die nächste Synchronisierung warten müssen. Bitten Sie die Person dann, sich unter `https://SUBDOMAIN.ghe.com` mit ihrem Entra-Konto anzumelden.
+
+<Callout type="wait" title="Die Bereitstellung läuft zeitgesteuert">
+Nach dem ersten Durchlauf synchronisiert Entra ID Änderungen in regelmäßigen Zyklen, nicht sofort. Den Fortschritt verfolgen Sie in den Bereitstellungsprotokollen.
+</Callout>
+
+## Fehlerbehebung
+
+<details>
+<summary>„Test Connection“ schlägt fehl</summary>
+
+Prüfen Sie die Mandanten-URL: Ihre Subdomain kommt zweimal vor, und am Ende steht kein weiterer Text. Stellen Sie sicher, dass das Token vollständig kopiert wurde, zum Setup-Benutzer gehört, den Scope `scim:enterprise` hat und nicht widerrufen wurde.
+
+</details>
+
+<details>
+<summary>Benutzer erscheinen nicht in GitHub</summary>
+
+Prüfen Sie, ob die Benutzer der App direkt oder über eine nicht verschachtelte Gruppe zugewiesen sind, ob die Bereitstellung gestartet ist und was die Bereitstellungsprotokolle melden.
+
+</details>
+
+<details>
+<summary>Sollten Sie in GitHub „Open SCIM configuration“ einschalten?</summary>
+
+Nein. Diese Einstellung ist für die Bereitstellung über die REST-API ohne Partner-Identitätsanbieter gedacht. Mit Entra ID und OIDC lassen Sie sie ausgeschaltet.
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="provision-users" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [SCIM-Bereitstellung für Benutzer konfigurieren](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/configuring-scim-provisioning-for-users)
+- [Microsoft Learn: Bereitstellung für GitHub Enterprise Managed User (OIDC)](https://learn.microsoft.com/de-de/entra/identity/saas-apps/github-enterprise-managed-user-oidc-provisioning-tutorial)
+- [Microsoft Learn: Bedarfsgesteuerte Bereitstellung](https://learn.microsoft.com/de-de/entra/identity/app-provisioning/provision-on-demand)
+</DocLinks>

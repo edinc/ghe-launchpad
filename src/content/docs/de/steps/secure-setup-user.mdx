@@ -1,0 +1,105 @@
+---
+title: Setup-Benutzer absichern
+description: Legen Sie Passwort und Zwei-Faktor-Authentifizierung für das integrierte Admin-Konto fest und erstellen Sie das Token, das Sie für die Bereitstellung brauchen.
+sidebar:
+  label: Setup-Benutzer absichern
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="secure-setup-user">
+- Die Willkommens-E-Mail aus Schritt 1
+- Zugriff auf den Passwortmanager Ihres Unternehmens
+- Eine Authenticator-App auf Ihrem Smartphone
+</StepIntro>
+
+Ihr Enterprise-Konto bringt ein integriertes Admin-Konto mit: den **Setup-Benutzer**. Sein Benutzername besteht aus einem zufällig erzeugten Kürzel, gefolgt von `_admin`; in diesem Leitfaden steht dafür `SHORTCODE_admin`. Mit ihm richten Sie Single Sign-On und die Bereitstellung ein. Danach ist er Ihr Notfallzugang.
+
+- Er meldet sich mit eigenem Benutzernamen, Passwort und zweitem Faktor an, nie über Single Sign-On.
+- Er lässt sich nicht löschen und belegt keine Lizenz.
+
+## Passwort festlegen
+
+<Steps>
+
+1. Öffnen Sie den Link aus der Willkommens-E-Mail in einem **privaten oder Inkognito-Browserfenster**.
+
+2. Legen Sie ein starkes Passwort fest. Speichern Sie Benutzername und Passwort sofort im Passwortmanager Ihres Unternehmens.
+
+</Steps>
+
+## Zwei-Faktor-Authentifizierung aktivieren
+
+<ClickPath path="Profile picture > Settings > Password and authentication" />
+
+<Steps>
+
+1. Öffnen Sie, angemeldet als Setup-Benutzer, **Password and authentication** und klicken Sie auf **Enable two-factor authentication**.
+
+2. Scannen Sie den QR-Code mit Ihrer Authenticator-App und geben Sie den Code ein.
+
+3. Laden Sie die Wiederherstellungscodes herunter und speichern Sie sie im Passwortmanager.
+
+</Steps>
+
+<Callout type="caution" title="Ohne 2FA braucht jede Anmeldung einen Wiederherstellungscode">
+Wenn Sie die Zwei-Faktor-Authentifizierung überspringen, müssen Sie bei jeder Anmeldung als Setup-Benutzer einen Wiederherstellungscode des Enterprise-Kontos eingeben.
+</Callout>
+
+## Token für die Bereitstellung erstellen
+
+Entra ID braucht ein Token, um in Schritt 7 Benutzer anzulegen. Erstellen Sie es jetzt, solange Sie noch als Setup-Benutzer angemeldet sind.
+
+<ClickPath path="Profile picture > Settings > Developer settings > Personal access tokens > Tokens (classic)" />
+
+<Steps>
+
+1. Klicken Sie auf **Generate new token** und dann auf **Generate new token (classic)**.
+
+2. Beschreiben Sie das Token unter **Note**, z. B. mit `SCIM provisioning for Entra ID`.
+
+3. Setzen Sie **Expiration** auf „No expiration“. Läuft das Token ab, stoppt die Bereitstellung.
+
+4. Wählen Sie den Scope **scim:enterprise** aus.
+
+5. Klicken Sie auf **Generate token** und kopieren Sie das Token in den Passwortmanager. GitHub zeigt es nur einmal an.
+
+</Steps>
+
+<Callout type="danger" title="Behandeln Sie das Token wie ein Passwort">
+Wer dieses Token besitzt, kann Benutzer in Ihrem Enterprise-Konto anlegen und entfernen. Geben Sie es für Schritt 7 nur über Ihren Passwortmanager an den Entra-Admin weiter.
+</Callout>
+
+## Fehlerbehebung
+
+<details>
+<summary>Der Setup-Benutzer kann sich nicht über Entra ID anmelden</summary>
+
+Das ist so vorgesehen. Der Setup-Benutzer meldet sich immer mit Benutzername, Passwort und zweitem Faktor unter `https://SUBDOMAIN.ghe.com` an.
+
+</details>
+
+<details>
+<summary>Das Gerät mit der Authenticator-App ist verloren gegangen</summary>
+
+Melden Sie sich mit einem der 2FA-Wiederherstellungscodes aus Ihrem Passwortmanager an und richten Sie die Zwei-Faktor-Authentifizierung dann neu ein.
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="secure-setup-user" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Informationen zum Setup-Benutzer](https://docs.github.com/de/enterprise-cloud@latest/admin/concepts/identity-and-access-management/setup-user)
+- [Erste Schritte mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Personal Access Tokens verwalten](https://docs.github.com/de/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+</DocLinks>

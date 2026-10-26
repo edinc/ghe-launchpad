@@ -1,0 +1,61 @@
+---
+title: Copilot-Lizenzen zuweisen
+description: Weisen Sie Ihren Enterprise-Teams Copilot-Business-Lizenzen zu, starten Sie mit einer Pilotgruppe und erfahren Sie, wie Änderungen abgerechnet werden.
+sidebar:
+  label: Lizenzen zuweisen
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+import Video from '../../../../components/Video.astro';
+
+<StepIntro step="assign-licenses">
+- Copilot ist freigeschaltet und die Richtlinien sind gesetzt (Schritt 5)
+- Mit Entra-Gruppen synchronisierte Enterprise-Teams aus Schritt 8
+</StepIntro>
+
+## Copilot Business an Ihre Teams vergeben
+
+<ClickPath path="Your enterprise > Billing and licensing > Licensing" />
+
+<Steps>
+
+1. Klicken Sie neben **Copilot** auf **Manage**.
+
+2. Öffnen Sie den Tab **Enterprise Teams**. Wenn Sie stattdessen einzelne Personen lizenzieren möchten, nutzen Sie **All members**.
+
+3. Klicken Sie auf **Assign licenses**, suchen Sie das Team und klicken Sie auf **Add licenses**.
+
+</Steps>
+
+Die Personen erhalten sofort Zugriff auf Copilot. Jede Lizenz wird pro Person abgerechnet; im Laufe des Monats hinzugefügte Lizenzen werden anteilig berechnet.
+
+<Callout type="tip" title="Mit einem Pilotteam starten">
+Lizenzieren Sie zuerst eine kleine Gruppe, lassen Sie sie Schritt 10 ausprobieren und fügen Sie dann die übrigen Teams hinzu. Eine entfernte Lizenz wird bis zum Ende des Abrechnungszeitraums weiter berechnet, ohne Erstattung. Wird die Zuweisung nur aufgehoben (unassign), bleibt Copilot bis dahin nutzbar; wird der Platz widerrufen (revoke), endet der Zugriff sofort. [So wirken sich Lizenzänderungen aus](https://docs.github.com/de/enterprise-cloud@latest/copilot/reference/copilot-billing/license-changes)
+</Callout>
+
+## Variante A: Copilot Enterprise
+
+Wenn Sie Lizenzen direkt an Teams und Personen vergeben, erhalten diese **Copilot Business**. Für **Copilot Enterprise** aktivieren Sie Copilot stattdessen für bestimmte Organisationen: Erlauben Sie auf derselben Copilot-Seite im Abschnitt zum Organisationszugriff bestimmte Organisationen und wählen Sie für jede den Plan aus.
+
+## Video
+
+<Video id="licensesEnterprise" />
+
+<Video id="licensesCopilotOnly" />
+
+## Erledigt, wenn …
+
+<DoneWhen step="assign-licenses" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Zugriff auf Copilot in Ihrem Enterprise-Konto gewähren](https://docs.github.com/de/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-access/grant-access)
+- [Ein Enterprise-Konto nur für Copilot Business einrichten](https://docs.github.com/de/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-a-dedicated-enterprise-for-copilot-business)
+</DocLinks>

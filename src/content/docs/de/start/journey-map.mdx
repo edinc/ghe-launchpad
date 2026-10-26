@@ -1,0 +1,35 @@
+---
+title: Ablaufplan
+description: Wer in welchem Schritt gebraucht wird, wie lange jeder Schritt dauert und wo Sie warten – alles auf einer Seite.
+sidebar:
+  label: Ablaufplan
+tableOfContents: false
+lastVerified: 2026-10-23
+---
+
+import JourneyMap from '../../../../components/JourneyMap.astro';
+import RouteMap from '../../../../components/RouteMap.astro';
+import Callout from '../../../../components/Callout.astro';
+
+Die gesamte Einrichtung auf einer Seite. Gehen Sie den Plan vor dem Start mit allen Beteiligten durch, damit jede Person weiß, wann sie gebraucht wird.
+
+<JourneyMap />
+
+<Callout type="tip" title="Tage sparen mit parallelen Schritten">
+Die Schritte 6–8 (Single Sign-On, Bereitstellung, Teams) hängen nur von Schritt 2 ab, nicht von den Schritten 3–5. Planen Sie die dafür nötigen Admins ein und erledigen Sie diese Schritte, während Sie auf die Azure-Verbindung, die Aktivierung oder die Freischaltung von Copilot warten.
+</Callout>
+
+## Wo die Zeit bleibt
+
+- **Aufwand:** insgesamt etwa 5 Stunden, verteilt auf mehrere Personen.
+- **Wartezeit:** die Bereitstellung der Testversion (bis zu einigen Stunden), die Administratorzustimmung, falls jemand anderes zustimmen muss, die Freischaltung von Copilot durch Ihren Ansprechpartner und die Bereitstellungszyklen von Entra.
+
+## Diese Termine früh einplanen
+
+- **Entra-Admin mit Rechten als Globaler Administrator:** etwa eine Stunde für die Zustimmung in Schritt 3, Single Sign-On in Schritt 6 und die Bereitstellung in Schritt 7. Ein Termin deckt alle drei ab.
+- **Besitzer des Azure-Abonnements:** 15 Minuten in Schritt 3.
+- **Ihr Microsoft- oder GitHub-Ansprechpartner:** Senden Sie die Copilot-Anfrage an dem Tag, an dem Sie Schritt 4 abschließen.
+
+## Die Route auf einen Blick
+
+<RouteMap />

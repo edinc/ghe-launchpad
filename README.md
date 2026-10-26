@@ -35,6 +35,7 @@ src/
     start/                 choose your path, journey map
     steps/                 the 11 setup steps (0–10)
     resources/             printable checklist, videos, about
+  content/docs/de/         German pages, same file names
   data/steps.ts            step metadata: titles, roles, time, waits, prerequisites, "done when" checkpoints (EN + DE)
   data/videos.ts           reference videos (YouTube IDs, titles, summaries)
   components/              StepIntro, ClickPath, Callout, DoneWhen, Video, RouteMap, JourneyMap, Checklist, Rocket, …
@@ -49,18 +50,19 @@ Built with [Astro Starlight](https://starlight.astro.build). Fonts are self-host
 
 ## Updating content
 
-- **Step text** lives in `src/content/docs/steps/*.mdx`.
+- **Step text** lives in `src/content/docs/steps/*.mdx` (English) and `src/content/docs/de/steps/*.mdx` (German). Change both.
 - **Who / time / waits / prerequisites / checkpoints** for each step live in `src/data/steps.ts`. They feed the step header card, the route on the home page, the journey map and the printable checklist, so update them once there.
-- **Links:** internal links include the base path, e.g. `/ghe-launchpad/steps/prepare/`. Link to the official docs: `docs.github.com/en/…` and `learn.microsoft.com/en-us/…`.
+- **German style:** formal “Sie”. GitHub’s interface is English-only, so GitHub button and menu names stay in English (in bold) with German explanations. The Entra admin center and Azure portal follow the user’s language; name the English label and add the German one in brackets where helpful.
+- **Links:** internal links include the base path and stay in the page’s language, e.g. `/ghe-launchpad/steps/prepare/` and `/ghe-launchpad/de/steps/prepare/`. Link to language-matched official docs: `docs.github.com/en/…` ↔ `docs.github.com/de/…` and `learn.microsoft.com/en-us/…` ↔ `learn.microsoft.com/de-de/…`.
 - **Placeholders:** use `SUBDOMAIN` (and `SHORTCODE` for the setup user) like the official docs. In code blocks, mark them with Expressive Code, e.g. ` ```text "SUBDOMAIN" `.
 
 ### “Last checked” dates
 
-Every page has `lastVerified: YYYY-MM-DD` in its frontmatter; the footer shows it as “Last checked against the official docs”. When you re-check a page against the official documentation, update the date.
+Every page has `lastVerified: YYYY-MM-DD` in its frontmatter; the footer shows it as “Last checked against the official docs”. When you re-check a page against the official documentation, update the date in both languages.
 
 ## Checks
 
-Every pull request and every push to `main` runs `.github/workflows/ci.yml`: the type check and a production build, which fails on any broken internal link or heading anchor (`starlight-links-validator`).
+Every pull request and every push to `main` runs `.github/workflows/ci.yml`: the type check and a production build, which fails on any broken internal link or heading anchor, and on links from a German page to an English one or the other way round (`starlight-links-validator`).
 
 ## Design notes
 

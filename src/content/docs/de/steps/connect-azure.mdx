@@ -1,0 +1,110 @@
+---
+title: Azure-Abonnement verbinden
+description: Verknüpfen Sie ein Azure-Abonnement, damit die GitHub-Nutzung auf Ihrer Azure-Rechnung erscheint, inklusive der einmaligen Administratorzustimmung in Entra ID.
+sidebar:
+  label: Azure verbinden
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import Sticky from '../../../../components/Sticky.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+import Video from '../../../../components/Video.astro';
+import BillingFlow from '../../../../components/diagrams/BillingFlow.astro';
+
+<StepIntro step="connect-azure">
+- Ein Enterprise-Owner, der bei `SUBDOMAIN.ghe.com` angemeldet ist; derzeit ist das der Setup-Benutzer
+- Die ID des Azure-Abonnements ([so finden Sie sie](https://learn.microsoft.com/de-de/azure/azure-portal/get-subscription-tenant-id))
+- Ein Microsoft-Konto mit der Rolle **Owner** („Besitzer“) für dieses Abonnement
+- Ein Globaler Administrator Ihres Entra-Mandanten auf Abruf, sofern das Microsoft-Konto nicht selbst mandantenweit zustimmen darf
+</StepIntro>
+
+GitHub rechnet die Nutzung Ihres Enterprise-Kontos über Azure ab: Lizenzen, Copilot, Actions-Minuten und Speicher. Sie verbinden das Abonnement einmal, danach läuft alles von selbst.
+
+<BillingFlow />
+
+<Callout type="note" title="Englische Bezeichnungen">
+GitHub gibt es nur auf Englisch, deshalb nennt dieser Leitfaden Schaltflächen und Menüs mit ihren englischen Namen. Die Microsoft-Anmeldung und das Azure-Portal richten sich dagegen nach Ihrer Spracheinstellung; dort können die Bezeichnungen also auf Deutsch erscheinen.
+</Callout>
+
+## Abonnement verbinden
+
+<ClickPath path="Your enterprise > Billing & Licensing > Payment information" />
+
+<Steps>
+
+1. Scrollen Sie unter **Payment information** ganz nach unten. Klicken Sie neben **Metered billing via Azure** auf **Add Azure Subscription**.
+
+2. Melden Sie sich mit dem Microsoft-Konto an, das für das Abonnement die Rolle „Besitzer“ hat.
+
+3. Prüfen Sie **Permissions requested** (Angeforderte Berechtigungen) und klicken Sie auf **Accept** (Akzeptieren). Das ist die Administratorzustimmung für die GitHub-App in Ihrem Entra-Mandanten.
+
+4. Wählen Sie unter **Select a subscription** Ihre Abonnement-ID aus.
+
+5. Setzen Sie das Häkchen, mit dem Sie bestätigen, dass nutzungsbasierte Dienste über dieses Abonnement abgerechnet werden sollen.
+
+6. Klicken Sie auf **Connect**.
+
+</Steps>
+
+<Callout type="note" title="Das beendet Ihre Testversion nicht">
+In einer Testversion mit verwalteten Benutzern können Sie durch die Azure-Verbindung lediglich mehr als die 3.000 enthaltenen Actions-Minuten nutzen. Die Testversion endet, wenn Sie das Enterprise-Konto in Schritt 4 aktivieren.
+</Callout>
+
+<Callout type="caution" title="Meldung „Need admin approval“?">
+Die Meldung lautet: *GitHub Inc needs permission to access resources in your organization that only an admin can grant.* Das Konto, mit dem Sie sich angemeldet haben, kann nicht für Ihren gesamten Entra-Mandanten zustimmen. Bitten Sie einen Globalen Administrator, sich in diesem Schritt selbst anzumelden, die [mandantenweite Administratorzustimmung](https://learn.microsoft.com/de-de/entra/identity/enterprise-apps/grant-admin-consent) für die App zu erteilen oder einen [Workflow für die Administratorzustimmung](https://learn.microsoft.com/de-de/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent-workflow) einzurichten. Beginnen Sie dann erneut bei **Add Azure Subscription**.
+</Callout>
+
+## Gut zu wissen zur Abrechnung
+
+<div class="sticky-row">
+  <Sticky color="yellow" title="Abrechnung zum 1.">
+    Die Nutzung ab dem Tag der Verbindung erscheint jeweils am 1. des Monats auf Ihrer Azure-Rechnung.
+  </Sticky>
+  <Sticky color="pink" title="Keine Vorauszahlung">
+    Vorausbezahlte Nutzung ist bei Abrechnung über Azure nicht möglich.
+  </Sticky>
+  <Sticky color="teal" title="Mehrere Abonnements?">
+    Über Kostenstellen rechnen Sie z. B. jede Abteilung über ein eigenes Abonnement ab.
+  </Sticky>
+</div>
+
+## Fehlerbehebung
+
+<details>
+<summary>Ihr Abonnement fehlt in der Liste</summary>
+
+Ihr Konto hat für das Abonnement nicht die Rolle „Besitzer“, oder das Abonnement gehört zu einem anderen Mandanten. Wechseln Sie bei der Microsoft-Anmeldung zum richtigen Mandanten oder beantragen Sie die Rolle „Besitzer“.
+
+</details>
+
+<details>
+<summary>Das Microsoft-Anmeldefenster scheitert hinter Ihrem Proxy</summary>
+
+Geben Sie `https://github.com/enterprises/oauth_callback` einschließlich aller Abfrageparameter frei, solange Sie die Verbindung herstellen. Danach können Sie die Freigabe wieder entfernen; um das Abonnement später zu ändern, brauchen Sie sie aber erneut.
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="connect-azure" />
+
+## Video
+
+<Video id="azure" />
+
+<Video id="azureBilling" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Azure-Abonnement verbinden](https://docs.github.com/de/enterprise-cloud@latest/billing/how-tos/set-up-payment/connect-azure-sub)
+- [Informationen zur Abrechnung über Azure](https://docs.github.com/de/enterprise-cloud@latest/billing/concepts/azure-subscriptions)
+- [Fehlerbehebung bei der Verbindung des Azure-Abonnements](https://docs.github.com/de/enterprise-cloud@latest/billing/how-tos/troubleshooting/azure-sub-connection)
+- [Unterstützte Zahlungsmethoden](https://docs.github.com/de/enterprise-cloud@latest/billing/reference/supported-payment-methods)
+- [Microsoft Learn: Mandantenweite Administratorzustimmung erteilen](https://learn.microsoft.com/de-de/entra/identity/enterprise-apps/grant-admin-consent)
+</DocLinks>

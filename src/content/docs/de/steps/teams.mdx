@@ -1,0 +1,82 @@
+---
+title: Enterprise-Teams anlegen
+description: Bilden Sie Ihre Entra-Gruppen als Enterprise-Teams ab, damit Lizenzen und Zugriff der Gruppenmitgliedschaft folgen. In Variante A verbinden Sie außerdem Organisationen.
+sidebar:
+  label: Teams
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import ClickPath from '../../../../components/ClickPath.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="teams">
+- Die in Schritt 7 aus Entra ID bereitgestellten Gruppen
+- Eine Idee für die Benennung, z. B. ein Team pro Entra-Gruppe
+</StepIntro>
+
+Enterprise-Teams bilden Ihre Entra-Gruppen ab. In Schritt 9 vergeben Sie Copilot-Lizenzen an diese Teams. Tritt also jemand in Entra ID einer Gruppe bei oder verlässt sie, folgt die Lizenz der Mitgliedschaft.
+
+## Ein Team pro Gruppe anlegen
+
+<ClickPath path="Your enterprise > People > Enterprise teams" />
+
+<Steps>
+
+1. Klicken Sie auf **Create Enterprise team**.
+
+2. Geben Sie einen Namen und eine Beschreibung ein. In Variante B gewähren Sie dem Team keinen Zugriff auf Organisationen.
+
+3. Bestätigen Sie mit **Create Enterprise team**.
+
+4. Klicken Sie auf der Seite des neuen Teams auf **Edit**. Wählen Sie unter **Manage members** die Option **Identity provider group** aus, klicken Sie auf **Select group**, wählen Sie die Entra-Gruppe aus und klicken Sie auf **Update team**.
+
+</Steps>
+
+<Callout type="note" title="Obergrenzen">
+Bis zu 2.500 Enterprise-Teams pro Enterprise-Konto, 5.000 Personen pro Team und 1.000 Organisationen pro Team. Wächst eine Entra-Gruppe über 5.000 Mitglieder hinaus, wird ihr Team nicht mehr synchronisiert, bis sie wieder unter der Grenze liegt.
+</Callout>
+
+## Variante A: Organisationen verbinden
+
+Legen Sie die Organisationen an, in denen Ihre Entwickler arbeiten. Geben Sie dann Ihren Enterprise-Teams Zugriff darauf oder verbinden Sie Teams innerhalb einer Organisation mit Entra-Gruppen:
+
+<ClickPath path="Your organization > Teams > New team > Identity Provider Groups" />
+
+Jede Person, die Mitglied einer Organisation wird, belegt eine GitHub-Enterprise-Lizenz.
+
+## Variante B: ohne Organisationen bleiben
+
+<Callout type="caution" title="In Variante B keine Organisationen anlegen">
+Ihre Benutzer nutzen Copilot ohne Organisationszugehörigkeit („unaffiliated users“). Sobald jemand einer Organisation beitritt, belegt diese Person eine GitHub-Enterprise-Lizenz, und dafür zahlen Sie.
+</Callout>
+
+## Fehlerbehebung
+
+<details>
+<summary>Die Entra-Gruppe erscheint nicht unter „Select group“</summary>
+
+Die Gruppe ist noch nicht bereitgestellt. Stellen Sie sicher, dass sie in Schritt 7 der App zugewiesen wurde und ein Bereitstellungszyklus abgeschlossen ist. Microsoft 365-Gruppen und verschachtelte Gruppen lassen sich nicht verwenden.
+
+</details>
+
+<details>
+<summary>Ein bestehendes Team lässt sich nicht mit einer Gruppe verbinden</summary>
+
+Entfernen Sie zuerst die manuell hinzugefügten Mitglieder; ein mit einer Entra-Gruppe synchronisiertes Team kann Mitglieder nur aus dieser Gruppe erhalten.
+
+</details>
+
+## Erledigt, wenn …
+
+<DoneWhen step="teams" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Enterprise-Teams anlegen](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/create-enterprise-teams)
+- [Teammitgliedschaften mit Gruppen des Identitätsanbieters verwalten](https://docs.github.com/de/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/managing-team-memberships-with-identity-provider-groups)
+</DocLinks>

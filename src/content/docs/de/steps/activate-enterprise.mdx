@@ -1,0 +1,56 @@
+---
+title: Enterprise-Konto aktivieren
+description: Wandeln Sie die Testversion in ein kostenpflichtiges Enterprise-Konto um, damit Copilot freigeschaltet werden kann, und erfahren Sie, wofür Sie bezahlen.
+sidebar:
+  label: Aktivieren
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../../components/StepIntro.astro';
+import Callout from '../../../../components/Callout.astro';
+import DoneWhen from '../../../../components/DoneWhen.astro';
+import DocLinks from '../../../../components/DocLinks.astro';
+
+<StepIntro step="activate-enterprise">
+- Das Azure-Abonnement aus Schritt 3 oder eine Kreditkarte bzw. ein PayPal-Konto
+- Die Freigabe der Person, die das Budget verantwortet
+</StepIntro>
+
+In einer Testversion ist Copilot nicht verfügbar. Die Aktivierung macht aus Ihrer Testversion ein kostenpflichtiges Enterprise-Konto, sodass Ihr Ansprechpartner Copilot in Schritt 5 freischalten kann. Das ist jederzeit während des Testzeitraums möglich.
+
+## Aktivieren
+
+<Steps>
+
+1. Melden Sie sich als Enterprise-Owner bei `https://SUBDOMAIN.ghe.com` an und öffnen Sie Ihr Enterprise-Konto.
+
+2. Klicken Sie auf **Activate enterprise**.
+
+3. Wählen Sie die Zahlungsart: Ihr verbundenes Azure-Abonnement, eine Kreditkarte oder PayPal.
+
+4. Folgen Sie den Anweisungen, um zu bestätigen.
+
+</Steps>
+
+## Wofür Sie bezahlen
+
+- **GitHub-Enterprise-Lizenzen werden nach Nutzung abgerechnet.** Sie bezahlen jeden Monat für die tatsächlich genutzten Lizenzen, nicht für eine feste Anzahl an Lizenzplätzen. Eine Lizenz zählt einmal pro Person, die sie im Laufe des Monats genutzt hat.
+- **Wer keine Lizenz belegt:** Personen im Enterprise-Konto, die keiner Organisation angehören, Enterprise-Owner, die in keiner Organisation sind, und der Setup-Benutzer.
+- **Copilot** wird ab Schritt 9 separat für jede Person mit Lizenz abgerechnet.
+
+<Callout type="tip" title="Variante B: keine GitHub-Enterprise-Lizenzen">
+Ohne Organisationen bleiben Ihre Benutzer sogenannte „unaffiliated users“. Sie bezahlen für Copilot-Business-Lizenzen, nicht für GitHub-Enterprise-Lizenzen.
+</Callout>
+
+## Erledigt, wenn …
+
+<DoneWhen step="activate-enterprise" />
+
+## Offizielle Dokumentation
+
+<DocLinks>
+- [Erste Schritte mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Informationen zu nutzungsbasierten Lizenzen](https://docs.github.com/de/enterprise-cloud@latest/billing/concepts/enterprise-billing/usage-based-licenses)
+- [Wer eine GitHub-Enterprise-Lizenz belegt](https://docs.github.com/de/enterprise-cloud@latest/billing/reference/github-license-users)
+</DocLinks>
