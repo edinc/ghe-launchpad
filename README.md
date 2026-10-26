@@ -1,5 +1,12 @@
 # GHE Launchpad
 
+[![Tests](https://img.shields.io/github/actions/workflow/status/edinc/ghe-launchpad/ci.yml?branch=main&event=push&label=tests)](https://github.com/edinc/ghe-launchpad/actions/workflows/ci.yml?query=branch%3Amain)
+[![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fedinc.github.io%2Fghe-launchpad%2Fbadges%2Fcoverage.json)](https://github.com/edinc/ghe-launchpad/actions/workflows/ci.yml?query=branch%3Amain)
+[![Deployment](https://img.shields.io/github/deployments/edinc/ghe-launchpad/github-pages?label=deployment)](https://github.com/edinc/ghe-launchpad/actions/workflows/deploy.yml)
+[![Docs last checked](https://img.shields.io/endpoint?url=https%3A%2F%2Fedinc.github.io%2Fghe-launchpad%2Fbadges%2Fdocs-checked.json)](https://edinc.github.io/ghe-launchpad/)
+[![Links](https://img.shields.io/github/actions/workflow/status/edinc/ghe-launchpad/link-check.yml?label=links)](https://github.com/edinc/ghe-launchpad/actions/workflows/link-check.yml)
+[![License: MIT](https://img.shields.io/github/license/edinc/ghe-launchpad)](LICENSE)
+
 A visual, self-service walkthrough for setting up **GitHub Enterprise Cloud with data residency (GHE.com)**: Enterprise Managed Users with Microsoft Entra ID (OIDC + SCIM), billing through an Azure subscription, activating the enterprise and GitHub Copilot. In English and German.
 
 **Site:** https://edinc.github.io/ghe-launchpad/ (German: https://edinc.github.io/ghe-launchpad/de/)
@@ -11,9 +18,6 @@ Send the link to a customer and they can work through the setup on their own: 11
 
 > [!NOTE]
 > This is an independent community guide, not official GitHub or Microsoft documentation. The official documentation is always the source of truth, and every step links to it.
-
-> [!NOTE]
-> Work in progress: the guide arrives in a series of pull requests.
 
 ## Run it locally
 
@@ -86,12 +90,24 @@ Every pull request and every push to `main` runs `.github/workflows/ci.yml` with
 
 ## Link check
 
-`.github/workflows/link-check.yml` (🔗 **Check links and videos**) runs every Monday and on demand. It builds the site and checks every external link on it with [lychee](https://lychee.cli.rs) (configuration: `lychee.toml`), and every embedded YouTube video through YouTube's oEmbed endpoint. Problems open or update one issue labeled `broken-links`; the workflow closes that issue once everything passes again. If a check can't reach a verdict (a lychee error, YouTube unreachable), the run fails and no issue changes. To run it locally after `npm run build`: `lychee --config lychee.toml 'dist/**/*.html' README.md`.
+`.github/workflows/link-check.yml` (🔗 **Check links and videos**) runs every Monday and on demand. It builds the site and checks every external link on it with [lychee](https://lychee.cli.rs) (configuration: `lychee.toml`), and every embedded YouTube video through YouTube's oEmbed endpoint. Problems open or update one issue labeled `broken-links` and fail the run; the workflow closes that issue once everything passes again. If a check can't reach a verdict (a lychee error, YouTube unreachable), the run also fails, but no issue changes. To run it locally after `npm run build`: `lychee --config lychee.toml 'dist/**/*.html' README.md`.
 
 ## Design notes
 
 `PRODUCT.md` records who the guide is for and its constraints. `DESIGN.md` (with its machine-readable sidecar `.impeccable/design.json`) documents the visual system: the “sketch explainer” direction (cream paper, light theme only, marker headlines, yellow/pink/teal highlighters, wobbly hand-drawn borders and diagrams, and a doodled rocket that launches in the logo, idles on the pad while you wait and marks tips and cautions), its tokens, type, components and rules. The opening comment of `src/components/overrides/Hero.astro` summarizes it.
 
+## Badges
+
+- **tests:** the latest CI run on `main` (🧱 🧪 🎭).
+- **coverage:** unit test line coverage, measured by the Deploy workflow and published with the site as a [shields.io endpoint](https://shields.io/badges/endpoint-badge) (`/badges/coverage.json`).
+- **deployment:** the latest GitHub Pages deployment.
+- **docs last checked:** the oldest `lastVerified` date across all pages (`/badges/docs-checked.json`); the guide is only as current as its stalest page.
+- **links:** the latest weekly link and video check; red when it found broken links or videos, or couldn't finish the check.
+
+## Contributing
+
+Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Maintainers and AI coding agents follow the workflow in [AGENTS.md](AGENTS.md): feature branches, all checks green, and three independent AI reviews before a pull request opens. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md), and report security problems privately as described in [SECURITY.md](SECURITY.md).
+
 ## License
 
-[MIT](LICENSE) © Edin Cenanovic
+[MIT](LICENSE). Created and maintained by [Edin Cenanovic](https://edincenanovic.com).

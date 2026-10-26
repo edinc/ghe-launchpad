@@ -1,0 +1,37 @@
+name: Outdated or wrong content
+description: A page no longer matches GitHub, Entra or Azure, or something in the guide is wrong.
+labels: [documentation]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for keeping the guide accurate! The official documentation is the source of truth, so a link to it helps most.
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Link to the page in the guide.
+      placeholder: https://edinc.github.io/ghe-launchpad/steps/connect-azure/
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is outdated or wrong?
+      description: For example a renamed button, a changed click path or a limit that moved.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source
+      description: Link to the GitHub or Microsoft documentation that shows the current state, if you have one.
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - English
+        - German
+        - Both
+    validations:
+      required: true

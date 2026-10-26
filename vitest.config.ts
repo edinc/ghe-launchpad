@@ -14,6 +14,8 @@ export default getViteConfig({
 			exclude: [
 				// Starlight overrides need Starlight's full page context; the Playwright UI tests cover them.
 				'src/components/overrides/**',
+				// Badge endpoints only wrap src/lib/badges.ts (unit-tested); the UI tests check their output.
+				'src/pages/**',
 				'src/content.config.ts',
 			],
 			reporter: ['text', 'json-summary', 'html'],

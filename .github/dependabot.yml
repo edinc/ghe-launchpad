@@ -1,0 +1,25 @@
+# Weekly dependency updates, grouped so they arrive as a few pull requests.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      astro:
+        patterns: ['astro', '@astrojs/*', 'starlight-*']
+      tests:
+        patterns: ['vitest', '@vitest/*', '@playwright/test', '@axe-core/*', 'happy-dom']
+      fonts:
+        patterns: ['@fontsource/*', '@fontsource-variable/*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']

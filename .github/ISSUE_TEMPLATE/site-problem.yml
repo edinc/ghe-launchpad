@@ -1,0 +1,23 @@
+name: Site problem
+description: Something on the site doesn't work or looks broken.
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: https://edinc.github.io/ghe-launchpad/
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected and what you saw instead.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Edge 140 on Windows 11, Safari on iPhone, …
