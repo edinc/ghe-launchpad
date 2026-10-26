@@ -39,3 +39,6 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
 		observer.observe(svg);
 	}
 }
+
+// A module, so tests can import it; Astro bundles it as a module script either way.
+export {};

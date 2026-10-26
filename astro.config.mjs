@@ -55,6 +55,8 @@ export default defineConfig({
 			},
 			expressiveCode: {
 				themes: ['github-light'],
+				// Long lines wrap instead of scrolling sideways: easier on phones, and no scroll area keyboards can't reach.
+				defaultProps: { wrap: true },
 				styleOverrides: {
 					borderRadius: '14px',
 					borderWidth: '2px',

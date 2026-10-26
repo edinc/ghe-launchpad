@@ -25,3 +25,9 @@ npm-debug.log*
 # local design-tool state (DESIGN.md and .impeccable/design.json are tracked)
 .impeccable/hook.cache.json
 .impeccable/questions/
+
+# test output
+coverage/
+test-results/
+playwright-report/
+blob-report/

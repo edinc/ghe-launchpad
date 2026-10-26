@@ -14,7 +14,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
@@ -28,6 +32,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "typescript": "^6.0.3"
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@vitest/coverage-v8": "^5.0.5",
+    "happy-dom": "^21.0.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
   }
 }
