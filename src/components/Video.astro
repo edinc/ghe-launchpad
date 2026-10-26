@@ -16,12 +16,14 @@ const note = t(lang, video.source === 'adc' ? 'video.adc' : 'video.github');
 <figure class="video not-content" data-video-embed={embedUrl} data-video-title={video.title}>
 	<div class="video__box">
 	<div class="video__frame">
-		<button type="button" class="video__play" aria-label={`${t(lang, 'video.play')}: ${video.title}`}>
+		<button type="button" class="video__play">
 			<svg class="video__icon" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false">
 				<path class="video__icon-bg" d="M32 5 C 49 4 60 16 59 32 C 59 49 47 60 31 59 C 15 59 5 47 5 32 C 5 16 17 5 32 5 Z" />
 				<path class="video__icon-tri" d="M26 20 C 33 24 39 28 45 32 C 39 36 33 40 26 44 C 25 36 25 28 26 20 Z" />
 			</svg>
-			<span class="video__title">{video.title}</span>
+			{/* The name comes from the content, so it contains every visible word (WCAG 2.5.3). */}
+			<span class="sr-only">{t(lang, 'video.play')}: </span>
+			<span class="video__title">{video.title}</span>{' '}
 			{video.minutes && <span class="video__len">{video.minutes} {t(lang, 'video.minutes')}</span>}
 		</button>
 	</div>

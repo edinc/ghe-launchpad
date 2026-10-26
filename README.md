@@ -24,6 +24,8 @@ npm run dev        # http://localhost:4321/ghe-launchpad/
 npm run check      # type check (astro check)
 npm run build      # production build into dist/, also validates every internal link
 npm run preview    # serve the production build
+npm test           # unit and component tests
+npm run test:e2e   # UI tests in a real browser (run `npx playwright install chromium` once)
 ```
 
 ## Project structure
@@ -44,6 +46,9 @@ src/
   lib/i18n.ts              UI strings for components (EN + DE)
   lib/rocket.ts            the rocket doodle in all its moods (logo art lives in src/assets/logo.svg and public/favicon.svg)
   styles/custom.css        the visual system ("sketch explainer": paper, marker ink, highlighters)
+tests/
+  unit/                    Vitest: helpers, data, content rules, browser script, components
+  e2e/                     Playwright: the built site in Chromium (desktop + phone)
 ```
 
 Built with [Astro Starlight](https://starlight.astro.build). Fonts are self-hosted (no font CDN), there are no cookies or analytics, and YouTube videos only load after the reader presses play.
@@ -60,9 +65,18 @@ Built with [Astro Starlight](https://starlight.astro.build). Fonts are self-host
 
 Every page has `lastVerified: YYYY-MM-DD` in its frontmatter; the footer shows it as “Last checked against the official docs”. When you re-check a page against the official documentation, update the date in both languages.
 
+## Tests
+
+- **Unit and component tests** (`tests/unit/`, [Vitest](https://vitest.dev)) cover the helpers in `src/lib` and `src/data`, the browser script in `src/scripts` and every component, rendered in English and German with Astro's container API. Content checks make sure every page exists in both languages, has a "last checked" date, links to the official docs in its own language and addresses German readers with "Sie". `npm run test:coverage` fails if statements, branches, functions or lines drop below **70%**; the Starlight overrides are left to the UI tests.
+- **UI tests** (`tests/e2e/`, [Playwright](https://playwright.dev)) build the site, serve it with `astro preview` and drive Chromium at desktop and phone sizes: navigation, search, the language switch, step pages, the checklist and printing, the light theme, no YouTube requests before you press play, no sideways scrolling at 320 px, and an [axe](https://github.com/dequelabs/axe-core) accessibility scan (WCAG 2.1 A/AA).
+
 ## Checks
 
-Every pull request and every push to `main` runs `.github/workflows/ci.yml`: the type check and a production build, which fails on any broken internal link or heading anchor, and on links from a German page to an English one or the other way round (`starlight-links-validator`).
+Every pull request and every push to `main` runs `.github/workflows/ci.yml` with three checks:
+
+- 🧱 **Type check & build:** `astro check` and a production build, which fails on any broken internal link or heading anchor, and on links from a German page to an English one or the other way round (`starlight-links-validator`).
+- 🧪 **Unit tests & coverage:** with the coverage table in the job summary and the HTML report as an artifact.
+- 🎭 **UI tests (Playwright):** the report is uploaded when a test fails.
 
 ## Design notes
 

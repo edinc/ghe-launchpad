@@ -1,7 +1,6 @@
 name: CI
 
-# Runs on every pull request and every push to main: a type check and a production
-# build. The build also validates every internal link (starlight-links-validator).
+# Runs on every pull request and every push to main. Each job is one check in the PR.
 on:
   pull_request:
   push:
@@ -17,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    name: Type check and build
+    name: 🧱 Type check & build
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -32,4 +31,59 @@ jobs:
 
       - run: npm run check
 
+      # Fails on any broken internal link or heading anchor (starlight-links-validator).
       - run: npm run build
+
+  unit:
+    name: 🧪 Unit tests & coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Fails when statements, branches, functions or lines drop below 70% (vitest.config.ts).
+      - run: npm run test:coverage
+
+      - name: Coverage summary
+        if: ${{ !cancelled() }}
+        run: node .github/scripts/coverage-summary.mjs >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
+
+  ui:
+    name: 🎭 UI tests (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      # Builds the site and serves it with astro preview (playwright.config.ts).
+      - run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
