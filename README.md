@@ -2,6 +2,8 @@
 
 A visual, self-service walkthrough for setting up **GitHub Enterprise Cloud with data residency (GHE.com)**: Enterprise Managed Users with Microsoft Entra ID (OIDC + SCIM), billing through an Azure subscription, activating the enterprise and GitHub Copilot. In English and German.
 
+**Site:** https://edinc.github.io/ghe-launchpad/ (German: https://edinc.github.io/ghe-launchpad/de/)
+
 Send the link to a customer and they can work through the setup on their own: 11 ordered steps, who does what, how long it takes, what to wait for, click paths, "done when" checkpoints, troubleshooting, the matching official docs and reference videos. It covers two paths:
 
 - **Path A · Full platform:** code on GitHub plus Copilot.
@@ -77,6 +79,14 @@ Every pull request and every push to `main` runs `.github/workflows/ci.yml` with
 - 🧱 **Type check & build:** `astro check` and a production build, which fails on any broken internal link or heading anchor, and on links from a German page to an English one or the other way round (`starlight-links-validator`).
 - 🧪 **Unit tests & coverage:** with the coverage table in the job summary and the HTML report as an artifact.
 - 🎭 **UI tests (Playwright):** the report is uploaded when a test fails.
+
+## Deployment
+
+`.github/workflows/deploy.yml` (🚀 **Deploy to GitHub Pages**) publishes `main` to GitHub Pages once CI has passed for the newest commit on `main` (`site: https://edinc.github.io`, `base: /ghe-launchpad`). It never runs for pull requests, and it only publishes a commit that is still the newest on `main`, so re-running an old CI or Deploy run can't roll the site back. To redeploy by hand, run it on `main` from the Actions tab.
+
+## Link check
+
+`.github/workflows/link-check.yml` (🔗 **Check links and videos**) runs every Monday and on demand. It builds the site and checks every external link on it with [lychee](https://lychee.cli.rs) (configuration: `lychee.toml`), and every embedded YouTube video through YouTube's oEmbed endpoint. Problems open or update one issue labeled `broken-links`; the workflow closes that issue once everything passes again. If a check can't reach a verdict (a lychee error, YouTube unreachable), the run fails and no issue changes. To run it locally after `npm run build`: `lychee --config lychee.toml 'dist/**/*.html' README.md`.
 
 ## Design notes
 

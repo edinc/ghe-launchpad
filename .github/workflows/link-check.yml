@@ -1,0 +1,120 @@
+name: Check external links
+
+# Weekly check of every external link on the built site (GitHub Docs, Microsoft Learn, ...) and of
+# the embedded YouTube videos. Internal links are already validated on every build.
+# Problems open (or update) one issue; that issue is closed once everything passes again.
+# If a check can't reach a verdict (lychee error, YouTube unreachable), the run fails and no issue changes.
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  REPORT_TITLE: Broken links found by the weekly check
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  links:
+    name: 🔗 Check links and videos
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # lychee reads the built pages: there every link, including the ones components render, is a real <a href>.
+      - run: npm run build
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml 'dist/**/*.html' README.md
+          output: ./lychee-report.md
+          fail: false
+          jobSummary: true
+
+      # lychee exits 0 (all good) or 2 (broken links); anything else is a config or runtime error.
+      - name: Stop on lychee errors
+        if: steps.lychee.outputs.exit_code != '0' && steps.lychee.outputs.exit_code != '2'
+        run: |
+          echo "::error::lychee exited with code $EXIT_CODE: check lychee.toml and the step log."
+          exit 1
+        env:
+          EXIT_CODE: ${{ steps.lychee.outputs.exit_code }}
+
+      # Videos are embedded by ID, so the built HTML only links to them. YouTube's oEmbed endpoint
+      # answers 400/401/403/404 for removed, private or non-embeddable videos.
+      - name: Check videos
+        id: videos
+        run: |
+          ids=$(grep -oE "youtubeId: '[^']+'" src/data/videos.ts | cut -d"'" -f2 || true)
+          if [ -z "$ids" ]; then
+            echo "::error::No youtubeId entries found in src/data/videos.ts"
+            exit 1
+          fi
+          broken=0
+          for id in $ids; do
+            status=$(curl -s --retry 3 --retry-delay 5 --max-time 30 -o /dev/null -w '%{http_code}' \
+              "https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=$id" || true)
+            case "$status" in
+              200) ;;
+              400|401|403|404)
+                broken=1
+                echo "- https://www.youtube.com/watch?v=$id is unavailable (oEmbed status $status)" >> video-report.md ;;
+              *)
+                echo "::error::Could not check video $id (oEmbed status ${status:-none}). Not changing any issue."
+                exit 1 ;;
+            esac
+          done
+          if [ "$broken" = 1 ]; then
+            { echo; echo '## Videos'; echo; cat video-report.md; } | tee -a lychee-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "broken=$broken" >> "$GITHUB_OUTPUT"
+
+      # Only the workflow's own report, never an issue someone else opened with a similar title.
+      - name: Find the open report
+        id: existing
+        run: |
+          number=$(gh issue list --state open --app github-actions --label broken-links --limit 1 --json number --jq '.[0].number // empty')
+          if [ -z "$number" ]; then
+            number=$(gh issue list --state open --app github-actions --search "\"$REPORT_TITLE\" in:title" --limit 1 --json number --jq '.[0].number // empty')
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Make sure the label exists
+        if: steps.lychee.outputs.exit_code == '2' || steps.videos.outputs.broken == '1'
+        run: gh label create broken-links --color d73a4a --description 'Found by the weekly link check' --force
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Open or update the report
+        if: steps.lychee.outputs.exit_code == '2' || steps.videos.outputs.broken == '1'
+        uses: peter-evans/create-issue-from-file@fca9117c27cdc29c6c4db3b86c48e4115a786710 # v6.0.0
+        with:
+          title: ${{ env.REPORT_TITLE }}
+          content-filepath: ./lychee-report.md
+          issue-number: ${{ steps.existing.outputs.number }}
+          labels: broken-links
+
+      - name: Close the report once everything passes
+        if: steps.lychee.outputs.exit_code == '0' && steps.videos.outputs.broken == '0' && steps.existing.outputs.number != ''
+        run: |
+          gh issue close "$NUMBER" --comment "All links and videos pass again: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ steps.existing.outputs.number }}
