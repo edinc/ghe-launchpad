@@ -1,6 +1,7 @@
 # Weekly dependency updates, grouped so they arrive as a few pull requests.
 version: 2
 updates:
+  # package-lock.json carries no registry URLs (see .npmrc), so updates come from the public npm registry.
   - package-ecosystem: npm
     directory: /
     schedule:
