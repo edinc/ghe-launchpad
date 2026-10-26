@@ -1,0 +1,82 @@
+---
+title: Create enterprise teams
+description: Mirror your Entra groups as enterprise teams, so licenses and access follow group membership. Path A also connects organizations.
+sidebar:
+  label: Teams
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="teams">
+- Groups provisioned from Entra ID in step 7
+- A naming idea, such as one team per Entra group
+</StepIntro>
+
+Enterprise teams mirror your Entra groups. In step 9 you give Copilot licenses to these teams, so when someone joins or leaves a group in Entra ID, their license follows.
+
+## Create a team for each group
+
+<ClickPath path="Your enterprise > People > Enterprise teams" />
+
+<Steps>
+
+1. Click **Create Enterprise team**.
+
+2. Enter a name and a description. In Path B, don’t give the team access to any organization.
+
+3. Confirm with **Create Enterprise team**.
+
+4. On the new team’s page, click **Edit**. Under **Manage members**, choose **Identity provider group**, click **Select group**, pick the Entra group and click **Update team**.
+
+</Steps>
+
+<Callout type="note" title="Limits">
+Up to 2,500 enterprise teams per enterprise, 5,000 people per team and 1,000 organizations per team. If an Entra group grows beyond 5,000 members, its team stops syncing until it’s back under the limit.
+</Callout>
+
+## Path A: connect your organizations
+
+Create the organizations your developers work in, then give your enterprise teams access to them, or connect teams inside an organization to Entra groups:
+
+<ClickPath path="Your organization > Teams > New team > Identity Provider Groups" />
+
+Everyone who becomes a member of an organization uses a GitHub Enterprise license.
+
+## Path B: stay without organizations
+
+<Callout type="caution" title="Don’t create organizations in Path B">
+Your people use Copilot as unaffiliated users. As soon as someone joins an organization, they use a GitHub Enterprise license, and you pay for it.
+</Callout>
+
+## Troubleshooting
+
+<details>
+<summary>The Entra group isn’t offered under “Select group”</summary>
+
+The group isn’t provisioned yet. Make sure it’s assigned to the app in step 7 and that a provisioning cycle has finished. Microsoft 365 groups and nested groups can’t be used.
+
+</details>
+
+<details>
+<summary>You can’t connect an existing team to a group</summary>
+
+Remove the members you added by hand first; a team synced with an Entra group can only get members from that group.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="teams" />
+
+## Official docs
+
+<DocLinks>
+- [Creating enterprise teams](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/create-enterprise-teams)
+- [Managing team memberships with identity provider groups](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/managing-team-memberships-with-identity-provider-groups)
+</DocLinks>

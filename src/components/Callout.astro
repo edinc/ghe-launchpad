@@ -1,0 +1,37 @@
+---
+import Rocket from './Rocket.astro';
+import { getLang } from '../lib/i18n';
+import type { RocketMood } from '../lib/rocket';
+
+type CalloutType = 'note' | 'tip' | 'caution' | 'danger' | 'wait';
+
+interface Props {
+	type?: CalloutType;
+	title?: string;
+}
+
+const { type = 'note', title } = Astro.props;
+const lang = getLang(Astro);
+
+const defaults: Record<CalloutType, { en: string; de: string }> = {
+	note: { en: 'Good to know', de: 'Gut zu wissen' },
+	tip: { en: 'Tip', de: 'Tipp' },
+	caution: { en: 'Careful', de: 'Vorsicht' },
+	danger: { en: 'Stop and check', de: 'Erst prüfen' },
+	wait: { en: 'Time to wait', de: 'Jetzt heißt es warten' },
+};
+const moods: Record<CalloutType, RocketMood> = {
+	note: 'note',
+	tip: 'tip',
+	caution: 'caution',
+	danger: 'danger',
+	wait: 'wait',
+};
+const heading = title ?? defaults[type][lang];
+---
+
+<aside class:list={['callout', `callout--${type}`]} aria-label={heading}>
+	<Rocket mood={moods[type]} size="3.6rem" class="callout__rocket" />
+	<p class="callout__title"><span>{heading}</span></p>
+	<div class="callout__body"><slot /></div>
+</aside>

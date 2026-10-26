@@ -1,0 +1,98 @@
+---
+title: 'Prepare: decisions and people'
+description: Pick your path, region and subdomain, line up the people you need, and give your network team the hostnames to allow.
+sidebar:
+  label: Prepare
+lastVerified: 2026-10-23
+---
+
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="prepare">
+- 30–60 minutes with whoever decides on tooling, identity and budget
+- Your network or proxy team, for the last item
+</StepIntro>
+
+A few decisions now save you from starting over later. Two of them can’t be changed once the enterprise exists.
+
+## 1. Pick your path
+
+Take **Path A · Full platform** if your code is on GitHub or moving there. Take **Path B · Copilot only** if it stays in Azure DevOps, GitLab, Bitbucket or elsewhere. Not sure? [Compare the paths](/ghe-launchpad/start/choose-your-path/).
+
+## 2. Name the people
+
+| Role | Steps | What they need |
+| --- | --- | --- |
+| Enterprise owner | 1–9 | A work email address for the trial invitation |
+| Entra admin | 3, 6, 7, 8 | **Global Administrator** for the consents in steps 3 and 6; **Application Administrator**, **Cloud Application Administrator** or owner of the app for provisioning in step 7 |
+| Azure subscription owner | 3 | The **Owner** role on the subscription that pays for GitHub |
+| Your Microsoft or GitHub contact | 5 | Your enterprise’s subdomain, once it’s activated |
+
+One person can hold several roles. The [journey map](/ghe-launchpad/start/journey-map/) shows when each one is needed.
+
+## 3. Choose region and subdomain
+
+- **Region:** where your code and data are stored. You can choose the EU (including the EFTA countries Norway and Switzerland), Australia, the US or Japan.
+- **Subdomain:** becomes `SUBDOMAIN.ghe.com`, the address everyone uses to sign in, and the name in your API and provisioning URLs. Keep it short and recognizable, such as your company name.
+
+<Callout type="danger" title="The subdomain and region are permanent">
+You can’t change either after the enterprise is created. Agree on both with your stakeholders before step 1.
+</Callout>
+
+## 4. Confirm the identity provider
+
+This guide uses **Microsoft Entra ID with OIDC**, which also brings your Conditional Access policies to GitHub. Two things to check:
+
+- Each Entra tenant supports **one** OIDC connection to a GitHub enterprise. If your tenant already has one, this enterprise needs [SAML](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users) instead.
+- Using Okta or PingFederate? The flow is similar but uses SAML; follow the same SAML docs.
+
+## 5. Pick the Azure subscription
+
+Pick the subscription that should pay for GitHub and note its **subscription ID** ([how to find it](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id)). Some subscription types, such as free trials, student and Azure Pass subscriptions, can’t be used; check the [supported payment methods](https://docs.github.com/en/enterprise-cloud@latest/billing/reference/supported-payment-methods) first.
+
+## 6. Brief your network team
+
+Developers and admins reach your enterprise through these hostnames. Send the list to whoever runs your proxy or firewall:
+
+```text "SUBDOMAIN"
+SUBDOMAIN.ghe.com
+*.SUBDOMAIN.ghe.com
+*.pages.SUBDOMAIN.ghe.com
+*.actions.SUBDOMAIN.ghe.com
+auth.ghe.com
+*.githubassets.com
+*.githubusercontent.com
+*.blob.core.windows.net
+```
+
+If wildcards for `blob.core.windows.net` aren’t allowed, the [network details](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/network-details-for-ghecom) explain how to get the exact storage hostnames, and list the IP ranges per region.
+
+<details>
+<summary>What works differently on GHE.com</summary>
+
+A few GitHub.com features aren’t available or work differently in an enterprise with data residency, for example:
+
+- **GitHub Marketplace** isn’t available; apps and actions can still be installed from their source.
+- **macOS runners** for GitHub Actions aren’t available yet.
+- **Public repositories and gists** don’t exist, because all accounts are managed users.
+- Tools and scripts must use **your** addresses, such as `api.SUBDOMAIN.ghe.com`, instead of `api.github.com`.
+
+The [feature overview](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/feature-overview-for-github-enterprise-cloud-with-data-residency) has the full, current list.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="prepare" />
+
+## Official docs
+
+<DocLinks>
+- [About GitHub Enterprise Cloud with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/about-github-enterprise-cloud-with-data-residency)
+- [Getting started with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Feature overview for GHE.com](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/feature-overview-for-github-enterprise-cloud-with-data-residency)
+- [Network details for GHE.com](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/network-details-for-ghecom)
+</DocLinks>

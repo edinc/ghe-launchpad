@@ -1,0 +1,110 @@
+---
+title: Provision users and groups with SCIM
+description: Let Microsoft Entra ID create, update and remove accounts on GHE.com, and test it with one person first.
+sidebar:
+  label: Provision users
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="provision-users">
+- Single sign-on from step 6
+- The personal access token from step 2
+- An Entra account with **Application Administrator** or **Cloud Application Administrator**, or an owner of the app
+- One test user, and the Entra groups you want in GitHub
+</StepIntro>
+
+SCIM creates an account on `SUBDOMAIN.ghe.com` for everyone you assign in Entra ID, keeps names and groups in sync, and removes access when someone leaves. Their usernames end with your shortcode.
+
+## Connect Entra to your enterprise
+
+<ClickPath app="entra" path="Entra ID > Enterprise apps > GitHub Enterprise Managed User (OIDC) > Provisioning" />
+
+<Steps>
+
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), open **Entra ID** › **Enterprise apps** and select **GitHub Enterprise Managed User (OIDC)**, the app from step 6.
+
+2. Open **Provisioning** and click **+ New configuration**.
+
+3. Under **Admin Credentials**, enter the **Tenant URL** and paste the token from step 2 as **Secret token**:
+
+   ```text "SUBDOMAIN"
+   https://api.SUBDOMAIN.ghe.com/scim/v2/enterprises/SUBDOMAIN
+   ```
+
+4. Click **Test Connection**, then **Create**.
+
+5. Under **Properties**, add a notification email and turn on accidental deletion prevention, then click **Apply**.
+
+6. Keep the default **Attribute Mapping** unless you have a reason to change it.
+
+</Steps>
+
+## Assign users and groups
+
+<ClickPath app="entra" path="Enterprise apps > GitHub Enterprise Managed User (OIDC) > Users and groups" />
+
+<Steps>
+
+1. Click **Add user/group** and add your test user first.
+
+2. Pick a role for each assignment, for example **Enterprise Owner** for at least one admin and **User** for everyone else. The role becomes the person’s [role in your enterprise](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-roles-in-your-enterprise/abilities-of-roles).
+
+3. Add the groups whose members should get access.
+
+4. Back in **Provisioning**, click **Start provisioning**.
+
+</Steps>
+
+<Callout type="caution" title="Groups inside groups don’t count">
+Entra ID doesn’t provision members of nested groups. Assign the groups that contain your users directly.
+</Callout>
+
+## Test with one person
+
+Use [Provision on demand](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/provision-on-demand) for your test user, so you don’t have to wait for the next sync. Then ask them to sign in at `https://SUBDOMAIN.ghe.com` with their Entra account.
+
+<Callout type="wait" title="Provisioning runs on a schedule">
+After the first run, Entra ID syncs changes in regular cycles, not instantly. Follow progress in the provisioning logs.
+</Callout>
+
+## Troubleshooting
+
+<details>
+<summary>Test Connection fails</summary>
+
+Check the tenant URL: your subdomain appears twice and there’s no trailing text. Make sure the token was copied completely, belongs to the setup user, has the `scim:enterprise` scope and hasn’t been revoked.
+
+</details>
+
+<details>
+<summary>Users don’t show up in GitHub</summary>
+
+Check that they’re assigned to the app directly or through a non-nested group, that provisioning is started, and what the provisioning logs say.
+
+</details>
+
+<details>
+<summary>Should you turn on “Open SCIM configuration” in GitHub?</summary>
+
+No. That setting is for provisioning through the REST API without a partner identity provider. With Entra ID and OIDC, leave it off.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="provision-users" />
+
+## Official docs
+
+<DocLinks>
+- [Configuring SCIM provisioning for users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/configuring-scim-provisioning-for-users)
+- [Microsoft Learn: Provisioning for GitHub Enterprise Managed User (OIDC)](https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-oidc-provisioning-tutorial)
+- [Microsoft Learn: Provision on demand](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/provision-on-demand)
+</DocLinks>

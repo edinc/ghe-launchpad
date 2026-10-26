@@ -1,0 +1,49 @@
+---
+import { createSketch, label } from '../../lib/rough';
+import { getLang } from '../../lib/i18n';
+
+const de = getLang(Astro) === 'de';
+const sk = createSketch(73);
+
+const badge = (cx: number, cy: number, n: number) => {
+	sk.ellipse(cx, cy, 28, 27, { fill: 'yellow', fillStyle: 'solid', strokeWidth: 1.8, roughness: 0.9 });
+	return label(cx, cy + 6, String(n), { size: 17, cls: 'sk-text--num' });
+};
+
+sk.rect(16, 44, 180, 150, { strokeWidth: 2.4, fill: 'teal', hachureGap: 10 });
+sk.rect(276, 44, 180, 150, { strokeWidth: 2.6, fill: 'yellow', hachureGap: 9 });
+sk.rect(536, 44, 180, 150, { strokeWidth: 2.4, fill: 'teal', hachureGap: 10 });
+sk.arrow([[198, 96], [236, 92], [274, 96]], { strokeWidth: 2.4, draw: true });
+sk.arrow([[458, 96], [496, 92], [534, 96]], { strokeWidth: 2.4, draw: true });
+sk.arrow([[534, 146], [496, 150], [458, 146]], { strokeWidth: 2.4, draw: true });
+sk.arrow([[274, 146], [236, 150], [198, 146]], { stroke: 'pink', strokeWidth: 2.8, draw: true });
+
+const labels =
+	label(106, 80, de ? 'IDE / CLI' : 'IDE / CLI', { size: 21, cls: 'sk-text--title' }) +
+	label(106, 112, ['VS Code · JetBrains', 'Visual Studio · Xcode', 'Eclipse · Copilot CLI'], { size: 15, cls: 'sk-text--soft' }) +
+	label(366, 82, 'SUBDOMAIN.ghe.com', { size: 18, cls: 'sk-text--title' }) +
+	label(366, 116, de ? 'nicht github.com!' : 'not github.com!', { size: 17, cls: 'sk-text--pink' }) +
+	label(366, 148, de ? 'Copilot-Lizenz' : 'Copilot license', { size: 15, cls: 'sk-text--soft' }) +
+	label(626, 80, 'Microsoft Entra ID', { size: 19, cls: 'sk-text--title' }) +
+	label(626, 116, ['SSO + MFA', 'Conditional Access'], { size: 16, cls: 'sk-text--soft' }) +
+	badge(236, 70, 1) +
+	badge(496, 70, 2) +
+	badge(496, 174, 3) +
+	badge(236, 174, 4);
+
+const description = de
+	? 'Skizze in vier Schritten: 1. Die IDE oder CLI meldet sich bei SUBDOMAIN.ghe.com an, nicht bei github.com. 2. GHE.com leitet zur Anmeldung an Microsoft Entra ID weiter. 3. Entra ID bestätigt die Identität (SSO, MFA, Conditional Access). 4. Copilot ist in der IDE aktiv.'
+	: 'Sketch in four moves: 1. The IDE or CLI signs in to SUBDOMAIN.ghe.com, not github.com. 2. GHE.com sends the developer to Microsoft Entra ID. 3. Entra ID confirms who they are (SSO, MFA, Conditional Access). 4. Copilot lights up in the IDE.';
+---
+
+<figure class="sk-figure sk-figure--wide">
+	<div class="sk-scroll-wrap">
+	<div class="sk-scroll" tabindex="0" role="group" aria-label={de ? 'Skizze: Anmeldung aus der IDE' : 'Sketch: signing in from the IDE'}>
+		<svg viewBox="0 0 732 220" role="img" aria-labelledby="dev-flow-title" aria-describedby="dev-flow-caption">
+			<title id="dev-flow-title">{de ? 'Von der IDE zu Copilot' : 'From the IDE to Copilot'}</title>
+			<g set:html={sk.toString() + labels} />
+		</svg>
+	</div>
+	</div>
+	<figcaption id="dev-flow-caption">{description.replace(/^(Skizze in vier Schritten|Sketch in four moves): /, '')}</figcaption>
+</figure>

@@ -1,0 +1,74 @@
+---
+import { getLang, href, t } from '../lib/i18n';
+import { roleOrder, steps } from '../data/steps';
+
+const lang = getLang(Astro);
+const de = lang === 'de';
+const roles = roleOrder;
+---
+
+<div class="journey not-content">
+	<div class="journey__frame">
+	<div class="journey__scroll" tabindex="0" role="group" aria-label={de ? 'Swimlane-Plan, seitlich scrollbar' : 'Swimlane plan, scrolls sideways'}>
+		<table class="journey__table">
+			<caption class="sr-only">
+				{de ? 'Wer in welchem Schritt beteiligt ist, mit Aufwand und Wartezeit' : 'Who is involved in which step, with hands-on time and waiting time'}
+			</caption>
+			<thead>
+				<tr>
+					<th scope="col" class="journey__corner">{t(lang, 'journey.role')}</th>
+					{
+						steps.map((s) => (
+							<th scope="col" class:list={['journey__step', { 'journey__step--parallel': s.parallel }]}>
+								<a href={href(lang, `steps/${s.id}`)}>
+									<span class="journey__num">{s.num}</span>
+									<span class="journey__title">{s.short[lang]}</span>
+								</a>
+							</th>
+						))
+					}
+				</tr>
+			</thead>
+			<tbody>
+				{
+					roles.map((role) => (
+						<tr class={`journey__lane journey__lane--${role}`}>
+							<th scope="row" class="journey__role">
+								<span class={`role-tag role-tag--${role}`}>
+									<span class="role-tag__dot" aria-hidden="true" />
+									{t(lang, `role.${role}.short`)}
+								</span>
+							</th>
+							{steps.map((s) => {
+								const idx = s.roles.indexOf(role);
+								return (
+									<td class="journey__cell">
+										{idx === 0 && <span class={`lane-mark lane-mark--lead lane-mark--${role}`}>{de ? 'führt' : 'leads'}</span>}
+										{idx > 0 && <span class={`lane-mark lane-mark--help lane-mark--${role}`}>{de ? 'hilft' : 'helps'}</span>}
+									</td>
+								);
+							})}
+						</tr>
+					))
+				}
+			</tbody>
+			<tfoot>
+				<tr>
+					<th scope="row" class="journey__role journey__role--meta">{t(lang, 'intro.time')}</th>
+					{steps.map((s) => <td class="journey__time">{s.time[lang]}</td>)}
+				</tr>
+				<tr>
+					<th scope="row" class="journey__role journey__role--meta">{t(lang, 'intro.wait')}</th>
+					{steps.map((s) => <td class="journey__wait">{s.wait ? s.wait[lang] : '–'}</td>)}
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	</div>
+	<p class="journey__hint" aria-hidden="true">{t(lang, 'diagram.scroll')} →</p>
+	<p class="journey__legend">
+		<span><span class="lane-mark lane-mark--lead lane-mark--owner">{de ? 'führt' : 'leads'}</span>{de ? 'übernimmt den Schritt' : 'runs the step'}</span>
+		<span><span class="lane-mark lane-mark--help lane-mark--owner">{de ? 'hilft' : 'helps'}</span>{de ? 'wird kurz gebraucht' : 'needed for a moment'}</span>
+		<span><span class="journey__swatch" aria-hidden="true" />{de ? 'kann parallel zu 3–5 laufen' : 'can run in parallel with 3–5'}</span>
+	</p>
+</div>

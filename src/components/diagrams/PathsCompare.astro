@@ -1,0 +1,72 @@
+---
+import { createSketch, label } from '../../lib/rough';
+import { getLang } from '../../lib/i18n';
+
+const de = getLang(Astro) === 'de';
+const sk = createSketch(89);
+
+// Path A
+sk.rect(12, 12, 336, 316, { strokeWidth: 2.4, fill: 'teal', hachureGap: 12 });
+sk.rect(52, 72, 256, 42, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(52, 146, 256, 42, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(52, 220, 256, 42, { fill: 'paper', fillStyle: 'solid' });
+sk.arrow([[180, 116], [182, 130], [180, 144]], { strokeWidth: 2, draw: true });
+sk.arrow([[180, 190], [182, 204], [180, 218]], { strokeWidth: 2, draw: true });
+// Path B
+sk.rect(372, 12, 336, 316, { strokeWidth: 2.4, fill: 'pink', hachureGap: 12 });
+sk.rect(412, 72, 256, 42, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(412, 146, 256, 42, { fill: 'paper', fillStyle: 'solid' });
+sk.rect(412, 220, 256, 42, { fill: 'yellow', fillStyle: 'solid' });
+sk.arrow([[540, 116], [542, 130], [540, 144]], { strokeWidth: 2, draw: true });
+sk.arrow([[540, 190], [542, 204], [540, 218]], { strokeWidth: 2, draw: true });
+
+const t = de
+	? {
+			a: 'Variante A · Komplette Plattform',
+			b: 'Variante B · Nur Copilot',
+			ent: 'Enterprise-Konto auf GHE.com',
+			orgs: 'Organisationen + Teams',
+			repos: 'Repos, Actions, Security …',
+			teams: 'Enterprise-Teams (keine Orgs)',
+			copilot: 'Copilot Business',
+			aNote: ['Code liegt auf GitHub', 'Lizenzen: GitHub Enterprise + Copilot'],
+			bNote: ['Code bleibt in Azure DevOps, GitLab …', 'Lizenzen: nur Copilot Business'],
+		}
+	: {
+			a: 'Path A · Full platform',
+			b: 'Path B · Copilot only',
+			ent: 'Enterprise on GHE.com',
+			orgs: 'Organizations + teams',
+			repos: 'Repos, Actions, security …',
+			teams: 'Enterprise teams (no orgs)',
+			copilot: 'Copilot Business',
+			aNote: ['Code lives on GitHub', 'Licenses: GitHub Enterprise + Copilot'],
+			bNote: ['Code stays in Azure DevOps, GitLab …', 'Licenses: Copilot Business only'],
+		};
+
+const labels =
+	label(180, 48, t.a, { size: 20, cls: 'sk-text--title' }) +
+	label(180, 99, t.ent, { size: 17 }) +
+	label(180, 173, t.orgs, { size: 17 }) +
+	label(180, 247, t.repos, { size: 17 }) +
+	label(180, 292, t.aNote, { size: 15, cls: 'sk-text--soft' }) +
+	label(540, 48, t.b, { size: 20, cls: 'sk-text--title' }) +
+	label(540, 99, t.ent, { size: 17 }) +
+	label(540, 173, t.teams, { size: 17 }) +
+	label(540, 247, t.copilot, { size: 17, cls: 'sk-text--on-hl' }) +
+	label(540, 292, t.bNote, { size: 15, cls: 'sk-text--soft' });
+
+const description = de
+	? 'Skizze im Vergleich: Bei Variante A enthält das Enterprise-Konto Organisationen mit Teams, Repositories, Actions und Security; Mitglieder benötigen eine GitHub-Enterprise- und eine Copilot-Lizenz. Bei Variante B gibt es keine Organisationen, nur Enterprise-Teams mit Copilot Business; der Code bleibt in Azure DevOps, GitLab oder anderswo.'
+	: 'Sketch comparing both paths: in Path A the enterprise holds organizations with teams, repositories, Actions and security; members need a GitHub Enterprise and a Copilot license. In Path B there are no organizations, only enterprise teams with Copilot Business; the code stays in Azure DevOps, GitLab or elsewhere.';
+---
+
+<figure class="sk-figure sk-figure--wide">
+	<div class="sk-scroll" tabindex="0" role="group" aria-label={de ? 'Skizze: Varianten im Vergleich' : 'Sketch: paths compared'}>
+		<svg viewBox="0 0 720 340" role="img" aria-labelledby="paths-title paths-desc">
+			<title id="paths-title">{de ? 'Variante A und B im Vergleich' : 'Path A and Path B compared'}</title>
+			<desc id="paths-desc">{description}</desc>
+			<g set:html={sk.toString() + labels} />
+		</svg>
+	</div>
+</figure>

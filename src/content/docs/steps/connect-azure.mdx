@@ -1,0 +1,106 @@
+---
+title: Connect your Azure subscription
+description: Link an Azure subscription so GitHub usage shows up on your Azure invoice, including the one-time admin consent in Entra ID.
+sidebar:
+  label: Connect Azure
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import Sticky from '../../../components/Sticky.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+import Video from '../../../components/Video.astro';
+import BillingFlow from '../../../components/diagrams/BillingFlow.astro';
+
+<StepIntro step="connect-azure">
+- An enterprise owner signed in to `SUBDOMAIN.ghe.com`; right now that’s the setup user
+- The Azure subscription ID ([how to find it](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id))
+- A Microsoft account with the **Owner** role on that subscription
+- An Entra Global Administrator on standby, unless that account may grant tenant-wide consent itself
+</StepIntro>
+
+GitHub bills your enterprise’s usage through Azure: licenses, Copilot, Actions minutes and storage. You connect once; after that, it runs on its own.
+
+<BillingFlow />
+
+## Connect the subscription
+
+<ClickPath path="Your enterprise > Billing & Licensing > Payment information" />
+
+<Steps>
+
+1. Scroll to the bottom of **Payment information**. Next to **Metered billing via Azure**, click **Add Azure Subscription**.
+
+2. Sign in with the Microsoft account that has the Owner role on the subscription.
+
+3. Review **Permissions requested** and click **Accept**. This is the admin consent for GitHub’s app in your Entra tenant.
+
+4. Under **Select a subscription**, pick your subscription ID.
+
+5. Tick the box confirming that you want to be billed for metered services through this subscription.
+
+6. Click **Connect**.
+
+</Steps>
+
+<Callout type="note" title="This doesn’t end your trial">
+In a trial with managed users, connecting Azure only lets you go beyond the 3,000 included Actions minutes. The trial ends when you activate the enterprise in step 4.
+</Callout>
+
+<Callout type="caution" title="Seeing “Need admin approval”?">
+The message reads: *GitHub Inc needs permission to access resources in your organization that only an admin can grant.* The account you signed in with can’t consent for your whole Entra tenant. Ask an Entra Global Administrator to sign in during this step, or to [grant tenant-wide admin consent](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/grant-admin-consent) for the app or set up an [admin consent workflow](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/user-admin-consent-overview#admin-consent-workflow). Then start again from **Add Azure Subscription**.
+</Callout>
+
+## Good to know about the bill
+
+<div class="sticky-row">
+  <Sticky color="yellow" title="Billed on the 1st">
+    Usage from the day you connect shows up on your Azure invoice on the 1st of each month.
+  </Sticky>
+  <Sticky color="pink" title="No prepaid usage">
+    Prepaid usage isn’t available when you pay through Azure.
+  </Sticky>
+  <Sticky color="teal" title="Several subscriptions?">
+    Cost centers let you bill each department, for example, to its own subscription.
+  </Sticky>
+</div>
+
+## Troubleshooting
+
+<details>
+<summary>Your subscription isn’t in the list</summary>
+
+Your account doesn’t have the Owner role on it, or the subscription lives in another tenant. Switch to the right tenant during the Microsoft sign-in, or ask for the Owner role.
+
+</details>
+
+<details>
+<summary>The Microsoft sign-in window fails behind your proxy</summary>
+
+Allow `https://github.com/enterprises/oauth_callback`, including all query parameters, while you connect. You can remove it afterwards, but you need it again to change the subscription later.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="connect-azure" />
+
+## Watch
+
+<Video id="azure" />
+
+<Video id="azureBilling" />
+
+## Official docs
+
+<DocLinks>
+- [Connecting an Azure subscription](https://docs.github.com/en/enterprise-cloud@latest/billing/how-tos/set-up-payment/connect-azure-sub)
+- [About billing through Azure](https://docs.github.com/en/enterprise-cloud@latest/billing/concepts/azure-subscriptions)
+- [Troubleshooting the Azure subscription connection](https://docs.github.com/en/enterprise-cloud@latest/billing/how-tos/troubleshooting/azure-sub-connection)
+- [Supported payment methods](https://docs.github.com/en/enterprise-cloud@latest/billing/reference/supported-payment-methods)
+- [Microsoft Learn: Grant tenant-wide admin consent](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/grant-admin-consent)
+</DocLinks>

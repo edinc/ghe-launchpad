@@ -1,0 +1,11 @@
+---
+// The site is light-only: no dark mode and no theme switch (ThemeSelect is overridden too).
+// The visitor's OS setting and any theme an earlier version of the site stored are ignored.
+---
+
+{/* Inlined so the light theme is set before the first paint. */}
+<script is:inline>
+	document.documentElement.dataset.theme = 'light';
+	// Keep Starlight's theme API defined for any component that still calls it.
+	window.StarlightThemeProvider = { updatePickers() {} };
+</script>

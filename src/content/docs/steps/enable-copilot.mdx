@@ -1,0 +1,80 @@
+---
+title: Get Copilot enabled
+description: Ask your Microsoft or GitHub contact to enable Copilot, check that it arrived, and set the Copilot policies before anyone gets a license.
+sidebar:
+  label: Enable Copilot
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="enable-copilot">
+- The activated enterprise from step 4
+- Your company name, your `SUBDOMAIN.ghe.com` address and a rough number of Copilot users
+</StepIntro>
+
+For enterprises on GHE.com, Copilot is switched on from GitHub’s side. You ask for it, then set your rules while you wait.
+
+## 1. Ask your contact
+
+Send your Microsoft or GitHub contact a short note with your company name, your `SUBDOMAIN.ghe.com` address, the fact that the enterprise is activated, and roughly how many people will use Copilot. Your contact enables Copilot for your enterprise and tells you when it’s done.
+
+<Callout type="wait" title="Don’t wait idle">
+Continue with single sign-on (step 6), provisioning (step 7) and teams (step 8) in the meantime.
+</Callout>
+
+## 2. Check that Copilot arrived
+
+<ClickPath path="Your enterprise > Billing and licensing > Licensing" />
+
+You should see **Copilot** with a **Manage** button. If the page says **Contact support to enable**, or the Copilot card or **Manage** button is missing, Copilot isn’t enabled yet; let your contact know.
+
+## 3. Set the Copilot policies
+
+Decide what Copilot may do before anyone gets a license.
+
+<ClickPath path="Your enterprise > AI controls > Copilot" />
+
+<Steps>
+
+1. Set **Policies for enterprise-assigned users**. They apply to everyone who gets Copilot directly from the enterprise, which is how you’ll assign licenses in step 9.
+
+2. In the **Privacy** section, decide whether to allow **Suggestions matching public code**. It’s allowed by default.
+
+3. Open **Configure features & clients** and choose the features, IDEs and models you want to offer.
+
+4. Check **Agents** and **MCP** in the sidebar for the policies on Copilot agents and MCP servers.
+
+</Steps>
+
+<Callout type="note" title="Path A: organizations can have their own rules">
+For policies you set to let organizations decide, each organization chooses its own setting. If someone belongs to several organizations, the least restrictive setting wins.
+</Callout>
+
+## 4. Let Copilot through the network
+
+On GHE.com, Copilot only needs your own addresses. Make sure your proxy or firewall allows them:
+
+```text "SUBDOMAIN"
+https://SUBDOMAIN.ghe.com
+https://*.SUBDOMAIN.ghe.com
+```
+
+Allow `https://origin-tracker.githubusercontent.com` too if you want code referencing for suggestions that match public code.
+
+## Done when…
+
+<DoneWhen step="enable-copilot" />
+
+## Official docs
+
+<DocLinks>
+- [Setting up Copilot for your enterprise](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-enterprise)
+- [Managing Copilot policies for your enterprise](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies)
+- [Copilot allowlist reference](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/copilot-allowlist-reference)
+</DocLinks>

@@ -1,0 +1,75 @@
+---
+title: Start the GHE.com trial
+description: Create your enterprise on GHE.com in the region of your choice and wait for provisioning to finish.
+sidebar:
+  label: Start the trial
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="start-trial">
+- The region and subdomain from step 0
+- The future enterprise owner’s work email address; the invitation goes there
+</StepIntro>
+
+## Create the enterprise
+
+<Steps>
+
+1. Open the [GHE.com trial signup](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
+
+2. Choose **Get started with managed users**.
+
+3. Under **Data hosting**, pick your region from the dropdown.
+
+4. Fill in the form. Three fields matter most:
+
+   - **Subdomain**: the permanent subdomain from step 0.
+   - **Identity Provider**: Microsoft Entra ID.
+   - **Admin work email**: the future enterprise owner’s address.
+
+5. Click **Create enterprise**.
+
+</Steps>
+
+<Callout type="wait" title="Provisioning can take a few hours">
+GitHub now builds your enterprise in the chosen region. When it’s ready, the admin work email gets a welcome email with a link to set the password of your setup user. Meanwhile, read step 2 and book the Entra admin for steps 3, 6 and 7.
+</Callout>
+
+## What the trial includes
+
+- **30 days**, up to **3 new organizations**, up to **50 licenses** and up to **3,000 minutes** of standard GitHub-hosted runners. No payment method needed.
+- **Not included:** GitHub Copilot (Business and Enterprise), Codespaces, GitHub Sponsors, paid Marketplace apps, GitHub Connect, Git LFS, access to GitHub Enterprise Server, and for Actions more minutes, more concurrent jobs and larger runners. That’s why you activate the enterprise in step 4 before Copilot.
+- A trial that’s never converted is deleted 90 days after it ends.
+
+## Troubleshooting
+
+<details>
+<summary>The password reset link shows `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
+
+Provisioning isn’t finished yet. Wait a while and open the link again.
+
+</details>
+
+<details>
+<summary>No welcome email after several hours</summary>
+
+Check the spam folder and your mail quarantine for the admin work email. If it’s still missing, ask your Microsoft or GitHub contact to check the enterprise’s status.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="start-trial" />
+
+## Official docs
+
+<DocLinks>
+- [Getting started with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Setting up a trial of GitHub Enterprise Cloud](https://docs.github.com/en/enterprise-cloud@latest/admin/overview/setting-up-a-trial-of-github-enterprise-cloud)
+</DocLinks>

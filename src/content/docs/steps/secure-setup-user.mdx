@@ -1,0 +1,105 @@
+---
+title: Secure the setup user
+description: Set the password and two-factor authentication for the built-in admin account, and create the token you need for provisioning.
+sidebar:
+  label: Secure the setup user
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+
+<StepIntro step="secure-setup-user">
+- The welcome email from step 1
+- Access to your company password manager
+- An authenticator app on your phone
+</StepIntro>
+
+Your enterprise comes with one built-in admin account: the **setup user**. Its username is a randomly generated shortcode followed by `_admin`, shown in this guide as `SHORTCODE_admin`. You use it to set up single sign-on and provisioning. Afterwards it’s your emergency access.
+
+- It signs in with its own username, password and second factor, never through single sign-on.
+- It can’t be deleted, and it doesn’t use a license.
+
+## Set the password
+
+<Steps>
+
+1. Open the link from the welcome email in a **private or incognito browser window**.
+
+2. Set a strong password. Store the username and password in your company password manager right away.
+
+</Steps>
+
+## Turn on two-factor authentication
+
+<ClickPath path="Profile picture > Settings > Password and authentication" />
+
+<Steps>
+
+1. Signed in as the setup user, open **Password and authentication** and click **Enable two-factor authentication**.
+
+2. Scan the QR code with your authenticator app and enter the code.
+
+3. Download the recovery codes and store them in the password manager.
+
+</Steps>
+
+<Callout type="caution" title="Without 2FA, every sign-in needs a recovery code">
+If you skip two-factor authentication, you have to enter an enterprise recovery code each time you sign in as the setup user.
+</Callout>
+
+## Create the token for provisioning
+
+Entra ID needs a token to create users in step 7. Create it now, still signed in as the setup user.
+
+<ClickPath path="Profile picture > Settings > Developer settings > Personal access tokens > Tokens (classic)" />
+
+<Steps>
+
+1. Click **Generate new token**, then **Generate new token (classic)**.
+
+2. Under **Note**, describe it, for example `SCIM provisioning for Entra ID`.
+
+3. Set **Expiration** to no expiration. If the token expires, provisioning stops.
+
+4. Select the **scim:enterprise** scope.
+
+5. Click **Generate token**, then copy the token into the password manager. GitHub shows it only once.
+
+</Steps>
+
+<Callout type="danger" title="Treat the token like a password">
+Anyone with this token can create and remove users in your enterprise. Pass it to the Entra admin for step 7 only through your password manager.
+</Callout>
+
+## Troubleshooting
+
+<details>
+<summary>The setup user can’t sign in through Entra ID</summary>
+
+That’s expected. The setup user always signs in with its username, password and second factor at `https://SUBDOMAIN.ghe.com`.
+
+</details>
+
+<details>
+<summary>The authenticator device is lost</summary>
+
+Sign in with one of the 2FA recovery codes from your password manager, then set up two-factor authentication again.
+
+</details>
+
+## Done when…
+
+<DoneWhen step="secure-setup-user" />
+
+## Official docs
+
+<DocLinks>
+- [About the setup user](https://docs.github.com/en/enterprise-cloud@latest/admin/concepts/identity-and-access-management/setup-user)
+- [Getting started with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
+- [Managing your personal access tokens](https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+</DocLinks>

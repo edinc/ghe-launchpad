@@ -1,0 +1,682 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T17:50:59.053Z",
+  "title": "Design System: GHE Launchpad",
+  "extensions": {
+    "colorMeta": {
+      "hl-yellow": {
+        "role": "primary",
+        "displayName": "Highlighter Yellow",
+        "canonical": "#ffe84d",
+        "tonalRamp": [
+          "oklch(15% 0.168 100.7)",
+          "oklch(26% 0.168 100.7)",
+          "oklch(37% 0.168 100.7)",
+          "oklch(48% 0.168 100.7)",
+          "oklch(59% 0.168 100.7)",
+          "oklch(70% 0.168 100.7)",
+          "oklch(82% 0.168 100.7)",
+          "oklch(95% 0.168 100.7)"
+        ]
+      },
+      "hl-teal": {
+        "role": "secondary",
+        "displayName": "Highlighter Teal",
+        "canonical": "#2dd4bf",
+        "tonalRamp": [
+          "oklch(15% 0.133 181.9)",
+          "oklch(26% 0.133 181.9)",
+          "oklch(37% 0.133 181.9)",
+          "oklch(48% 0.133 181.9)",
+          "oklch(59% 0.133 181.9)",
+          "oklch(70% 0.133 181.9)",
+          "oklch(82% 0.133 181.9)",
+          "oklch(95% 0.133 181.9)"
+        ]
+      },
+      "hl-pink": {
+        "role": "tertiary",
+        "displayName": "Highlighter Pink",
+        "canonical": "#ff6fae",
+        "tonalRamp": [
+          "oklch(15% 0.186 355.3)",
+          "oklch(26% 0.186 355.3)",
+          "oklch(37% 0.186 355.3)",
+          "oklch(48% 0.186 355.3)",
+          "oklch(59% 0.186 355.3)",
+          "oklch(70% 0.186 355.3)",
+          "oklch(82% 0.186 355.3)",
+          "oklch(95% 0.186 355.3)"
+        ]
+      },
+      "hl-lilac": {
+        "role": "role",
+        "displayName": "Lilac",
+        "canonical": "#c4b5fd",
+        "tonalRamp": [
+          "oklch(15% 0.101 293.6)",
+          "oklch(26% 0.101 293.6)",
+          "oklch(37% 0.101 293.6)",
+          "oklch(48% 0.101 293.6)",
+          "oklch(59% 0.101 293.6)",
+          "oklch(70% 0.101 293.6)",
+          "oklch(82% 0.101 293.6)",
+          "oklch(95% 0.101 293.6)"
+        ]
+      },
+      "hl-orange": {
+        "role": "role",
+        "displayName": "Apricot",
+        "canonical": "#ffb86b",
+        "tonalRamp": [
+          "oklch(15% 0.125 66.9)",
+          "oklch(26% 0.125 66.9)",
+          "oklch(37% 0.125 66.9)",
+          "oklch(48% 0.125 66.9)",
+          "oklch(59% 0.125 66.9)",
+          "oklch(70% 0.125 66.9)",
+          "oklch(82% 0.125 66.9)",
+          "oklch(95% 0.125 66.9)"
+        ]
+      },
+      "hl-pencil": {
+        "role": "role",
+        "displayName": "Pencil Grey",
+        "canonical": "#d8d2c4",
+        "tonalRamp": [
+          "oklch(15% 0.02 87.5)",
+          "oklch(26% 0.02 87.5)",
+          "oklch(37% 0.02 87.5)",
+          "oklch(48% 0.02 87.5)",
+          "oklch(59% 0.02 87.5)",
+          "oklch(70% 0.02 87.5)",
+          "oklch(82% 0.02 87.5)",
+          "oklch(95% 0.02 87.5)"
+        ]
+      },
+      "on-hl": {
+        "role": "neutral",
+        "displayName": "Highlighter Ink",
+        "canonical": "#111111",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(59% 0 89.9)",
+          "oklch(70% 0 89.9)",
+          "oklch(82% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cream Notebook",
+        "canonical": "#fff8e8",
+        "tonalRamp": [
+          "oklch(15% 0.022 87.1)",
+          "oklch(26% 0.022 87.1)",
+          "oklch(37% 0.022 87.1)",
+          "oklch(48% 0.022 87.1)",
+          "oklch(59% 0.022 87.1)",
+          "oklch(70% 0.022 87.1)",
+          "oklch(82% 0.022 87.1)",
+          "oklch(95% 0.022 87.1)"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "canonical": "#fffdf6",
+        "tonalRamp": [
+          "oklch(15% 0.009 93.6)",
+          "oklch(26% 0.009 93.6)",
+          "oklch(37% 0.009 93.6)",
+          "oklch(48% 0.009 93.6)",
+          "oklch(59% 0.009 93.6)",
+          "oklch(70% 0.009 93.6)",
+          "oklch(82% 0.009 93.6)",
+          "oklch(95% 0.009 93.6)"
+        ]
+      },
+      "paper-sunk": {
+        "role": "neutral",
+        "displayName": "Pressed Paper",
+        "canonical": "#f8edd2",
+        "tonalRamp": [
+          "oklch(15% 0.037 88.5)",
+          "oklch(26% 0.037 88.5)",
+          "oklch(37% 0.037 88.5)",
+          "oklch(48% 0.037 88.5)",
+          "oklch(59% 0.037 88.5)",
+          "oklch(70% 0.037 88.5)",
+          "oklch(82% 0.037 88.5)",
+          "oklch(95% 0.037 88.5)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Marker Ink",
+        "canonical": "#111111",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(59% 0 89.9)",
+          "oklch(70% 0 89.9)",
+          "oklch(82% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#2b2a27",
+        "tonalRamp": [
+          "oklch(15% 0.006 91.6)",
+          "oklch(26% 0.006 91.6)",
+          "oklch(37% 0.006 91.6)",
+          "oklch(48% 0.006 91.6)",
+          "oklch(59% 0.006 91.6)",
+          "oklch(70% 0.006 91.6)",
+          "oklch(82% 0.006 91.6)",
+          "oklch(95% 0.006 91.6)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Pencil Note",
+        "canonical": "#57544d",
+        "tonalRamp": [
+          "oklch(15% 0.012 87.5)",
+          "oklch(26% 0.012 87.5)",
+          "oklch(37% 0.012 87.5)",
+          "oklch(48% 0.012 87.5)",
+          "oklch(59% 0.012 87.5)",
+          "oklch(70% 0.012 87.5)",
+          "oklch(82% 0.012 87.5)",
+          "oklch(95% 0.012 87.5)"
+        ]
+      },
+      "ink-4": {
+        "role": "neutral",
+        "displayName": "Dashed Rule",
+        "canonical": "#9a9486",
+        "tonalRamp": [
+          "oklch(15% 0.021 87.5)",
+          "oklch(26% 0.021 87.5)",
+          "oklch(37% 0.021 87.5)",
+          "oklch(48% 0.021 87.5)",
+          "oklch(59% 0.021 87.5)",
+          "oklch(70% 0.021 87.5)",
+          "oklch(82% 0.021 87.5)",
+          "oklch(95% 0.021 87.5)"
+        ]
+      },
+      "sk-muted": {
+        "role": "neutral",
+        "displayName": "Faded Sketch",
+        "canonical": "#a19b8d",
+        "tonalRamp": [
+          "oklch(15% 0.021 87.5)",
+          "oklch(26% 0.021 87.5)",
+          "oklch(37% 0.021 87.5)",
+          "oklch(48% 0.021 87.5)",
+          "oklch(59% 0.021 87.5)",
+          "oklch(70% 0.021 87.5)",
+          "oklch(82% 0.021 87.5)",
+          "oklch(95% 0.021 87.5)"
+        ]
+      },
+      "sk-muted-text": {
+        "role": "neutral",
+        "displayName": "Faded Label",
+        "canonical": "#6f6b62",
+        "tonalRamp": [
+          "oklch(15% 0.015 86.9)",
+          "oklch(26% 0.015 86.9)",
+          "oklch(37% 0.015 86.9)",
+          "oklch(48% 0.015 86.9)",
+          "oklch(59% 0.015 86.9)",
+          "oklch(70% 0.015 86.9)",
+          "oklch(82% 0.015 86.9)",
+          "oklch(95% 0.015 86.9)"
+        ]
+      },
+      "teal-ink": {
+        "role": "secondary",
+        "displayName": "Teal Fineliner",
+        "canonical": "#0d6e66",
+        "tonalRamp": [
+          "oklch(15% 0.082 185.9)",
+          "oklch(26% 0.082 185.9)",
+          "oklch(37% 0.082 185.9)",
+          "oklch(48% 0.082 185.9)",
+          "oklch(59% 0.082 185.9)",
+          "oklch(70% 0.082 185.9)",
+          "oklch(82% 0.082 185.9)",
+          "oklch(95% 0.082 185.9)"
+        ]
+      },
+      "pink-ink": {
+        "role": "tertiary",
+        "displayName": "Pink Fineliner",
+        "canonical": "#b0145a",
+        "tonalRamp": [
+          "oklch(15% 0.19 1.9)",
+          "oklch(26% 0.19 1.9)",
+          "oklch(37% 0.19 1.9)",
+          "oklch(48% 0.19 1.9)",
+          "oklch(59% 0.19 1.9)",
+          "oklch(70% 0.19 1.9)",
+          "oklch(82% 0.19 1.9)",
+          "oklch(95% 0.19 1.9)"
+        ]
+      },
+      "link-hl": {
+        "role": "secondary",
+        "displayName": "Link Band",
+        "canonical": "rgba(45, 212, 191, 0.5)",
+        "tonalRamp": [
+          "oklch(15% 0.133 181.9)",
+          "oklch(26% 0.133 181.9)",
+          "oklch(37% 0.133 181.9)",
+          "oklch(48% 0.133 181.9)",
+          "oklch(59% 0.133 181.9)",
+          "oklch(70% 0.133 181.9)",
+          "oklch(82% 0.133 181.9)",
+          "oklch(95% 0.133 181.9)"
+        ]
+      },
+      "strong-hl": {
+        "role": "primary",
+        "displayName": "Emphasis Band",
+        "canonical": "rgba(255, 232, 77, 0.85)",
+        "tonalRamp": [
+          "oklch(15% 0.168 100.7)",
+          "oklch(26% 0.168 100.7)",
+          "oklch(37% 0.168 100.7)",
+          "oklch(48% 0.168 100.7)",
+          "oklch(59% 0.168 100.7)",
+          "oklch(70% 0.168 100.7)",
+          "oklch(82% 0.168 100.7)",
+          "oklch(95% 0.168 100.7)"
+        ]
+      },
+      "grid-dot": {
+        "role": "neutral",
+        "displayName": "Dot Grid",
+        "canonical": "rgba(17, 17, 17, 0.075)",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(59% 0 89.9)",
+          "oklch(70% 0 89.9)",
+          "oklch(82% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "halftone": {
+        "role": "neutral",
+        "displayName": "Halftone",
+        "canonical": "rgba(17, 17, 17, 0.42)",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(59% 0 89.9)",
+          "oklch(70% 0 89.9)",
+          "oklch(82% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero headline only; the key words sit on the pink swipe. 2.55rem below 50rem."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page H1, underlined with yellow highlighter; step pages prefix a blob numeral. 2.05rem below 50rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H2 sections, each on a teal brush stroke 0.42em tall."
+      },
+      "card-title": {
+        "displayName": "Card Title",
+        "purpose": "Sticky, checklist and site titles; the same marker voice runs path names, the Hands-on fact and video titles."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "H3 in the hand font; H4 drops to 1.25rem."
+      },
+      "label-lg": {
+        "displayName": "Label Large",
+        "purpose": "Sketch buttons; prev/next titles at 1.3rem."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sidebar links, TOC heading, wait facts, callout titles, details summaries, tabs and table headers."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "Role tags, step chips, legends, fact labels and meta."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and lists in Graphite, max 70ch; strong is 650 on the Emphasis Band."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Captions, table cells, card bullet lists and sticky bodies."
+      },
+      "key": {
+        "displayName": "Key",
+        "purpose": "Click-path menu keys: the exact UI labels from GitHub, Entra and Azure, never in a hand font."
+      }
+    },
+    "shadows": [
+      {
+        "name": "offset-chip",
+        "value": "2px 3px 0 0 var(--ink)",
+        "purpose": "Click-path keys and numbered-step bullets."
+      },
+      {
+        "name": "offset-badge",
+        "value": "3px 4px 0 0 var(--ink)",
+        "purpose": "Route-board and page-title step numerals; doc-link cards at rest."
+      },
+      {
+        "name": "offset-button",
+        "value": "4px 5px 0 0 var(--ink)",
+        "purpose": "Sketch buttons and prev/next cards at rest."
+      },
+      {
+        "name": "offset-panel",
+        "value": "5px 6px 0 0 var(--ink)",
+        "purpose": "Framed panels: video card, journey frame, role roster, code frames; doc links on hover."
+      },
+      {
+        "name": "offset-lift",
+        "value": "6px 7px 0 0 var(--ink)",
+        "purpose": "Hover on buttons and prev/next, paired with translate(-2px, -2px)."
+      },
+      {
+        "name": "offset-press",
+        "value": "1px 1px 0 0 var(--ink)",
+        "purpose": ":active on buttons, paired with translate(3px, 4px)."
+      },
+      {
+        "name": "offset-callout",
+        "value": "6px 6px 0 0 var(--callout-shadow)",
+        "purpose": "Callouts in their type color: teal note, yellow tip, pink caution, lilac wait, ink danger."
+      },
+      {
+        "name": "offset-path",
+        "value": "6px 7px 0 0 var(--path-color)",
+        "purpose": "Path cards: teal for Path A, pink for Path B."
+      },
+      {
+        "name": "offset-sticky",
+        "value": "3px 5px 0 0 rgba(17, 17, 17, 0.85)",
+        "purpose": "Sticky notes."
+      },
+      {
+        "name": "halftone",
+        "value": "radial-gradient(var(--halftone) 1px, transparent 1.3px) 0 0 / 5px 5px, inset 8px -8px -8px 8px",
+        "purpose": "Dot shadow behind the step intro card only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The system's only custom easing (--ease-out): hovers, lifts, swipe-in, lift-off and draw-in."
+      },
+      {
+        "name": "duration-hover",
+        "value": "160ms",
+        "purpose": "Lift and press on buttons, prev/next and doc links; hover fills on sidebar links and step chips."
+      },
+      {
+        "name": "duration-route-stop",
+        "value": "180ms",
+        "purpose": "Route-board numerals lifting and tilting -6deg on hover."
+      },
+      {
+        "name": "duration-toggle",
+        "value": "200ms",
+        "purpose": "Details badge rotating -8deg when open; video play disc scaling 1.08 and tilting -4deg."
+      },
+      {
+        "name": "duration-link-fill",
+        "value": "220ms",
+        "purpose": "Markdown link highlighter flooding from a 0.34em band to 88% on hover."
+      },
+      {
+        "name": "swipe-in",
+        "value": "650ms 250ms",
+        "purpose": "Hero highlighter swipe drawing left to right on load (background-size 0% to 100%); reduced-motion off."
+      },
+      {
+        "name": "lift-off",
+        "value": "900ms 200ms",
+        "purpose": "Hero rocket rising 1.2rem into place on load; reduced-motion off."
+      },
+      {
+        "name": "draw-in",
+        "value": "1100ms",
+        "purpose": "Diagram flows drawing their stroke once 30% visible; arrowheads fade in over 250ms after 800ms; skipped for reduced motion and diagrams already in view."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "route-board",
+        "value": "72rem"
+      },
+      {
+        "name": "hero",
+        "value": "50rem"
+      },
+      {
+        "name": "system-map",
+        "value": "44rem"
+      },
+      {
+        "name": "step-intro",
+        "value": "42rem"
+      },
+      {
+        "name": "roster",
+        "value": "40rem"
+      },
+      {
+        "name": "diagram-swipe",
+        "value": "36rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Sketch Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action: a yellow, marker-outlined sticker that lifts on hover and presses into its hard ink shadow.",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><a class='ds-btn-primary' href='#'>Start with step 0 <span aria-hidden='true'>→</span></a>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-btn-primary { position: relative; display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.35rem; line-height: 1; padding: 0.78rem 1.35rem 0.72rem; color: var(--on-hl, #111111); background: var(--hl-yellow, #ffe84d); text-decoration: none; border: 2.5px solid transparent; border-radius: 14px 18px 13px 17px / 17px 13px 18px 14px; box-shadow: 4px 5px 0 0 var(--ink, #111111); cursor: pointer; transition: transform 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn-primary::before { content: ''; position: absolute; inset: -2.5px; border: 2.5px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 6px 7px 0 0 var(--ink, #111111); } .ds-btn-primary:active { transform: translate(3px, 4px); box-shadow: 1px 1px 0 0 var(--ink, #111111); } .ds-btn-primary:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Sketch Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The alternative action on Card Stock with ink text; same hand-cut shape, shadow and lift-and-press.",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><a class='ds-btn-secondary' href='#'>Which path fits me?</a>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-btn-secondary { position: relative; display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.35rem; line-height: 1; padding: 0.78rem 1.35rem 0.72rem; color: var(--ink, #111111); background: var(--paper-card, #fffdf6); text-decoration: none; border: 2.5px solid transparent; border-radius: 14px 18px 13px 17px / 17px 13px 18px 14px; box-shadow: 4px 5px 0 0 var(--ink, #111111); cursor: pointer; transition: transform 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn-secondary::before { content: ''; position: absolute; inset: -2.5px; border: 2.5px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-btn-secondary:hover { transform: translate(-2px, -2px); box-shadow: 6px 7px 0 0 var(--ink, #111111); } .ds-btn-secondary:active { transform: translate(3px, 4px); box-shadow: 1px 1px 0 0 var(--ink, #111111); } .ds-btn-secondary:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; }"
+    },
+    {
+      "name": "Callout with Rocket Mood",
+      "kind": "card",
+      "refersTo": "callout",
+      "description": "An aside the rocket points at: Card Stock, wobbly ink border, a title on the type's swipe and a hard shadow in the type's color (caution shown).",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><aside class='ds-callout' aria-label='Careful'><svg class='ds-callout-rocket' viewBox='0 0 120 120' width='58' height='58' aria-hidden='true' focusable='false'><g transform='translate(48 64) rotate(-12) scale(1.12)'><path class='ds-r-flame' d='M-5 17 C -4.5 23 -1.5 27 0 30 C 1.5 27 4.5 23 5 17 Z'/><path class='ds-r-flame-core' d='M-2.5 18 C -2 21.5 -0.8 24 0 25.5 C 0.8 24 2 21.5 2.5 18 Z'/><path class='ds-r-fins' d='M-9.5 5 C -17 9 -19 17 -17 25 L -9.5 16.5 M9.5 5 C 17 9 19 17 17 25 L 9.5 16.5'/><path class='ds-r-body' d='M0 -31 C 11 -21 13 -2 9.5 17 L -9.5 17 C -13 -2 -11 -21 0 -31 Z'/><path class='ds-r-window' d='M-6.5 -8 C -6.5 -12 -3 -15 0.5 -14.6 C 4 -14.2 6.8 -11 6.4 -7.4 C 6 -3.8 3 -1.2 -0.6 -1.6 C -4.2 -2 -6.8 -5 -6.4 -8.6'/></g><path class='ds-r-warn' d='M91 9 C 97 19 103 29 108.5 39.5 C 97 40.5 86 40 73.5 39.8 C 79 29 84.5 19 91 9 Z'/><path class='ds-r-mark' d='M91 19 L 91 30 M91 35 L 91 35.5'/></svg><p class='ds-callout-title'><span>Careful</span></p><p class='ds-callout-body'>Your subdomain becomes <code>SUBDOMAIN.ghe.com</code> for everyone and can’t be changed later.</p></aside>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-callout { position: relative; margin: 2rem 0 1.6rem; padding: 1rem 4.6rem 1.05rem 1.25rem; font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); font-size: 1.0625rem; line-height: 1.7; color: var(--ink-2, #2b2a27); background: var(--paper-card, #fffdf6); border: 2px solid transparent; border-radius: 18px 14px 20px 12px / 12px 20px 14px 18px; box-shadow: 6px 6px 0 0 var(--hl-pink, #ff6fae); } .ds-callout::before { content: ''; position: absolute; inset: -2px; border: 2px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-callout-rocket { position: absolute; top: -1.6rem; right: 0.6rem; transform: rotate(6deg); overflow: visible; fill: none; stroke-linecap: round; stroke-linejoin: round; } .ds-r-body { fill: #fffdf6; stroke: var(--ink, #111111); stroke-width: 3.5; } .ds-r-window, .ds-r-fins { fill: var(--hl-teal, #2dd4bf); stroke: var(--ink, #111111); stroke-width: 3; } .ds-r-flame { fill: var(--hl-yellow, #ffe84d); stroke: var(--ink, #111111); stroke-width: 2.9; } .ds-r-flame-core { fill: var(--hl-pink, #ff6fae); } .ds-r-warn { fill: var(--hl-yellow, #ffe84d); stroke: var(--ink, #111111); stroke-width: 3; } .ds-r-mark { fill: none; stroke: var(--on-hl, #111111); stroke-width: 3.6; } .ds-callout-title { margin: 0 0 0.35rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.25rem; line-height: 1.2; color: var(--on-hl, #111111); } .ds-callout-title span { padding: 0.05em 0.3em; background: var(--swipe-pink, linear-gradient(var(--hl-pink, #ff6fae), var(--hl-pink, #ff6fae))) 0 60% / 100% 92% no-repeat; } .ds-callout-body { margin: 0; } .ds-callout code { font-size: 0.88em; color: var(--ink, #111111); background: var(--paper-sunk, #f8edd2); border: 1.5px solid var(--ink-4, #9a9486); border-radius: 6px 8px 6px 9px; padding: 0.05em 0.36em; }"
+    },
+    {
+      "name": "Click Path",
+      "kind": "chip",
+      "refersTo": "click-path-key",
+      "description": "A menu path as crisp Inter keys joined by hand-drawn arrows; the destination key takes its app's highlighter (yellow for GitHub).",
+      "html": "<div class='ds-click-path' role='group' aria-label='In GitHub: Your enterprise › Settings › Authentication security'><span class='ds-click-where' aria-hidden='true'>In GitHub</span><ol class='ds-click-items' aria-hidden='true'><li><span class='ds-click-key'>Your enterprise</span></li><li><svg class='ds-click-arrow' viewBox='0 0 28 16' width='22' height='13' focusable='false'><path d='M2 9 C 9 6 16 10 24 8 M18 3 L25 8 L18 13'/></svg><span class='ds-click-key'>Settings</span></li><li><svg class='ds-click-arrow' viewBox='0 0 28 16' width='22' height='13' focusable='false'><path d='M2 9 C 9 6 16 10 24 8 M18 3 L25 8 L18 13'/></svg><span class='ds-click-key ds-click-key-dest'>Authentication security</span></li></ol></div>",
+      "css": ".ds-click-path { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 0.6rem; } .ds-click-where { font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1rem; color: var(--ink-3, #57544d); transform: rotate(-2deg); } .ds-click-items { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.3rem; list-style: none; margin: 0; padding: 0; } .ds-click-items li { display: inline-flex; align-items: center; gap: 0.3rem; margin: 0; } .ds-click-key { font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); font-size: 0.92rem; font-weight: 600; color: var(--ink, #111111); background: var(--paper-card, #fffdf6); border: 2px solid var(--ink, #111111); border-radius: 8px 11px 9px 12px; box-shadow: 2px 3px 0 0 var(--ink, #111111); padding: 0.18rem 0.6rem; white-space: nowrap; } .ds-click-key-dest { color: var(--on-hl, #111111); background: var(--hl-yellow, #ffe84d); } .ds-click-arrow { fill: none; stroke: var(--ink-3, #57544d); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Role Tags",
+      "kind": "chip",
+      "refersTo": "role-tag",
+      "description": "Hand-lettered stickers in each role's highlighter; the lead is filled, helpers are dashed outlines with a colored dot.",
+      "html": "<div class='ds-roles'><span class='ds-role ds-role-owner'><span class='ds-role-dot' aria-hidden='true'></span>Enterprise owner</span><span class='ds-role ds-role-entra'><span class='ds-role-dot' aria-hidden='true'></span>Entra admin</span><span class='ds-role ds-role-azure'><span class='ds-role-dot' aria-hidden='true'></span>Azure owner</span><span class='ds-role ds-role-contact'><span class='ds-role-dot' aria-hidden='true'></span>Your contact</span><span class='ds-role ds-role-dev'><span class='ds-role-dot' aria-hidden='true'></span>Developers</span><span class='ds-role ds-role-lead'><span class='ds-role-dot' aria-hidden='true'></span>Project lead</span><span class='ds-role ds-role-entra ds-role-helper'><span class='ds-role-dot' aria-hidden='true'></span>Entra admin</span></div>",
+      "css": ".ds-roles { display: flex; flex-wrap: wrap; } .ds-role { --role: var(--hl-pencil, #d8d2c4); display: inline-flex; align-items: center; gap: 0.4rem; margin: 0 0.35rem 0.35rem 0; padding: 0.18rem 0.6rem 0.16rem 0.45rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.08rem; line-height: 1.15; color: var(--on-hl, #111111); background: var(--role); border: 1.5px solid var(--ink, #111111); border-radius: 10px 14px 9px 13px / 13px 9px 14px 10px; } .ds-role-owner { --role: var(--hl-yellow, #ffe84d); } .ds-role-entra { --role: var(--hl-teal, #2dd4bf); } .ds-role-azure { --role: var(--hl-pink, #ff6fae); } .ds-role-contact { --role: var(--hl-lilac, #c4b5fd); } .ds-role-dev { --role: var(--hl-orange, #ffb86b); } .ds-role-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--on-hl, #111111); } .ds-role-helper { color: var(--ink, #111111); background: transparent; border-style: dashed; } .ds-role-helper .ds-role-dot { background: var(--role); outline: 1.5px solid var(--ink, #111111); }"
+    },
+    {
+      "name": "Step Intro Card",
+      "kind": "card",
+      "refersTo": "step-intro",
+      "description": "The fixed opening of every step: who, hands-on time, the wait and prerequisites on Card Stock with a halftone dot shadow (the mini system map sits beside it on the site).",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><div class='ds-si-wrap'><section class='ds-si' aria-label='Step 7'><dl class='ds-si-grid'><div class='ds-si-wide'><dt>Who</dt><dd><span class='ds-si-role'><span class='ds-si-dot' aria-hidden='true'></span>Entra admin</span><span class='ds-si-role ds-si-helper'><span class='ds-si-dot' aria-hidden='true'></span>Enterprise owner</span></dd></div><div><dt>Hands-on</dt><dd class='ds-si-big'>≈ 45 min</dd></div><div><dt>Then wait</dt><dd class='ds-si-wait'><svg class='ds-si-hourglass' viewBox='0 0 24 24' width='20' height='20' aria-hidden='true' focusable='false'><path d='M6 3 C 10 3 15 3 18 3 M6 21 C 10 21 15 21 18 21 M7 3 C 7 9 16 10 16 12 C 16 14 7 15 7 21 M17 3 C 17 9 8 10 8 12 C 8 14 17 15 17 21'/></svg>Sync runs on a schedule</dd></div><div class='ds-si-wide'><dt>Needs</dt><dd><a class='ds-si-chip' href='#'><span class='ds-si-chip-num'>6</span>Single sign-on</a></dd></div></dl></section></div>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-si-wrap { position: relative; isolation: isolate; padding: 0 10px 10px 0; } .ds-si { position: relative; padding: 1.3rem 1.4rem 1.2rem; font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); color: var(--ink, #111111); background: var(--paper-card, #fffdf6); border: 2px solid transparent; border-radius: 18px 14px 20px 12px / 12px 20px 14px 18px; } .ds-si::before { content: ''; position: absolute; inset: -2px; border: 2px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-si::after { content: ''; position: absolute; inset: 8px -8px -8px 8px; z-index: -1; border-radius: inherit; background-image: radial-gradient(var(--halftone, rgba(17, 17, 17, 0.42)) 1px, transparent 1.3px); background-size: 5px 5px; } .ds-si-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem 1.2rem; margin: 0; } .ds-si-wide { grid-column: 1 / -1; } .ds-si dt { font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.02rem; color: var(--ink-3, #57544d); } .ds-si dd { margin: 0.15rem 0 0; } .ds-si-big { font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); font-size: 1.45rem; line-height: 1.2; } .ds-si-wait { display: flex; gap: 0.4rem; align-items: flex-start; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.15rem; line-height: 1.25; } .ds-si-hourglass { flex: none; margin-top: 0.05rem; fill: none; stroke: var(--ink, #111111); stroke-width: 1.8; stroke-linecap: round; } .ds-si-role { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0 0.35rem 0.35rem 0; padding: 0.18rem 0.6rem 0.16rem 0.45rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.08rem; line-height: 1.15; color: var(--on-hl, #111111); background: var(--hl-teal, #2dd4bf); border: 1.5px solid var(--ink, #111111); border-radius: 10px 14px 9px 13px / 13px 9px 14px 10px; } .ds-si-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--on-hl, #111111); } .ds-si-helper { color: var(--ink, #111111); background: transparent; border-style: dashed; } .ds-si-helper .ds-si-dot { background: var(--hl-yellow, #ffe84d); outline: 1.5px solid var(--ink, #111111); } .ds-si-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.1rem 0.7rem 0.1rem 0.2rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.08rem; color: var(--ink, #111111); text-decoration: none; background: var(--paper, #fff8e8); border: 1.5px solid var(--ink, #111111); border-radius: 999px; transition: background-color 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-si-chip:hover { background: var(--paper-sunk, #f8edd2); } .ds-si-chip:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; } .ds-si-chip-num { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); font-size: 0.8rem; color: var(--on-hl, #111111); background: var(--hl-teal, #2dd4bf); border: 1.5px solid var(--ink, #111111); border-radius: 50%; }"
+    },
+    {
+      "name": "Note-Paper Checkpoint",
+      "kind": "card",
+      "refersTo": "done-when",
+      "description": "\"Done when\" as a sheet of note paper: pink margin line, teal ruled lines and drawn (non-interactive) checkboxes.",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><div class='ds-done'><ul class='ds-done-list'><li class='ds-done-item'><svg class='ds-done-box' viewBox='0 0 28 28' width='26' height='26' aria-hidden='true' focusable='false'><path d='M5 6 C 11 4 18 5 23 5 C 24 11 23 17 23 23 C 17 24 10 24 5 23 C 4 17 5 11 5 6 Z'/></svg><span>OIDC authentication is enabled for the enterprise.</span></li><li class='ds-done-item'><svg class='ds-done-box' viewBox='0 0 28 28' width='26' height='26' aria-hidden='true' focusable='false'><path d='M5 6 C 11 4 18 5 23 5 C 24 11 23 17 23 23 C 17 24 10 24 5 23 C 4 17 5 11 5 6 Z'/></svg><span>The SSO recovery codes are stored in your password manager.</span></li></ul><a class='ds-done-more' href='#'>All checkpoints on one printable page →</a></div>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-done { position: relative; padding: 1rem 1.3rem 1.1rem 2.6rem; font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); border: 2px solid transparent; border-radius: 18px 14px 20px 12px / 12px 20px 14px 18px; background-color: var(--paper-card, #fffdf6); background-image: linear-gradient(to right, transparent 1.7rem, color-mix(in srgb, var(--hl-pink, #ff6fae) 60%, transparent) 1.7rem 1.82rem, transparent 1.82rem); } .ds-done::before { content: ''; position: absolute; inset: -2px; border: 2px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-done-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; } .ds-done-item { display: flex; gap: 0.7rem; align-items: flex-start; padding-bottom: 0.6rem; font-size: 1.02rem; line-height: 1.5; color: var(--ink, #111111); border-bottom: 1.5px solid color-mix(in srgb, var(--hl-teal, #2dd4bf) 45%, transparent); } .ds-done-box { flex: none; margin-top: 0.05rem; fill: var(--paper-card, #fffdf6); stroke: var(--ink, #111111); stroke-width: 2.2; stroke-linejoin: round; } .ds-done-more { display: inline-block; margin-top: 1rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.12rem; color: var(--ink, #111111); text-decoration: underline var(--hl-teal, #2dd4bf) 0.18em; text-underline-offset: 0.2em; } .ds-done-more:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; border-radius: 6px; }"
+    },
+    {
+      "name": "Doc-Link Stack",
+      "kind": "nav",
+      "refersTo": "doc-link",
+      "description": "The hand-off to the official docs: full-width link cards with a wobbly border, a teal marker arrow and a small lift on hover.",
+      "html": "<svg class='ds-defs' width='0' height='0' aria-hidden='true' focusable='false'><filter id='ds-wobble' x='-4%' y='-8%' width='108%' height='116%'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='2' seed='7' result='noise'/><feDisplacementMap in='SourceGraphic' in2='noise' scale='3.4' xChannelSelector='R' yChannelSelector='G'/></filter></svg><ul class='ds-doc-links'><li><a class='ds-doc-link' href='#'>Configuring OIDC for Enterprise Managed Users</a></li><li><a class='ds-doc-link' href='#'>Downloading your enterprise’s SSO recovery codes</a></li><li><a class='ds-doc-link' href='#'>Configuring SAML for Enterprise Managed Users</a></li></ul>",
+      "css": ".ds-defs { position: absolute; width: 0; height: 0; overflow: hidden; } .ds-doc-links { list-style: none; display: grid; gap: 0.6rem; margin: 0; padding: 0; } .ds-doc-links li { margin: 0; } .ds-doc-link { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.65rem 0.95rem; font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); font-weight: 550; color: var(--ink, #111111); text-decoration: none; background: var(--paper-card, #fffdf6); border: 2px solid transparent; border-radius: 12px 16px 11px 15px; box-shadow: 3px 4px 0 0 var(--ink, #111111); transition: transform 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-doc-link::before { content: ''; position: absolute; inset: -2px; border: 2px solid var(--ink, #111111); border-radius: inherit; filter: url(#ds-wobble); pointer-events: none; } .ds-doc-link::after { content: '↗'; font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); color: var(--teal-ink, #0d6e66); } .ds-doc-link:hover { transform: translate(-1px, -2px); box-shadow: 5px 6px 0 0 var(--ink, #111111); } .ds-doc-link:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sticky Notes",
+      "kind": "card",
+      "refersTo": "sticky-note",
+      "description": "Taped highlighter notes with a curled corner and a hard dark shadow, each tilted a little differently.",
+      "html": "<div class='ds-sticky-row'><div class='ds-sticky'><p class='ds-sticky-title'>Your subdomain is forever</p><p class='ds-sticky-body'>It becomes <code>SUBDOMAIN.ghe.com</code> for everyone and can’t be changed later. Agree on it in <a href='#'>step 0</a>.</p></div><div class='ds-sticky ds-sticky-pink'><p class='ds-sticky-title'>No Copilot in the trial</p><p class='ds-sticky-body'>Trials don’t include Copilot. You activate the enterprise in <a href='#'>step 4</a>, then your contact enables Copilot.</p></div><div class='ds-sticky ds-sticky-teal'><p class='ds-sticky-title'>Tell your network team early</p><p class='ds-sticky-body'>Proxies and firewalls must let <code>*.SUBDOMAIN.ghe.com</code> through. The list is in <a href='#'>step 0</a>.</p></div></div>",
+      "css": ".ds-sticky-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 2rem 1.5rem; padding-top: 0.9rem; } .ds-sticky { position: relative; padding: 1.5rem 1.25rem 1.3rem; color: var(--on-hl, #111111); background: var(--hl-yellow, #ffe84d); border-radius: 2px 3px 22px 3px; box-shadow: 3px 5px 0 0 rgba(17, 17, 17, 0.85); transform: rotate(-1.6deg); } .ds-sticky:nth-child(2) { transform: rotate(1.2deg) translateY(0.4rem); } .ds-sticky:nth-child(3) { transform: rotate(-0.6deg); } .ds-sticky::before { content: ''; position: absolute; top: -0.75rem; left: 50%; width: 5rem; height: 1.5rem; transform: translateX(-50%) rotate(-3deg); background: rgba(255, 253, 246, 0.6); border: 1px solid rgba(17, 17, 17, 0.12); } .ds-sticky-pink { background: var(--hl-pink, #ff6fae); } .ds-sticky-teal { background: var(--hl-teal, #2dd4bf); } .ds-sticky-title { margin: 0 0 0.5rem; font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); font-size: 1.35rem; line-height: 1.2; } .ds-sticky-body { margin: 0; font-family: var(--sl-font, 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif); font-size: 0.98rem; line-height: 1.7; } .ds-sticky-body a { color: inherit; text-decoration: underline 0.12em; text-underline-offset: 0.16em; } .ds-sticky-body a:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; border-radius: 6px; } .ds-sticky-body code { font-size: 0.88em; color: var(--on-hl, #111111); background: rgba(255, 253, 246, 0.6); border: 1.5px solid rgba(17, 17, 17, 0.45); border-radius: 6px 8px 6px 9px; padding: 0.05em 0.36em; }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "sidebar-link-current",
+      "description": "Handwritten links with teal blob step numerals; the current page sits on the pink highlighter swipe.",
+      "html": "<nav class='ds-side' aria-label='Setup steps'><p class='ds-side-group'><span>Setup steps</span></p><ul><li><a href='#' data-step='0'>Prepare: decisions and people</a></li><li><a href='#' data-step='1'>Start the GHE.com trial</a></li><li><a href='#' data-step='2' aria-current='page'>Secure the setup user</a></li><li><a href='#' data-step='3'>Connect your Azure subscription</a></li></ul></nav>",
+      "css": ".ds-side { max-width: 18rem; padding: 0.6rem; background: var(--paper, #fff8e8); } .ds-side-group { margin: 0 0 0.5rem; } .ds-side-group span { padding-bottom: 0.1em; font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); font-size: 1.05rem; letter-spacing: 0.02em; color: var(--ink, #111111); background: var(--brush-teal, linear-gradient(var(--hl-teal, #2dd4bf), var(--hl-teal, #2dd4bf))) left bottom / 100% 0.4em no-repeat; } .ds-side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; } .ds-side a { display: flex; align-items: center; gap: 0.55rem; padding: 0.3rem 0.6rem; font-family: var(--font-hand, 'Patrick Hand SC', 'Patrick Hand', 'Comic Sans MS', cursive); font-size: 1.15rem; line-height: 1.25; color: var(--ink-2, #2b2a27); text-decoration: none; border-radius: 10px 14px 9px 13px / 13px 9px 14px 10px; transition: background-color 160ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-side a::before { content: attr(data-step); flex: none; display: grid; place-items: center; width: 1.55rem; height: 1.55rem; font-family: var(--font-marker, 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive); font-size: 0.8rem; color: var(--on-hl, #111111); background: var(--hl-teal, #2dd4bf); border: 1.5px solid var(--ink, #111111); border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%; } .ds-side a:hover { color: var(--ink, #111111); background-color: var(--paper-sunk, #f8edd2); } .ds-side a[aria-current='page'], .ds-side a[aria-current='page']:hover { color: var(--on-hl, #111111); background: var(--swipe-pink, linear-gradient(var(--hl-pink, #ff6fae), var(--hl-pink, #ff6fae))) center / 100% 100% no-repeat; } .ds-side a:focus-visible { outline: 3px dashed var(--teal-ink, #0d6e66); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Sketch Explainer",
+    "overview": "GHE Launchpad explains a multi-day enterprise setup the way a colleague sketches it on a whiteboard: one hand-drawn route of 11 steps, who does what, and what to wait for. The page is cream notebook paper (the site is light-only), everything structural is drawn in marker ink, and three highlighters (yellow, teal, pink) carry the meaning. Borders wobble, shadows are hard offsets, diagrams are rough.js sketches, and an original doodled rocket launches on the home page, idles on the pad while you wait, and marks every note, tip and caution.\n\nThe sketch is the frame, never the content. Reading text stays in Inter at a 70ch measure, menu paths the reader must match stay in crisp Inter keys, and the wobble filter only ever touches border copies. Density is deliberately low: answers are chunked into drawn objects (a step intro card for who, how long and what to wait for; click-path chips; note-paper checkpoints; doc-link cards) instead of paragraphs. The bar is \"modern and intuitive\"; the confirmed failure mode is a page that feels \"too dense and text-heavy, like reading raw docs\", the wall-of-docs default this world refuses.\n\nEvery flourish is a code. A highlighter's color names a place, role or state; the rocket's mood names the callout type; a colored shadow repeats that meaning; a blob with a marker numeral is always a step. Decoration that carries none of these meanings does not belong. Visuals are diagrams and click-to-load videos only, never screenshots, and the only mark is the original rocket.",
+    "keyCharacteristics": [
+      "Paper grounds with a 24px dot grid; marker-ink borders (1.5–2.5px) that wobble through one shared SVG filter.",
+      "Three working highlighters plus three role-only tints; text on a highlighter is always near-black.",
+      "Three pens: Permanent Marker for headlines and numerals, Patrick Hand SC for labels and margin notes, Inter for reading.",
+      "Depth from hard, zero-blur offset shadows and one halftone dot shadow, never from blur.",
+      "Hand-made everything: rough.js diagrams with fixed seeds, doodled inline-SVG icons, highlighter swipes, wavy rules, tilted stickies.",
+      "Light theme only: one cream-paper palette, no dark mode and no theme switch.",
+      "Small, physical motion (lift, press, swipe-in, lift-off, draw-in), with every entrance gated behind reduced-motion."
+    ],
+    "rules": [
+      {
+        "name": "The Three Highlighters Rule",
+        "body": "Yellow means act or answer, teal means structure and links, pink means you-are-here or careful. Lilac, apricot and pencil exist only for roles (lilac also for waiting); never use them as general accents, and never add a fourth brand color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Same Place, Same Color Rule",
+        "body": "GitHub and GHE.com are yellow, Microsoft Entra is teal, Azure is pink: in role tags (enterprise owner, Entra admin, Azure owner), the destination key of a click path, and diagram fills. Path A is teal and Path B is pink, everywhere.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dark Ink on Highlighter Rule",
+        "body": "Anything set on a highlighter fill uses `on-hl`; a highlighter never carries light text. The swipes multiply into the paper like real ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Pens Rule",
+        "body": "Marker for headlines, card titles and numerals; hand for labels, buttons, navigation, legends and margin notes; Inter for anything read in full or matched exactly (body, captions, menu paths). Never set a paragraph, or a UI label the reader must find on screen, in a hand font.",
+        "section": "typography"
+      },
+      {
+        "name": "The One-Weight Hand Rule",
+        "body": "Permanent Marker and Patrick Hand SC load at 400 only, and every heading forces weight 400. The hand fonts get emphasis from size, highlighter and underline, never from bold. Patrick Hand SC is small caps by design; nothing uses `text-transform`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hand-Placed Tilt Rule",
+        "body": "Only small stuck-on objects tilt, by a few degrees: the logo (−6°), step numerals (−5°), rockets (4° to 6°), margin notes (−2° to −5°), stickies (−1.6° to 1.2°); hover and open states may tip a numeral or badge a little further (−6° to −8°). Framed panels, tables, code and body text never rotate.",
+        "section": "layout"
+      },
+      {
+        "name": "The Wide Frame, Narrow Text Rule",
+        "body": "When a surface needs width (route board, swimlanes, diagrams), the frame grows or scrolls sideways inside itself; reading text stays at 70ch.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hard Offset Rule",
+        "body": "Shadows are solid and zero-blur, always falling down-right. If it needs a blur, it doesn't belong in this world.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lift and Press Rule",
+        "body": "Clickable drawn objects lift up-left on hover while their shadow grows, then press down-right into the shadow on `:active`, at 160ms on `--ease-out`. Static panels (callouts, step intro, checkpoints, stickies) never move.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Wobble the Border, Not the Content Rule",
+        "body": "`#sk-wobble` only ever filters the `::before` border copy; text, fills, shadows and focus outlines stay crisp. Wobble-listed components reserve `::before` for that copy and put any other decoration on `::after` (the halftone, the doc-link \"↗\").",
+        "section": "shapes"
+      },
+      {
+        "name": "The Blob Numeral Rule",
+        "body": "A step's own number (sidebar, numbered steps, page title, route board, swimlanes, checklist) always sits in a highlighter blob (teal by default; teal, yellow, pink in turn where numbers line up) with a Permanent Marker numeral in `on-hl`. Small references to other steps use circles instead (teal-filled in step chips, ink-outlined in the roster). Never a bare digit or a square badge.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do build every new framed surface from the recipe: Card Stock, a 2px Marker Ink border, `wobble` corners, and its selector added to the `#sk-wobble` border list.",
+      "Do take shadows from the vocabulary: 2px 3px chips, 3px 4px badges, 4px 5px buttons, 5px 6px framed panels, and 6px 6px in the callout's color for asides.",
+      "Do give every clickable drawn object the lift-and-press pair: translate(−2px, −2px) onto a 2px larger shadow on hover, translate(3px, 4px) onto 1px 1px on press, 160ms on `--ease-out`.",
+      "Do set text on any highlighter fill in `on-hl` (#111111).",
+      "Do write UI menu paths as click-path keys in Inter and color only the destination key, by app: yellow GitHub, teal Entra, pink Azure.",
+      "Do mark notes, tips, cautions, dangers and waits with the Callout component and its rocket mood.",
+      "Do draw new diagrams with `createSketch` and a fixed seed, the seven tones, `label()` text, and a `<title>` plus `<desc>`.",
+      "Do draw new icons as inline SVG doodles with round caps and joins in Marker Ink (stroke 1.8–3), `aria-hidden` and `focusable=\"false\"`.",
+      "Do keep reading text at 70ch and move answers into the step intro card, click paths and \"done when\" checkpoints rather than paragraphs.",
+      "Do gate entrance motion behind `prefers-reduced-motion: no-preference` and use `--ease-out` (cubic-bezier(0.16, 1, 0.3, 1))."
+    ],
+    "donts": [
+      "Don't let a page read like raw docs: walls of text and dense reference paragraphs are the confirmed failure mode (\"too dense and text-heavy, like reading raw docs\").",
+      "Don't use blurred or soft shadows; every shadow is a solid, zero-blur offset falling down-right.",
+      "Don't add screenshots. Visuals are rough.js diagrams and click-to-load video cards only.",
+      "Don't use the GitHub logo as the site logo, favicon or a doodle, and never modify it; GitHub's brand rules forbid both. The mark is the original rocket.",
+      "Don't add saved progress, interactive checkboxes or stored state to checkpoints or the checklist; they are static and printable.",
+      "Don't add a dark theme, a theme switch or `prefers-color-scheme` styles. The site is light-only; Starlight's `ThemeProvider` and `ThemeSelect` are overridden to keep it that way.",
+      "Don't set paragraphs or exact UI labels in Permanent Marker or Patrick Hand SC, and never bold the hand fonts.",
+      "Don't introduce new accents, or use lilac, apricot or pencil outside their roles (and lilac's waiting state).",
+      "Don't filter text, fills or whole components through `#sk-wobble`, and don't spend `::before` on a wobble-listed component; extra decoration goes on `::after`.",
+      "Don't rotate framed panels, tables or code; tilt only small stuck-on objects, by a few degrees.",
+      "Don't use `ink-4` for text, or put light text on a highlighter."
+    ]
+  }
+}

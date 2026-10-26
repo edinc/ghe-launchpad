@@ -1,0 +1,35 @@
+---
+title: Journey map
+description: Who is needed in which step, how long each step takes and where you wait, on one page.
+sidebar:
+  label: Journey map
+tableOfContents: false
+lastVerified: 2026-10-23
+---
+
+import JourneyMap from '../../../components/JourneyMap.astro';
+import RouteMap from '../../../components/RouteMap.astro';
+import Callout from '../../../components/Callout.astro';
+
+The whole setup on one page. Walk through it with everyone involved before you start, so each person knows when they’re needed.
+
+<JourneyMap />
+
+<Callout type="tip" title="Save days by running steps in parallel">
+Steps 6–8 (single sign-on, provisioning, teams) depend only on step 2, not on steps 3–5. Book the admins they need and run them while you wait for the Azure connection, the activation or Copilot enablement.
+</Callout>
+
+## Where the time goes
+
+- **Hands-on:** roughly 5 hours in total, spread over several people.
+- **Waiting:** the trial’s provisioning (up to a few hours), admin consent if someone else must approve, Copilot enablement by your contact, and Entra’s provisioning cycles.
+
+## Book these slots early
+
+- **Entra admin with Global Administrator rights:** about an hour for the consent in step 3, single sign-on in step 6 and provisioning in step 7. One session covers all three.
+- **Azure subscription owner:** 15 minutes in step 3.
+- **Your Microsoft or GitHub contact:** send the Copilot request the day you finish step 4.
+
+## The route at a glance
+
+<RouteMap />

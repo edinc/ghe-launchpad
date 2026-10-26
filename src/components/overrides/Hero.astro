@@ -1,0 +1,62 @@
+---
+import Rocket from '../Rocket.astro';
+import { getLang, href } from '../../lib/i18n';
+
+const { entry } = Astro.locals.starlightRoute;
+const hero = entry.data.hero;
+const lang = getLang(Astro);
+const title = hero?.title ?? entry.data.title;
+
+// `==text==` in the hero title marks the words that get the highlighter swipe.
+const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const titleHtml = escape(title).replace(/==(.+?)==/g, '<mark class="swipe">$1</mark>');
+const actions = hero?.actions ?? [];
+
+const contract = `<!--
+THESIS: The setup explained the way a colleague sketches it on a whiteboard: one hand-drawn route of 11 steps, who does what, what to wait for. Refuses the wall-of-docs default.
+OWN-WORLD: Cream paper (light theme only), marker ink, yellow/pink/teal highlighter swipes; Permanent Marker headlines, Patrick Hand SC labels, Inter body; wobbly hand-drawn borders, hard offset shadows, rough.js diagrams, a doodled rocket that launches, idles on the pad while you wait, and marks tips and cautions.
+STORY: Visitors see the whole route at once, learn the roles and waits, then work step by step with click paths and checkpoints, always pointed to the official docs.
+FIRST VIEWPORT: Marker headline with a pink swipe left, the launching rocket and effort note right, yellow "Start with step 0" button; the full snake-shaped 11-stop route board directly below.
+FORM: Sketch Explainer (hand-drawn technical zine), alternate chosen in re-roll 1, seed e70542e3; staging: same system sketch per step, focus moving with the steps.
+-->`;
+const effort = lang === 'de' ? '≈ 5 Std. Aufwand, dazu etwas Wartezeit' : '≈ 5 hours hands-on, plus some waiting';
+const otherLang =
+	lang === 'de'
+		? { href: href('en'), label: 'Read in English', code: 'en' }
+		: { href: href('de'), label: 'Auf Deutsch lesen', code: 'de' };
+---
+
+<Fragment set:html={contract} />
+<div class="zine-hero">
+	<div class="zine-hero__copy">
+		<h1 id="_top" class="zine-hero__title" set:html={titleHtml} />
+		{hero?.tagline && <p class="zine-hero__tagline" set:html={hero.tagline} />}
+		{
+			actions.length > 0 && (
+				<div class="zine-hero__actions">
+					{actions.map((action) => (
+						<a
+							class:list={[
+								'sketch-button',
+								action.variant === 'primary' ? 'sketch-button--primary' : 'sketch-button--secondary',
+							]}
+							href={action.link}
+							{...action.attrs}
+						>
+							{action.text}
+							{action.variant === 'primary' && <span aria-hidden="true">→</span>}
+						</a>
+					))}
+					<svg class="zine-hero__ticks" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true" focusable="false">
+						<path d="M6 30 L14 24 M10 14 L19 16 M20 4 L23 12" />
+					</svg>
+				</div>
+			)
+		}
+		<a class="zine-hero__lang" href={otherLang.href} hreflang={otherLang.code} lang={otherLang.code}>{otherLang.label} →</a>
+	</div>
+	<div class="zine-hero__art" aria-hidden="true">
+		<Rocket mood="launch" size="11rem" class="zine-hero__rocket" />
+		<p class="zine-hero__note">{effort}</p>
+	</div>
+</div>

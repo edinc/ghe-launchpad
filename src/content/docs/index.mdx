@@ -1,8 +1,64 @@
 ---
 title: GHE Launchpad
-description: A visual, self-service walkthrough for setting up GitHub Enterprise Cloud with data residency (GHE.com).
+description: A visual, self-service walkthrough to set up GitHub Enterprise Cloud with data residency (GHE.com), single sign-on with Microsoft Entra ID, billing through Azure and GitHub Copilot.
+template: splash
+lastVerified: 2026-10-23
+hero:
+  title: "GitHub Enterprise on GHE.com, ==step by step==."
+  tagline: From an empty trial to developers coding with Copilot, in 11 steps, with who does what and what you wait for.
+  actions:
+    - text: Start with step 0
+      link: /ghe-launchpad/steps/prepare/
+      variant: primary
+    - text: Which path fits me?
+      link: /ghe-launchpad/start/choose-your-path/
+      variant: secondary
 ---
 
-A visual, self-service walkthrough for setting up GitHub Enterprise Cloud with data residency (GHE.com): Enterprise Managed Users with Microsoft Entra ID, billing through an Azure subscription, and GitHub Copilot.
+import RouteMap from '../../components/RouteMap.astro';
+import SystemMap from '../../components/diagrams/SystemMap.astro';
+import PathCards from '../../components/PathCards.astro';
+import RoleRoster from '../../components/RoleRoster.astro';
+import Sticky from '../../components/Sticky.astro';
+import Callout from '../../components/Callout.astro';
 
-The guide is being built. Check back soon.
+<RouteMap />
+
+## What you’ll have at the end
+
+<div class="what-you-build">
+  <SystemMap variant="full" />
+  <SystemMap variant="mini" />
+</div>
+
+Your own enterprise at `SUBDOMAIN.ghe.com`, hosted in the region you pick. People sign in with their Microsoft Entra account, Entra keeps users and groups in sync, Azure pays the bill, and developers use Copilot from their IDE or terminal.
+
+## Two paths, same 11 steps
+
+Both paths share every step. Where they differ, the step tells you.
+
+<PathCards />
+
+## Who you’ll need
+
+Most steps take one person. A few need a second one for a moment, so book them early. The [journey map](/ghe-launchpad/start/journey-map/) shows exactly when.
+
+<RoleRoster />
+
+## Three things to know before you start
+
+<div class="sticky-row">
+  <Sticky color="yellow" title="Your subdomain is forever">
+    It becomes `SUBDOMAIN.ghe.com` for everyone and can’t be changed later. Agree on it in [step 0](/ghe-launchpad/steps/prepare/).
+  </Sticky>
+  <Sticky color="pink" title="No Copilot in the trial">
+    Trials don’t include Copilot. You activate the enterprise in [step 4](/ghe-launchpad/steps/activate-enterprise/), then your contact enables Copilot.
+  </Sticky>
+  <Sticky color="teal" title="Tell your network team early">
+    Proxies and firewalls must let `*.SUBDOMAIN.ghe.com` through. The list is in [step 0](/ghe-launchpad/steps/prepare/#6-brief-your-network-team).
+  </Sticky>
+</div>
+
+<Callout type="note" title="An independent community guide">
+This guide stitches together the official GitHub and Microsoft documentation into one route. It isn’t official documentation itself: when something here differs from the [GitHub Docs](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud) or [Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-oidc-provisioning-tutorial), the official pages win. More in [About this guide](/ghe-launchpad/resources/about/).
+</Callout>

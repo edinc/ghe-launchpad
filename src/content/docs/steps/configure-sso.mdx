@@ -1,0 +1,103 @@
+---
+title: Turn on single sign-on with Entra ID
+description: Connect your enterprise to Microsoft Entra ID with OIDC, so people sign in with their Entra account and Conditional Access applies.
+sidebar:
+  label: Single sign-on
+lastVerified: 2026-10-23
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import StepIntro from '../../../components/StepIntro.astro';
+import Callout from '../../../components/Callout.astro';
+import Sticky from '../../../components/Sticky.astro';
+import ClickPath from '../../../components/ClickPath.astro';
+import DoneWhen from '../../../components/DoneWhen.astro';
+import DocLinks from '../../../components/DocLinks.astro';
+import Video from '../../../components/Video.astro';
+import IdentityFlow from '../../../components/diagrams/IdentityFlow.astro';
+
+<StepIntro step="configure-sso">
+- The setup user’s password and second factor from step 2
+- An Entra admin with **Global Administrator** rights, ready to sign in during the step
+- A spot in your password manager for the SSO recovery codes
+</StepIntro>
+
+With OIDC, people sign in to `SUBDOMAIN.ghe.com` with their Entra account, and your Conditional Access policies apply automatically. This step turns sign-in on; step 7 brings the people.
+
+<IdentityFlow />
+
+## Turn on OIDC
+
+<ClickPath path="Your enterprise > Identity provider > Single sign-on configuration" />
+
+<Steps>
+
+1. Sign in to `https://SUBDOMAIN.ghe.com` as the setup user `SHORTCODE_admin` and open your enterprise.
+
+2. Click **Identity provider**, then **Single sign-on configuration**.
+
+3. Under **OIDC single sign-on**, select **Enable OIDC configuration** and click **Save**.
+
+4. GitHub sends you to Microsoft. Sign in with the Global Administrator account.
+
+5. Tick **Consent on behalf of your organization** and click **Accept**. This adds the **GitHub Enterprise Managed User (OIDC)** app to your Entra tenant.
+
+6. Back in GitHub, save the SSO recovery codes with **Download**, **Print** or **Copy**, and store them in the password manager.
+
+7. Click **Enable OIDC Authentication**.
+
+</Steps>
+
+<Callout type="note" title="Nobody can sign in yet">
+Single sign-on is on, but your people don’t have accounts yet. They arrive with provisioning in step 7. The setup user keeps signing in with its password.
+</Callout>
+
+## Good to know
+
+<div class="sticky-row">
+  <Sticky color="teal" title="Conditional Access is automatic">
+    With OIDC, your Entra Conditional Access policies apply without an extra switch. Optional: extended protection for web sessions (in preview) under **Authentication security**.
+  </Sticky>
+  <Sticky color="yellow" title="Sign-in starts at GitHub">
+    OIDC doesn’t support signing in from the Entra side, so people open `https://SUBDOMAIN.ghe.com` instead of clicking an app tile.
+  </Sticky>
+</div>
+
+## Troubleshooting
+
+<details>
+<summary>Microsoft says you need admin approval</summary>
+
+The account you signed in with isn’t a Global Administrator. Repeat the step with one, or have your Entra admin sign in for you.
+
+</details>
+
+<details>
+<summary>Your tenant already uses OIDC for another GitHub enterprise</summary>
+
+Each Entra tenant supports one OIDC connection. Use [SAML](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users) for this enterprise instead.
+
+</details>
+
+<details>
+<summary>Nobody can sign in after a change to single sign-on</summary>
+
+Sign in as the setup user with password and second factor and fix the configuration. If that’s not possible, use one of the [SSO recovery codes](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/managing-recovery-codes-for-your-enterprise/downloading-your-enterprise-accounts-single-sign-on-recovery-codes).
+
+</details>
+
+## Done when…
+
+<DoneWhen step="configure-sso" />
+
+## Watch
+
+<Video id="sso" />
+
+## Official docs
+
+<DocLinks>
+- [Configuring OIDC for Enterprise Managed Users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-oidc-for-enterprise-managed-users)
+- [Downloading your enterprise’s SSO recovery codes](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/managing-recovery-codes-for-your-enterprise/downloading-your-enterprise-accounts-single-sign-on-recovery-codes)
+- [Configuring SAML for Enterprise Managed Users](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/configuring-authentication-for-enterprise-managed-users/configuring-saml-single-sign-on-for-enterprise-managed-users)
+</DocLinks>

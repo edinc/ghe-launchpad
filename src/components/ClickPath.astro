@@ -1,0 +1,35 @@
+---
+import { getLang, t } from '../lib/i18n';
+
+interface Props {
+	/** Menu items separated by ">", e.g. "Your enterprise > Settings > Authentication security". */
+	path: string;
+	app?: 'github' | 'entra' | 'azure' | 'ide' | 'vs';
+}
+
+const { path, app = 'github' } = Astro.props;
+const lang = getLang(Astro);
+const items = path
+	.split('>')
+	.map((item) => item.trim())
+	.filter(Boolean);
+const where = t(lang, `click.${app}`);
+---
+
+<div class:list={['click-path', `click-path--${app}`, 'not-content']} role="group" aria-label={`${where}: ${items.join(' › ')}`}>
+	<span class="click-path__where" aria-hidden="true">{where}</span>
+	<ol class="click-path__items" aria-hidden="true">
+		{
+			items.map((item, i) => (
+				<li>
+					{i > 0 && (
+						<svg class="click-path__arrow" viewBox="0 0 28 16" width="22" height="13" focusable="false">
+							<path d="M2 9 C 9 6 16 10 24 8 M18 3 L25 8 L18 13" />
+						</svg>
+					)}
+					<span class="click-path__key">{item}</span>
+				</li>
+			))
+		}
+	</ol>
+</div>
