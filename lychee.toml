@@ -1,0 +1,28 @@
+# External link check, run weekly by .github/workflows/link-check.yml against the built site,
+# where every link (including the ones components render) is a real <a href>.
+# Run locally after `npm run build`: lychee --config lychee.toml 'dist/**/*.html' README.md
+
+max_concurrency = 6
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+accept = ["200..=299", "429"]
+# Relative links resolve against the published site and then match its exclusion below.
+base_url = "https://edinc.github.io"
+user_agent = "Mozilla/5.0 (compatible; ghe-launchpad link check; +https://github.com/edinc/ghe-launchpad)"
+
+exclude = [
+  # Placeholders such as https://SUBDOMAIN.ghe.com are examples, not real addresses.
+  "SUBDOMAIN",
+  "ghe\\.com",
+  # The site itself: internal pages and same-page anchors are validated on every build, and the
+  # README's relative links (LICENSE, ...) are repository files, not pages.
+  "^https://edinc\\.github\\.io/",
+  # Pages that need a signed-in session or only exist as callbacks.
+  "^https://entra\\.microsoft\\.com",
+  "^https://github\\.com/account/enterprises/new",
+  "^https://github\\.com/enterprises/oauth_callback",
+  # "Edit page" links on every page need a signed-in session.
+  "^https://github\\.com/edinc/ghe-launchpad/edit/",
+  "^https://origin-tracker\\.githubusercontent\\.com",
+]

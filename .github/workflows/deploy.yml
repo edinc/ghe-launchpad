@@ -1,0 +1,98 @@
+name: Deploy
+
+# Publishes main to https://edinc.github.io/ghe-launchpad/ once CI has passed for the newest commit on main.
+# Can also be started by hand on main (Actions → Deploy → Run workflow) to redeploy.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  newest:
+    name: 🧭 Still the newest commit on main?
+    # Only for a successful CI run of a push to main in this repository, and only while that commit is
+    # still the newest on main (for workflow_run, github.sha is the tip of main when the event fired).
+    # That rules out pull requests, forks with a branch named "main", and re-runs of older CI runs.
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       github.event.workflow_run.head_sha == github.sha)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      current: ${{ steps.tip.outputs.current }}
+    steps:
+      # Re-runs of this workflow keep their original commit, so compare with the live tip of main as well.
+      - id: tip
+        run: |
+          tip=$(git ls-remote "https://github.com/$GITHUB_REPOSITORY.git" refs/heads/main | cut -f1)
+          if [ -z "$tip" ]; then
+            echo "::error::Could not read the tip of main."
+            exit 1
+          fi
+          if [ "$tip" = "$GITHUB_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::main has moved on to $tip; not deploying the older $GITHUB_SHA."
+            echo "current=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: newest
+    if: needs.newest.outputs.current == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # On the job, so skipped runs never join the group and cancel a pending deployment.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # One artifact name per attempt, so "Re-run failed jobs" doesn't trip over the first attempt's upload.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+          name: github-pages-${{ github.run_attempt }}
+
+      # Checked again right before publishing: "Re-run failed jobs" reuses the newest job's old answer.
+      # Failing (rather than skipping) keeps an old commit from being recorded as a successful deployment.
+      - name: Make sure main has not moved on
+        run: |
+          tip=$(git ls-remote "https://github.com/$GITHUB_REPOSITORY.git" refs/heads/main | cut -f1)
+          if [ "$tip" != "$GITHUB_SHA" ]; then
+            echo "::error::main has moved on to ${tip:-an unknown commit}; not publishing the older $GITHUB_SHA. Run Deploy on main instead."
+            exit 1
+          fi
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
