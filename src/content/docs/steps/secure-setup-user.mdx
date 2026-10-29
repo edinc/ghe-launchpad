@@ -3,7 +3,7 @@ title: Secure the setup user
 description: Set the password and two-factor authentication for the built-in admin account, and create the token you need for provisioning.
 sidebar:
   label: Secure the setup user
-lastVerified: 2026-10-23
+lastVerified: 2026-10-29
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -14,7 +14,7 @@ import DoneWhen from '../../../components/DoneWhen.astro';
 import DocLinks from '../../../components/DocLinks.astro';
 
 <StepIntro step="secure-setup-user">
-- The welcome email from step 1
+- The welcome email from step 1; its link expires after 7 days
 - Access to your company password manager
 - An authenticator app on your phone
 </StepIntro>
@@ -79,6 +79,13 @@ Anyone with this token can create and remove users in your enterprise. Pass it t
 ## Troubleshooting
 
 <details>
+<summary>The link in the welcome email has expired</summary>
+
+The usual password reset by email doesn’t work for the setup user, and nobody can sign in to the [GitHub Support portal](https://support.github.com) with a GHE.com account yet. So ask your Microsoft or GitHub contact right away for a new link to set the setup user’s password, and include your subdomain `SUBDOMAIN.ghe.com`. If you can, also open a ticket in the portal.
+
+</details>
+
+<details>
 <summary>The setup user can’t sign in through Entra ID</summary>
 
 That’s expected. The setup user always signs in with its username, password and second factor at `https://SUBDOMAIN.ghe.com`.
@@ -100,6 +107,7 @@ Sign in with one of the 2FA recovery codes from your password manager, then set 
 
 <DocLinks>
 - [About the setup user](https://docs.github.com/en/enterprise-cloud@latest/admin/concepts/identity-and-access-management/setup-user)
+- [Creating a support ticket](https://docs.github.com/en/enterprise-cloud@latest/support/contacting-github-support/creating-a-support-ticket)
 - [Getting started with data residency](https://docs.github.com/en/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
 - [Managing your personal access tokens](https://docs.github.com/en/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 </DocLinks>

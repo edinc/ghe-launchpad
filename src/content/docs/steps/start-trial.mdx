@@ -3,7 +3,7 @@ title: Start the GHE.com trial
 description: Create your enterprise on GHE.com in the region of your choice and wait for provisioning to finish.
 sidebar:
   label: Start the trial
-lastVerified: 2026-10-23
+lastVerified: 2026-10-29
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -31,7 +31,7 @@ import DocLinks from '../../../components/DocLinks.astro';
 
    - **Subdomain**: the permanent subdomain from step 0.
    - **Identity Provider**: Microsoft Entra ID.
-   - **Admin work email**: the future enterprise owner’s address.
+   - **Admin work email**: the future enterprise owner’s address. Make sure someone checks it daily until step 2 is done.
 
 5. Click **Create enterprise**.
 
@@ -39,6 +39,10 @@ import DocLinks from '../../../components/DocLinks.astro';
 
 <Callout type="wait" title="Provisioning can take a few hours">
 GitHub now builds your enterprise in the chosen region. When it’s ready, the admin work email gets a welcome email with a link to set the password of your setup user. Meanwhile, read step 2 and book the Entra admin for steps 3, 6 and 7.
+</Callout>
+
+<Callout type="caution" title="Set the password within 7 days">
+The link in the welcome email expires after 7 days. The usual password reset by email doesn’t work for the setup user, so a missed link means asking GitHub for a new one and waiting several days. Do step 2 as soon as the email arrives.
 </Callout>
 
 ## What the trial includes
