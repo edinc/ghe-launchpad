@@ -3,7 +3,7 @@ title: GHE.com-Testversion starten
 description: Legen Sie Ihr Enterprise-Konto auf GHE.com in der Region Ihrer Wahl an und warten Sie, bis die Bereitstellung abgeschlossen ist.
 sidebar:
   label: Testversion starten
-lastVerified: 2026-10-23
+lastVerified: 2026-10-29
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -31,7 +31,7 @@ import DocLinks from '../../../../components/DocLinks.astro';
 
    - **Subdomain**: die endgültige Subdomain aus Schritt 0.
    - **Identity Provider**: Microsoft Entra ID.
-   - **Admin work email**: die Adresse des künftigen Enterprise-Owners.
+   - **Admin work email**: die Adresse des künftigen Enterprise-Owners. Sorgen Sie dafür, dass jemand dieses Postfach täglich prüft, bis Schritt 2 erledigt ist.
 
 5. Klicken Sie auf **Create enterprise**.
 
@@ -39,6 +39,10 @@ import DocLinks from '../../../../components/DocLinks.astro';
 
 <Callout type="wait" title="Die Bereitstellung kann einige Stunden dauern">
 GitHub baut Ihr Enterprise-Konto jetzt in der gewählten Region auf. Sobald es bereit ist, erhält die angegebene Admin-E-Mail-Adresse eine Willkommens-E-Mail mit einem Link, über den Sie das Passwort Ihres Setup-Benutzers festlegen. Lesen Sie in der Zwischenzeit Schritt 2 und planen Sie den Entra-Admin für die Schritte 3, 6 und 7 ein.
+</Callout>
+
+<Callout type="caution" title="Passwort innerhalb von 7 Tagen festlegen">
+Der Link in der Willkommens-E-Mail läuft nach 7 Tagen ab. Das übliche Zurücksetzen des Passworts per E-Mail funktioniert für den Setup-Benutzer nicht. Verpassen Sie die Frist, muss GitHub erst einen neuen Link ausstellen, und Sie verlieren mehrere Tage. Erledigen Sie Schritt 2, sobald die E-Mail da ist.
 </Callout>
 
 ## Was die Testversion umfasst

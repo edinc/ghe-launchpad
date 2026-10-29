@@ -3,7 +3,7 @@ title: Setup-Benutzer absichern
 description: Legen Sie Passwort und Zwei-Faktor-Authentifizierung für das integrierte Admin-Konto fest und erstellen Sie das Token, das Sie für die Bereitstellung brauchen.
 sidebar:
   label: Setup-Benutzer absichern
-lastVerified: 2026-10-23
+lastVerified: 2026-10-29
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -14,7 +14,7 @@ import DoneWhen from '../../../../components/DoneWhen.astro';
 import DocLinks from '../../../../components/DocLinks.astro';
 
 <StepIntro step="secure-setup-user">
-- Die Willkommens-E-Mail aus Schritt 1
+- Die Willkommens-E-Mail aus Schritt 1; ihr Link läuft nach 7 Tagen ab
 - Zugriff auf den Passwortmanager Ihres Unternehmens
 - Eine Authenticator-App auf Ihrem Smartphone
 </StepIntro>
@@ -79,6 +79,13 @@ Wer dieses Token besitzt, kann Benutzer in Ihrem Enterprise-Konto anlegen und en
 ## Fehlerbehebung
 
 <details>
+<summary>Der Link in der Willkommens-E-Mail ist abgelaufen</summary>
+
+Das übliche Zurücksetzen des Passworts per E-Mail funktioniert für den Setup-Benutzer nicht, und im [GitHub-Supportportal](https://support.github.com) kann sich noch niemand mit einem GHE.com-Konto anmelden. Bitten Sie deshalb sofort Ihren Microsoft- oder GitHub-Ansprechpartner um einen neuen Link für das Passwort des Setup-Benutzers und nennen Sie Ihre Subdomain `SUBDOMAIN.ghe.com`. Eröffnen Sie, wenn möglich, zusätzlich ein Ticket im Portal.
+
+</details>
+
+<details>
 <summary>Der Setup-Benutzer kann sich nicht über Entra ID anmelden</summary>
 
 Das ist so vorgesehen. Der Setup-Benutzer meldet sich immer mit Benutzername, Passwort und zweitem Faktor unter `https://SUBDOMAIN.ghe.com` an.
@@ -100,6 +107,7 @@ Melden Sie sich mit einem der 2FA-Wiederherstellungscodes aus Ihrem Passwortmana
 
 <DocLinks>
 - [Informationen zum Setup-Benutzer](https://docs.github.com/de/enterprise-cloud@latest/admin/concepts/identity-and-access-management/setup-user)
+- [Supportticket erstellen](https://docs.github.com/de/enterprise-cloud@latest/support/contacting-github-support/creating-a-support-ticket)
 - [Erste Schritte mit Datenresidenz](https://docs.github.com/de/enterprise-cloud@latest/admin/data-residency/getting-started-with-data-residency-for-github-enterprise-cloud)
 - [Personal Access Tokens verwalten](https://docs.github.com/de/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 </DocLinks>
