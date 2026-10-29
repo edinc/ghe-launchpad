@@ -41,6 +41,7 @@ export const steps: Step[] = [
 		checks: [
 			{ text: { en: 'You picked Path A (full platform) or Path B (Copilot only).', de: 'Sie haben Variante A (komplette Plattform) oder Variante B (nur Copilot) gewählt.' } },
 			{ text: { en: 'You know who acts as enterprise owner, Entra Global Administrator and Azure subscription Owner.', de: 'Sie wissen, wer Enterprise-Owner, Entra-Globaler-Administrator und Besitzer des Azure-Abonnements ist.' } },
+			{ text: { en: 'The enterprise owner can sign in to github.com with a personal account, not a managed one.', de: 'Der Enterprise-Owner kann sich mit einem persönlichen Konto bei github.com anmelden, nicht mit einem Managed-User-Konto.' } },
 			{ text: { en: 'Region and subdomain are decided. The subdomain can’t be changed later.', de: 'Region und Subdomain stehen fest. Die Subdomain lässt sich später nicht ändern.' } },
 			{ text: { en: 'Your network team has the GHE.com hostnames to allow.', de: 'Ihr Netzwerkteam hat die freizugebenden GHE.com-Hostnamen.' } },
 		],

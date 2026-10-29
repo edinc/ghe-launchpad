@@ -114,6 +114,28 @@ describe('step pages', () => {
 	});
 });
 
+describe('trial signup prerequisites', () => {
+	it.each(['en', 'de'] as const)('%s prepares the enterprise owner with a personal github.com account', (lang) => {
+		const page = pages.find((p) => p.lang === lang && p.slug === 'steps/prepare.mdx')!;
+		const ownerRow = page.text.split('\n').find((line) => /^\| Enterprise[- ]owner \|/i.test(line))!;
+		expect(ownerRow).toContain(lang === 'en' ? 'a personal account on github.com' : 'ein persönliches Konto bei github.com');
+	});
+
+	it.each(['en', 'de'] as const)('%s explains signup sign-in and recovery from Page not found', (lang) => {
+		const page = pages.find((p) => p.lang === lang && p.slug === 'steps/start-trial.mdx')!;
+		const intro = page.text.match(/<StepIntro\b[^>]*>([\s\S]*?)<\/StepIntro>/)![1];
+		expect(intro).toContain(lang === 'en' ? 'A personal account on github.com' : 'Ein persönliches Konto bei github.com');
+		expect(intro).toContain(lang === 'en' ? 'free one works' : 'kostenloses Konto genügt');
+		expect(intro).toContain(lang === 'en' ? 'no access' : 'keinen Zugriff');
+		const firstStep = page.text.match(/^1\. (.+)$/m)![1];
+		expect(firstStep).toContain(lang === 'en' ? 'Sign in to github.com with that personal account' : 'Melden Sie sich mit diesem persönlichen Konto bei github.com an');
+		const troubleshooting = page.text.match(/<details>\s*<summary>[^<]*\*\*Page not found\*\*<\/summary>([\s\S]*?)<\/details>/)![1];
+		expect(troubleshooting).toContain('https://github.com/signup');
+		expect(troubleshooting).toContain(lang === 'en' ? 'private window' : 'privates Fenster');
+		expect(troubleshooting).toContain(lang === 'en' ? 'sign in with a personal account' : 'melden Sie sich mit einem persönlichen Konto an');
+	});
+});
+
 describe('videos in content', () => {
 	it('only reference known videos', () => {
 		const used = pages.flatMap((p) => [...p.text.matchAll(/<Video id="([^"]+)"/g)].map((m) => m[1]));

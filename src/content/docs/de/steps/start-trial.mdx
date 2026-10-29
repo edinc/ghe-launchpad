@@ -13,6 +13,7 @@ import DoneWhen from '../../../../components/DoneWhen.astro';
 import DocLinks from '../../../../components/DocLinks.astro';
 
 <StepIntro step="start-trial">
+- Ein persönliches Konto bei github.com für die Anmeldung am Registrierungsformular. Ein kostenloses Konto genügt; es erhält keinen Zugriff auf Ihr Enterprise-Konto auf GHE.com, das ausschließlich verwaltete Benutzer hat.
 - Region und Subdomain aus Schritt 0
 - Die geschäftliche E-Mail-Adresse des künftigen Enterprise-Owners; dorthin geht die Einladung
 </StepIntro>
@@ -21,7 +22,7 @@ import DocLinks from '../../../../components/DocLinks.astro';
 
 <Steps>
 
-1. Öffnen Sie die [Registrierung für die GHE.com-Testversion](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
+1. Melden Sie sich mit diesem persönlichen Konto bei github.com an und öffnen Sie dann die [Registrierung für die GHE.com-Testversion](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
 
 2. Wählen Sie **Get started with managed users**.
 
@@ -52,6 +53,13 @@ Der Link in der Willkommens-E-Mail läuft nach 7 Tagen ab. Das übliche Zurücks
 - Eine nie umgewandelte Testversion wird 90 Tage nach ihrem Ende gelöscht.
 
 ## Fehlerbehebung
+
+<details>
+<summary>Der Registrierungslink zeigt **Page not found**</summary>
+
+Melden Sie sich von verwalteten oder geschäftlichen Konten ab (oder nutzen Sie ein privates Fenster), melden Sie sich mit einem persönlichen Konto an ([erstellen Sie bei Bedarf eines](https://github.com/signup)) und öffnen Sie den Registrierungslink erneut. Wenn **Sign in to GitHub** erscheint, verwenden Sie dieses persönliche Konto.
+
+</details>
 
 <details>
 <summary>Der Link zum Zurücksetzen des Passworts zeigt `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
