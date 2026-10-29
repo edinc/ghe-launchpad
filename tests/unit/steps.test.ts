@@ -46,6 +46,15 @@ describe('steps', () => {
 	it('hands Copilot enablement to the Microsoft or GitHub contact', () => {
 		expect(stepById('enable-copilot').roles).toContain('contact');
 	});
+
+	it('requires the enterprise owner to have a personal github.com account before starting the trial', () => {
+		expect(stepById('prepare').checks).toContainEqual({
+			text: {
+				en: 'The enterprise owner can sign in to github.com with a personal account, not a managed one.',
+				de: 'Der Enterprise-Owner kann sich mit einem persönlichen Konto bei github.com anmelden, nicht mit einem Managed-User-Konto.',
+			},
+		});
+	});
 });
 
 describe('stepById', () => {

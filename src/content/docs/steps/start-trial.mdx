@@ -13,6 +13,7 @@ import DoneWhen from '../../../components/DoneWhen.astro';
 import DocLinks from '../../../components/DocLinks.astro';
 
 <StepIntro step="start-trial">
+- A personal account on github.com to sign in to the signup form. A free one works; it gets no access to your enterprise on GHE.com, which only has managed users.
 - The region and subdomain from step 0
 - The future enterprise owner’s work email address; the invitation goes there
 </StepIntro>
@@ -21,7 +22,7 @@ import DocLinks from '../../../components/DocLinks.astro';
 
 <Steps>
 
-1. Open the [GHE.com trial signup](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
+1. Sign in to github.com with that personal account, then open the [GHE.com trial signup](https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise).
 
 2. Choose **Get started with managed users**.
 
@@ -52,6 +53,13 @@ The link in the welcome email expires after 7 days. The usual password reset by 
 - A trial that’s never converted is deleted 90 days after it ends.
 
 ## Troubleshooting
+
+<details>
+<summary>The signup link shows **Page not found**</summary>
+
+Sign out of any managed or work account (or use a private window), sign in with a personal account ([create one](https://github.com/signup) if needed), then open the signup link again. If prompted with **Sign in to GitHub**, use that personal account.
+
+</details>
 
 <details>
 <summary>The password reset link shows `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
