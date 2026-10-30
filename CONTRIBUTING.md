@@ -34,7 +34,7 @@ For larger changes (new pages, design changes), please open an issue first so we
 - `src/data/steps.ts`: each step's roles, time, waits and "done when" checkpoints in both languages. They feed the step header, the journey map and the printable checklist, so change them once, there.
 - `src/components/`: the page components and hand-drawn diagrams; `src/styles/custom.css`: the visual system ([DESIGN.md](DESIGN.md)).
 - `tests/unit/` (Vitest) and `tests/e2e/` (Playwright).
-- `.github/workflows/`: the checks on every pull request, the deployment after a merge, and two weekly checks that open an issue when something needs fixing: one for broken links, and an AI review (`docs-check.md`) for content that no longer matches the official docs.
+- `.github/workflows/`: the checks on every pull request, the deployment after a merge, the setup steps for the Copilot cloud agent (`copilot-setup-steps.yml`), and two weekly checks that open an issue when something needs fixing: one for broken links, and an AI review (`docs-check.md`) for content that no longer matches the official docs.
 
 ## Content rules
 

@@ -1,0 +1,34 @@
+name: Copilot setup steps
+
+# Prepares Copilot cloud agent sessions on GitHub Actions (not cloud sandboxes) the way CI does,
+# before the agent starts and its firewall is on. Also runs when this file changes on a pull request
+# or main, and from the Actions tab.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/copilot-setup-steps.yml]
+  pull_request:
+    paths: [.github/workflows/copilot-setup-steps.yml]
+
+jobs:
+  # Copilot only picks up a job with exactly this name. No job timeout: Copilot would apply it to the
+  # whole agent session (59 minutes by default), so the slow steps get their own instead.
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          check-latest: true # the runner's cached Node.js 22 is older than package.json allows
+          cache: npm
+
+      - run: npm ci
+        timeout-minutes: 5
+
+      - run: npx playwright install --with-deps chromium
+        timeout-minutes: 5
