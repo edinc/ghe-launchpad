@@ -33,6 +33,7 @@ Needs Node.js 22.23.4 or later. Built with [Astro Starlight](https://starlight.a
 - **Link check** ([`link-check.yml`](.github/workflows/link-check.yml)): checks every external link and video, and opens a `broken-links` issue.
 - **AI docs check** ([`docs-check.md`](.github/workflows/docs-check.md)): a [GitHub Agentic Workflow](https://github.github.com/gh-aw/) in which GitHub Copilot compares the English pages with the official docs they link to, and opens a `docs-check` issue for anything outdated. It pauses while a report is open and stops at about $3 per run. Needs the `COPILOT_GITHUB_TOKEN` secret.
 - **Dependabot** ([`dependabot.yml`](.github/dependabot.yml)): grouped dependency updates.
+- **Copilot setup steps** ([`copilot-setup-steps.yml`](.github/workflows/copilot-setup-steps.yml)): prepares Copilot cloud agent sessions that run on GitHub Actions like CI (Node.js, dependencies, Chromium) before the agent starts.
 
 ## Contributing
 
