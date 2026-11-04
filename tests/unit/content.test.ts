@@ -142,13 +142,21 @@ describe('setup user password email', () => {
 			passwordEmail: 'email to set the password',
 			welcomeEmail: 'welcome email',
 			missing: 'The welcome email arrived, but not the one to set the password',
+			mailboxChecks: ['spam folder', 'mail quarantine', 'mail filters'],
 			contact: 'Microsoft or GitHub contact',
+			setupUser: 'if you know it, the setup user `SHORTCODE_admin`',
+			expired: 'The link in the email to set the password has expired',
+			journey: 'within 7 days of the email to set the password',
 		},
 		de: {
 			passwordEmail: 'E-Mail zum Festlegen des Passworts',
 			welcomeEmail: 'Willkommens-E-Mail',
 			missing: 'Die Willkommens-E-Mail ist da, die E-Mail zum Festlegen des Passworts aber nicht',
+			mailboxChecks: ['Spam-Ordner', 'Mail-Quarantäne', 'Mailfilter'],
 			contact: 'Microsoft- oder GitHub-Ansprechpartner',
+			setupUser: 'falls bekannt, den Setup-Benutzer `SHORTCODE_admin`',
+			expired: 'Der Link in der E-Mail zum Festlegen des Passworts ist abgelaufen',
+			journey: 'innerhalb von 7 Tagen nach der E-Mail zum Festlegen des Passworts',
 		},
 	};
 	const page = (lang: 'en' | 'de', slug: string) => pages.find((p) => p.lang === lang && p.slug === slug)!;
@@ -165,21 +173,23 @@ describe('setup user password email', () => {
 		expect(wait).toContain('*[GitHub] You’ve been added as an owner of the … enterprise*');
 		expect(callout(trial, 'caution')).toContain(wording[lang].passwordEmail);
 		const missing = entry(trial, wording[lang].missing);
-		for (const detail of ['`support@github.com`', '`SUBDOMAIN.ghe.com`', '`SHORTCODE_admin`', wording[lang].contact]) {
-			expect(missing).toContain(detail);
-		}
+		const details = [...wording[lang].mailboxChecks, '`support@github.com`', wording[lang].contact, '`SUBDOMAIN.ghe.com`', wording[lang].setupUser];
+		for (const detail of details) expect(missing).toContain(detail);
 	});
 
-	it.each(['en', 'de'] as const)('%s step 2 opens the link from the email to set the password', (lang) => {
+	it.each(['en', 'de'] as const)('%s step 2 and the journey map point to the email to set the password', (lang) => {
 		const setup = page(lang, 'steps/secure-setup-user.mdx');
 		const intro = setup.text.match(/<StepIntro\b[^>]*>([\s\S]*?)<\/StepIntro>/)![1];
 		expect(intro).toContain(wording[lang].passwordEmail);
 		const firstStep = setup.text.match(/^1\. (.+)$/m)![1];
 		expect(firstStep).toContain(wording[lang].passwordEmail);
 		expect(firstStep).toContain('**Set your password**');
+		expect(setup.text).toContain(`<summary>${wording[lang].expired}</summary>`);
+		expect(page(lang, 'start/journey-map.mdx').text).toContain(wording[lang].journey);
 	});
 
 	it('never puts the password link or its 7 days in the welcome email', () => {
+		// Checks each sentence, so even "the welcome email has no link" trips it: word such sentences without "link".
 		const welcome = { en: /welcome email/i, de: /Willkommens-E-Mail/ };
 		const link = { en: /\blink\b|7 days/i, de: /\bLink\b|7 Tage/ };
 		const texts = [
