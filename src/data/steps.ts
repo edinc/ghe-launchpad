@@ -58,7 +58,7 @@ export const steps: Step[] = [
 		focus: ['ghe'],
 		checks: [
 			{ text: { en: 'The trial exists in the right region with the right subdomain.', de: 'Die Testversion existiert in der richtigen Region mit der richtigen Subdomain.' } },
-			{ text: { en: 'The welcome email with the password reset link has arrived.', de: 'Die Willkommens-E-Mail mit dem Link zum Zurücksetzen des Passworts ist da.' } },
+			{ text: { en: 'Both emails have arrived: the welcome email and the one to set the password.', de: 'Beide E-Mails sind da: die Willkommens-E-Mail und die E-Mail zum Festlegen des Passworts.' } },
 		],
 	},
 	{

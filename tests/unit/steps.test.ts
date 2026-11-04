@@ -55,6 +55,15 @@ describe('steps', () => {
 			},
 		});
 	});
+
+	it('finishes the trial step only when both emails, not just the welcome email, have arrived', () => {
+		expect(stepById('start-trial').checks).toContainEqual({
+			text: {
+				en: 'Both emails have arrived: the welcome email and the one to set the password.',
+				de: 'Beide E-Mails sind da: die Willkommens-E-Mail und die E-Mail zum Festlegen des Passworts.',
+			},
+		});
+	});
 });
 
 describe('stepById', () => {

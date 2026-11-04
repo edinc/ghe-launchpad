@@ -3,7 +3,7 @@ title: GHE.com-Testversion starten
 description: Legen Sie Ihr Enterprise-Konto auf GHE.com in der Region Ihrer Wahl an und warten Sie, bis die Bereitstellung abgeschlossen ist.
 sidebar:
   label: Testversion starten
-lastVerified: 2026-10-29
+lastVerified: 2026-11-04
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -39,11 +39,11 @@ import DocLinks from '../../../../components/DocLinks.astro';
 </Steps>
 
 <Callout type="wait" title="Die Bereitstellung kann einige Stunden dauern">
-GitHub baut Ihr Enterprise-Konto jetzt in der gewählten Region auf. Sobald es bereit ist, erhält die angegebene Admin-E-Mail-Adresse eine Willkommens-E-Mail mit einem Link, über den Sie das Passwort Ihres Setup-Benutzers festlegen. Lesen Sie in der Zwischenzeit Schritt 2 und planen Sie den Entra-Admin für die Schritte 3, 6 und 7 ein.
+GitHub baut Ihr Enterprise-Konto jetzt in der gewählten Region auf. Sobald es bereit ist, erhält die angegebene Admin-E-Mail-Adresse zwei E-Mails: eine Willkommens-E-Mail und eine E-Mail zum Festlegen des Passworts Ihres Setup-Benutzers. Den Link enthält nur die E-Mail zum Festlegen des Passworts; sie kommt von `support@github.com` und hat den Betreff *[GitHub] You’ve been added as an owner of the … enterprise*. Lesen Sie in der Zwischenzeit Schritt 2 und planen Sie den Entra-Admin für die Schritte 3, 6 und 7 ein.
 </Callout>
 
 <Callout type="caution" title="Passwort innerhalb von 7 Tagen festlegen">
-Der Link in der Willkommens-E-Mail läuft nach 7 Tagen ab. Das übliche Zurücksetzen des Passworts per E-Mail funktioniert für den Setup-Benutzer nicht. Verpassen Sie die Frist, muss GitHub erst einen neuen Link ausstellen, und Sie verlieren mehrere Tage. Erledigen Sie Schritt 2, sobald die E-Mail da ist.
+Der Link in der E-Mail zum Festlegen des Passworts läuft nach 7 Tagen ab. Das übliche Zurücksetzen des Passworts per E-Mail funktioniert für den Setup-Benutzer nicht. Verpassen Sie die Frist, muss GitHub erst einen neuen Link ausstellen, und Sie verlieren mehrere Tage. Erledigen Sie Schritt 2, sobald diese E-Mail da ist.
 </Callout>
 
 ## Was die Testversion umfasst
@@ -62,7 +62,7 @@ Melden Sie sich von verwalteten oder geschäftlichen Konten ab (oder nutzen Sie 
 </details>
 
 <details>
-<summary>Der Link zum Zurücksetzen des Passworts zeigt `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
+<summary>Der Link zum Festlegen des Passworts zeigt `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
 
 Die Bereitstellung ist noch nicht abgeschlossen. Warten Sie eine Weile und öffnen Sie den Link erneut.
 
@@ -72,6 +72,13 @@ Die Bereitstellung ist noch nicht abgeschlossen. Warten Sie eine Weile und öffn
 <summary>Nach mehreren Stunden keine Willkommens-E-Mail</summary>
 
 Prüfen Sie für die Admin-E-Mail-Adresse den Spam-Ordner und Ihre Mail-Quarantäne. Fehlt die E-Mail weiterhin, bitten Sie Ihren Microsoft- oder GitHub-Ansprechpartner, den Status des Enterprise-Kontos zu prüfen.
+
+</details>
+
+<details>
+<summary>Die Willkommens-E-Mail ist da, die E-Mail zum Festlegen des Passworts aber nicht</summary>
+
+Prüfen Sie für die Admin-E-Mail-Adresse den Spam-Ordner, Ihre Mail-Quarantäne und etwaige Mailfilter auf eine Nachricht von `support@github.com`. Finden Sie dort nichts, bitten Sie Ihren Microsoft- oder GitHub-Ansprechpartner um einen neuen Link für das Passwort des Setup-Benutzers und nennen Sie Ihre Subdomain `SUBDOMAIN.ghe.com` und, falls bekannt, den Setup-Benutzer `SHORTCODE_admin`.
 
 </details>
 
