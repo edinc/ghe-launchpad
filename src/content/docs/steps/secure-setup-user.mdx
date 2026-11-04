@@ -3,7 +3,7 @@ title: Secure the setup user
 description: Set the password and two-factor authentication for the built-in admin account, and create the token you need for provisioning.
 sidebar:
   label: Secure the setup user
-lastVerified: 2026-10-29
+lastVerified: 2026-11-04
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -14,7 +14,7 @@ import DoneWhen from '../../../components/DoneWhen.astro';
 import DocLinks from '../../../components/DocLinks.astro';
 
 <StepIntro step="secure-setup-user">
-- The welcome email from step 1; its link expires after 7 days
+- The email to set the password from step 1; its link expires after 7 days
 - Access to your company password manager
 - An authenticator app on your phone
 </StepIntro>
@@ -28,7 +28,7 @@ Your enterprise comes with one built-in admin account: the **setup user**. Its u
 
 <Steps>
 
-1. Open the link from the welcome email in a **private or incognito browser window**.
+1. In the email to set the password, open the **Set your password** link in a **private or incognito browser window**.
 
 2. Set a strong password. Store the username and password in your company password manager right away.
 
@@ -79,7 +79,7 @@ Anyone with this token can create and remove users in your enterprise. Pass it t
 ## Troubleshooting
 
 <details>
-<summary>The link in the welcome email has expired</summary>
+<summary>The link in the email to set the password has expired</summary>
 
 The usual password reset by email doesn’t work for the setup user, and nobody can sign in to the [GitHub Support portal](https://support.github.com) with a GHE.com account yet. So ask your Microsoft or GitHub contact right away for a new link to set the setup user’s password, and include your subdomain `SUBDOMAIN.ghe.com`. If you can, also open a ticket in the portal.
 

@@ -3,7 +3,7 @@ title: Start the GHE.com trial
 description: Create your enterprise on GHE.com in the region of your choice and wait for provisioning to finish.
 sidebar:
   label: Start the trial
-lastVerified: 2026-10-29
+lastVerified: 2026-11-04
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -39,11 +39,11 @@ import DocLinks from '../../../components/DocLinks.astro';
 </Steps>
 
 <Callout type="wait" title="Provisioning can take a few hours">
-GitHub now builds your enterprise in the chosen region. When it’s ready, the admin work email gets a welcome email with a link to set the password of your setup user. Meanwhile, read step 2 and book the Entra admin for steps 3, 6 and 7.
+GitHub now builds your enterprise in the chosen region. When it’s ready, the admin work email gets two emails: a welcome email and an email to set the password of your setup user. The link is only in the second one, from `support@github.com` with the subject *[GitHub] You’ve been added as an owner of the … enterprise*. Meanwhile, read step 2 and book the Entra admin for steps 3, 6 and 7.
 </Callout>
 
 <Callout type="caution" title="Set the password within 7 days">
-The link in the welcome email expires after 7 days. The usual password reset by email doesn’t work for the setup user, so a missed link means asking GitHub for a new one and waiting several days. Do step 2 as soon as the email arrives.
+The link in the email to set the password expires after 7 days. The usual password reset by email doesn’t work for the setup user, so a missed link means asking GitHub for a new one and waiting several days. Do step 2 as soon as that email arrives.
 </Callout>
 
 ## What the trial includes
@@ -62,7 +62,7 @@ Sign out of any managed or work account (or use a private window), sign in with 
 </details>
 
 <details>
-<summary>The password reset link shows `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
+<summary>The link to set the password shows `net::ERR_CERT_COMMON_NAME_INVALID`</summary>
 
 Provisioning isn’t finished yet. Wait a while and open the link again.
 
@@ -72,6 +72,13 @@ Provisioning isn’t finished yet. Wait a while and open the link again.
 <summary>No welcome email after several hours</summary>
 
 Check the spam folder and your mail quarantine for the admin work email. If it’s still missing, ask your Microsoft or GitHub contact to check the enterprise’s status.
+
+</details>
+
+<details>
+<summary>The welcome email arrived, but not the one to set the password</summary>
+
+For the admin work email, check the spam folder, your mail quarantine and any mail filters for mail from `support@github.com`. If it’s not there, ask your Microsoft or GitHub contact for a new link to set the setup user’s password, and include your subdomain `SUBDOMAIN.ghe.com` and, if you know it, the setup user `SHORTCODE_admin`.
 
 </details>
 

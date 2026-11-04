@@ -3,7 +3,7 @@ title: Setup-Benutzer absichern
 description: Legen Sie Passwort und Zwei-Faktor-Authentifizierung für das integrierte Admin-Konto fest und erstellen Sie das Token, das Sie für die Bereitstellung brauchen.
 sidebar:
   label: Setup-Benutzer absichern
-lastVerified: 2026-10-29
+lastVerified: 2026-11-04
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -14,7 +14,7 @@ import DoneWhen from '../../../../components/DoneWhen.astro';
 import DocLinks from '../../../../components/DocLinks.astro';
 
 <StepIntro step="secure-setup-user">
-- Die Willkommens-E-Mail aus Schritt 1; ihr Link läuft nach 7 Tagen ab
+- Die E-Mail zum Festlegen des Passworts aus Schritt 1; ihr Link läuft nach 7 Tagen ab
 - Zugriff auf den Passwortmanager Ihres Unternehmens
 - Eine Authenticator-App auf Ihrem Smartphone
 </StepIntro>
@@ -28,7 +28,7 @@ Ihr Enterprise-Konto bringt ein integriertes Admin-Konto mit: den **Setup-Benutz
 
 <Steps>
 
-1. Öffnen Sie den Link aus der Willkommens-E-Mail in einem **privaten oder Inkognito-Browserfenster**.
+1. Öffnen Sie in der E-Mail zum Festlegen des Passworts den Link **Set your password** in einem **privaten oder Inkognito-Browserfenster**.
 
 2. Legen Sie ein starkes Passwort fest. Speichern Sie Benutzername und Passwort sofort im Passwortmanager Ihres Unternehmens.
 
@@ -79,7 +79,7 @@ Wer dieses Token besitzt, kann Benutzer in Ihrem Enterprise-Konto anlegen und en
 ## Fehlerbehebung
 
 <details>
-<summary>Der Link in der Willkommens-E-Mail ist abgelaufen</summary>
+<summary>Der Link in der E-Mail zum Festlegen des Passworts ist abgelaufen</summary>
 
 Das übliche Zurücksetzen des Passworts per E-Mail funktioniert für den Setup-Benutzer nicht, und im [GitHub-Supportportal](https://support.github.com) kann sich noch niemand mit einem GHE.com-Konto anmelden. Bitten Sie deshalb sofort Ihren Microsoft- oder GitHub-Ansprechpartner um einen neuen Link für das Passwort des Setup-Benutzers und nennen Sie Ihre Subdomain `SUBDOMAIN.ghe.com`. Eröffnen Sie, wenn möglich, zusätzlich ein Ticket im Portal.
 
