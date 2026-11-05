@@ -22,6 +22,8 @@ exclude = [
   "^https://entra\\.microsoft\\.com",
   "^https://github\\.com/account/enterprises/new",
   "^https://github\\.com/enterprises/oauth_callback",
+  # GitHub's signup page answers automated requests with 403 (bot protection) but opens in a browser.
+  "^https://github\\.com/signup",
   # "Edit page" links on every page need a signed-in session.
   "^https://github\\.com/edinc/ghe-launchpad/edit/",
   "^https://origin-tracker\\.githubusercontent\\.com",
